@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/javascripts/socketio/socket.io.js"></script>
+  <script type="text/javascript">
+    var socket;
+    $(document).ready(function () {
+      socket = io.connect(window.location.origin.split(':')[0] + ':' + window.location.origin.split(':')[1] + ':3001');
+      socket.on('servMSG', function (data) {
+        console.log(data);
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <h1>
+    <%= title %>
+  </h1>
+  <p>Welcome to
+    <%= title %>
+  </p>
+</body>
+
+</html>
