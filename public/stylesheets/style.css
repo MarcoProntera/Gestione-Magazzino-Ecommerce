@@ -1,8 +1,150 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+  box-sizing: border-box;
+}
+html,body {
+  font-family: Verdana, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0;
 }
 
-a {
-  color: #00B7FF;
+html {
+  overflow-x: hidden;
+}
+
+.animate-right {
+  position: relative;
+  animation: animateright 0.4s;
+}
+
+@keyframes animateright {
+  from {
+      right: -300px;
+      opacity: 0;
+  }
+  to {
+      right: 0;
+      opacity: 1;
+  }
+}
+.inner-bar-item {
+  padding: 8px 16px;
+  float: left;
+  width: auto;
+  border: none;
+  outline: none;
+  display: block;
+ 
+}
+.button {
+  border: none;
+  display: inline-block;
+  outline: 0;
+  padding: 8px 16px;
+  vertical-align: middle;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  background-color: inherit;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.large {
+  font-size: 18px!important;
+}
+.container {
+  padding: 0.01em 16px;
+}
+.input {
+  padding: 8px;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+}
+.border {
+  border: 1px solid #ccc!important;
+}
+.right-cell {
+  display:none;
+  right:0;
+  min-width:240px; 
+  width: 20%;
+  height: 100%;
+  width: 200px;
+  background-color: #fff;
+  position: fixed!important;
+  z-index: 1;
+  overflow: auto;
+}
+.padding-16{
+  padding-top: 16px!important;
+  padding-bottom: 16px!important;
+}
+.red{
+  color: #fff!important;
+  background-color: #f44336!important;
+}
+.bar {
+  width: 100%;
+  overflow: hidden;
+}
+@media (max-width:600px) {
+  
+  .hide-small {
+      display: none!important;
+  }
+      
+  .show-smallbtn {
+          display: inline-block!important;
+      }
+}
+
+.right {
+  float: right!important;
+}
+.sidebar {
+  height: 100%;
+  width: 200px;
+  background-color: #fff;
+  position: fixed!important;
+  z-index: 1;
+  overflow: auto;
+}
+
+.animate-left {
+  position: relative;
+  animation: animateleft 0.4s;
+}
+
+@keyframes animateleft {
+  from {
+      left: -300px;
+      opacity: 0;
+  }
+  to {
+      left: 0;
+      opacity: 1;
+  }
+}
+@media (max-width:992px) {
+  
+  .main {
+      margin-left: 0!important;
+      margin-right: 0!important;
+  }
+}
+.main,
+#main {
+  transition: margin-left .4s;
+}
+.border-light{
+     border: 1px solid darkgray;
+ }
+.all-width{
+  width: 100%;
+}
+.text-left{
+  text-align: left!important;
 }
