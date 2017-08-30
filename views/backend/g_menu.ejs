@@ -1,0 +1,117 @@
+<table>
+    <tr>
+        <td style="text-align: center;">GESTIONE MENU</td>
+    </tr>
+    <tr>
+        <td>
+            <ul style="list-style: none; padding: 10px;">
+                <li style="padding: 10px;"><span style="float:right;"><input id="add" type="button" value="ADD" disabled="disabled" /></span><span style="display:block; overflow:hidden;"><input type="text" id="newMenu" style="width:100%; box-sizing:border-box;" /></span></li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <ul id="elenco_menu" style="list-style: none; padding: 10px;">
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="button" disabled="disabled" value="salva modifiche" id="save" style="float: right;" />
+        </td>
+    </tr>
+</table>
+<script type="text/javascript">
+    var menu = <%- JSON.stringify(menu) %>;
+    $(document).ready(function () {
+        updateElencoMenu(menu);
+    });
+
+    function updateElencoMenu(menu) {
+        $('#elenco_menu').find('input').off();
+        for (var i = 0; i < menu.length; i++) {
+            $('#elenco_menu').append('<li style="padding: 10px;" data-id="' + menu[i].codice + '"><span style="float:right;"><input class="deleteMenu" type="button" value="X" /></span><span style="display:block; overflow:hidden;"><input type="text" style="width:100%; box-sizing:border-box;" class="menuName" value="' + menu[i].nome + '" data-orgvalue="' + menu[i].nome + '"/></span></li>');
+        }
+        $('#elenco_menu').find('.menuName').on('keyup change', function () {
+            checkMod();
+        });
+
+        $('#newMenu').on('keyup change', function () {
+            var preventEdit = false;
+            var currVal = $(this).val();
+            $('#elenco_menu').find('.menuName').each(function () {
+                if (currVal == $(this).attr('data-orgvalue'))
+                    preventEdit = true;
+            });
+            if (preventEdit == false) {
+                if ($(this).val() != '')
+                    $('#add').removeAttr('disabled');
+                else
+                    $('#add').attr({ 'disabled': 'disabled' });
+            } else
+                $('#add').attr({ 'disabled': 'disabled' });
+        });
+        $('#elenco_menu').find('.deleteMenu').on('click', function () {
+            /*
+            var data = {
+                uname: $('#uname').val(),
+                upass: $('#upass').val()
+            }
+            ajaxCall("POST", window.location.origin + '/amministrazione/login', 5000, data,
+                function (data) {
+                    if (data.logged)
+                        showMenu();
+                    else
+                        authError('nome utente o password errati');
+                }
+            );
+            */
+        });
+        $('#save').on('click', function () {
+            /*
+            var data = {
+                uname: $('#uname').val(),
+                upass: $('#upass').val()
+            }
+            ajaxCall("POST", window.location.origin + '/amministrazione/login', 5000, data,
+                function (data) {
+                    if (data.logged)
+                        showMenu();
+                    else
+                        authError('nome utente o password errati');
+                }
+            );
+            */
+        });
+        $('#add').on('click', function () {
+            if ($(this).attr('disabled'))
+                alert('ATTENZIONE!\n·\til nome del menu non deve essere già presente nell\'elenco\n·\til nome del menu non può essere vuoto');
+            /*
+            var data = {
+                uname: $('#uname').val(),
+                upass: $('#upass').val()
+            }
+            ajaxCall("POST", window.location.origin + '/amministrazione/login', 5000, data,
+                function (data) {
+                    if (data.logged)
+                        showMenu();
+                    else
+                        authError('nome utente o password errati');
+                }
+            );
+            */
+        });
+    }
+    function checkMod() {
+        var edited = false;
+        $('#elenco_menu').find('.menuName').each(function () {
+            if ($(this).val() != $(this).attr('data-orgvalue'))
+                edited = true;
+        });
+        if (edited == true)
+            $('#save').removeAttr('disabled');
+        else
+            $('#save').attr({ 'disabled': 'disabled' });
+    }
+
+</script>
