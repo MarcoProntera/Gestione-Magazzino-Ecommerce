@@ -1,0 +1,95 @@
+.inline{
+    display: inline;
+}
+.cart-container{
+    padding: 20px;
+}
+.item-container{
+    height: auto;
+    min-width: 250px;
+    border: 1px solid red;
+    position: relative;
+}
+.item-image{
+    border: 1px solid green;
+    height: 100px;
+    float:left;
+    min-width: 50px;
+    max-width:100px;
+}
+.item-image-inner{
+    height: 100px;
+    width: 100px;
+}
+.item-name{
+    border: 1px solid green;
+    height: 100px;
+    width: 100%;
+    padding-left: 105px;
+    padding-top:10px;
+}
+/* prova css per il nome del prodotto in fade out sistemare la grandezza del font */
+
+.item-name-text {
+    margin: 0 0 1em 0;
+    overflow: hidden;
+    font: 1.2em/1.2em 'Open Sans', sans-serif;
+  }
+  .item-name-text p {
+    margin: 0;
+  }
+  .fade-effect {
+    position: relative;
+    height: 2.4em; /* esattamente 2 linee */
+  }
+  .fade-effect:after {
+    content: "";
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 70%;
+    height: 1.2em;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 50%);
+  }
+  
+.item-operations{
+    border: 1px solid green;
+    height: 60px;
+    position: absolute;
+    bottom:0;
+    width: 100%;
+    padding-top:10px;
+    padding-left:10px;
+    padding-right:10px;
+}
+.item-amount{
+    width: 50px;
+    min-height: 20px;
+    
+}
+/* questi due per i colori dei tasti */
+.item-amount-update{
+    padding: 0;
+}
+.item-remove{
+    padding: 0;
+}
+
+.item-price{
+    float:right;
+    margin:0;
+    height: 23px;
+}
+.total-cart-cost{
+    border: 1px solid black;
+    margin-top:20px;
+   
+}
+.cart-buy{
+    float:right;
+}
+
+
+
+

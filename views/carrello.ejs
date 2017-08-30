@@ -1,52 +1,42 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/stylesheets/carrello.css">
 
+<head>
+
+
+
+</head>
+
 <body>
-   
-        <div class="container" style="float:left;background-color: pink;  margin-top:30px;width: 70%">
-            <div style="float:left; margin-left: 5px; height: 100%; ">
-                <div style="float:left;">
-                    <img src="/images/immagini_prodotto1/1.jpg" style="width: 80px; height: 50px; float:left;">
-                    <p style="
-                    float:left;
-                    min-width:250px;
-                    max-width: 70%;
-                    max-height: 50px;
-                    white-space: normal;
-                    overflow:hidden !important;
-                    text-overflow: ellipsis;
-                    margin: 0;">
-                        NOME DEL PRODOTTO NOME DEL PRODOTTO NOME DEL PRODOTTO NOME DEL PRODOTTO NOME DEL PRODOTTO NOME DEL PRODOTTO NOME DEL PRODOTTO
-                        NOME DEL PRODOTTO NOME DEL PRODOTTO NOME DEL PRODOTTO NOME DEL PRODOTTO NOME DEL PRODOTTO NOME DEL
-                        PRODOTTO NOME DEL PRODOTTO NOME DEL PRODOTTO NOME DEL PRODOTTO NOME DEL PRODOTTO NOME DEL PRODOTTO
-                        NOME DEL PRODOTTO NOME DEL PRODOTTO NOME DEL PRODOTTO NOME DEL PRODOTTO NOME DEL PRODOTTO NOME DEL
-                        PRODOTTONOME DEL PRODOTTO </p>
-                </div>
-                <div >
-                    <p style="float:left;">
-                        Qt.
-                        <input  style="width: 40px;" name="Quantità" type="text">
-                        <input class="button red" name="Aggiorna Quantità" type="submit" value="Aggiorna Quantità">
-                        <input class="button red" name="Rimuovi" type="submit" value="Rimuovi">
-                    </p>
-                    <p style="float:right;">
-                           Costo
-                        </p>
+
+    <div class="cart-container">
+        <!-- Contenitore di un prodotto -->
+        <div class="item-container">
+            <div class="item-image"> <img src="\images\immagini_prodotto1\2.jpg" alt="" class="item-image-inner"> </div>
+            <div class="item-name">
+                <div class="item-name-text fade-effect">
+                    <p>Nome del prodotto con effetto fade out se supera le due linee</p>
                 </div>
             </div>
-
-
-
-
+            <div class="item-operations" style="position: relative;"> Qt.
+                <input class="item-amount" name="quantità" type="number" id="quantità">
+                <input class="item-amount-update" name="Aggiorna" type="submit" value="Aggiorna">
+                <input class="item-remove" name="Rimuovi" type="submit" value="Rimuovi">
+                <div class="item-price">
+                    <p class="inline"> Costo: 50000000 euro</p>
+                </div>
+            </div>
+        </div>
+        <!-- Contenitore del totale del carrello -->
+        <div class="total-cart-cost">
+             <p class="inline" >Totale:</p>
+             <input class="cart-buy" name="Compra" type="submit" value="Compra">
         </div>
 
-    
-
-
-
+    </div>
 
 </body>
 
