@@ -27,6 +27,7 @@
     width: 100%;
     padding-left: 105px;
     padding-top:10px;
+    position: relative;
 }
 /* prova css per il nome del prodotto in fade out sistemare la grandezza del font */
 
@@ -55,13 +56,10 @@
   
 .item-operations{
     border: 1px solid green;
-    height: 60px;
+    /* height: 60px; */
     position: absolute;
     bottom:0;
     width: 100%;
-    padding-top:10px;
-    padding-left:10px;
-    padding-right:10px;
 }
 .item-amount{
     width: 50px;
