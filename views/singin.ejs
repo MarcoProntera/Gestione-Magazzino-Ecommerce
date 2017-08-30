@@ -3,61 +3,44 @@
 <meta charset="UTF-8">
 
 <head>
-    <style>
-        .autenticazione {
-            padding: 15px 0 20px 0;
-        }
-        
-        .login {
-            max-width: 40%;
-            min-width: 200px;
-            float: left;
-            margin: 20px 30px 10px 30px;
-        }
-        
-        .button-login {
-            float: right;
-            margin: 30px auto 30px auto;
-        }
-    </style>
+    <link rel="stylesheet" href="/stylesheets/singin.css">
 </head>
 
-<section class="autenticazione light-grey">
 
-    <div class="centraggio-pagina ">
-        <div class="logon" style="display: table; margin: 0 auto; width: 40%">
-            <div class="container teal">
-                <hgroup>
+
+   
+        <div class="singin-container center-contents">
+            <div class="singin-tab">
                     <h2>Non sei registrato?</h2>
                     <h5>Creando un nuovo account su E-Caccia SSI SORDI sarai in grado di acquistare velocemente, essere sempre aggiornato sullo stato dei tuoi ordini e ricevere offerte e promozioni.</h5>
-                </hgroup>
             </div>
-            <form class="container " method="post" action="#esegui le operazioni di login.non lo so">
+        
+            <form class="singin-form" method="post" action="#esegui le operazioni di login.non lo so">
 
                 <p>
                     <label for="Nome" required>Nome:</label>
-                    <input class="input " name="nome" type="text" id="nome">
+                    <input class="singin-input" name="nome" type="text" id="nome">
                 </p>
 
                 <p>
                     <label for="Cognome" required>Cognome:</label>
-                    <input class="input " name="cognome" type="text" id="cognome">
+                    <input class="singin-input" name="cognome" type="text" id="cognome">
                 </p>
 
                 <p>
                     <label for="email" required>Email:</label>
-                    <input class="input " name="email" type="email" id="email">
+                    <input class="singin-input" name="email" type="email" id="email">
                 </p>
 
                 <p>
                     <label for="address" required>Indirizzo:</label>
-                    <input class="input" name="indirizzo" type="text" id="indirizzo">
+                    <input class="singin-input" name="indirizzo" type="text" id="indirizzo">
                 </p>
 
                 <p>
 
                     <label for="province" required>Stato:
-                        <input class="input " type="text" name="stati" list="states" />
+                        <input class="singin-input" type="text" name="stati" list="states" />
                             <datalist id="states">
                             <option>Italia</option>
                             <option>Germania</option>
@@ -69,7 +52,7 @@
                 <p>
 
                     <label for="province" required>Provincia:
-                    <input class="input " type="text" name="province" list="provinces" />
+                    <input class="singin-input" type="text" name="province" list="provinces" />
                         <datalist id="provinces">
                         <option value="AG">Agrigento</option>
                         <option value="AL">Alessandria</option>
@@ -80,20 +63,20 @@
 
                 <p>
                     <label for="telefono" required>Tel.</label>
-                    <input class="input " type="tel" id="telefono" name="telefono">
+                    <input class="singin-input" type="tel" id="telefono" name="telefono">
                 </p>
 
                 <p>
                     <label for="password">Password:</label>
-                    <input class="input " name="password" type="password" id="password">
+                    <input class="singin-input" name="password" type="password" id="password">
                 </p>
 
                 <p>
-                    <input class="button red" name="login" type="submit" value="login">
+                    <input class="singin-button" name="login" type="submit" value="login">
                 </p>
             </form>
         </div>
-    </div>
-</section>
+   
+
 
 </html>

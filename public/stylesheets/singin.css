@@ -1,0 +1,49 @@
+.singin-container{
+    width: 700px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+@media (max-width:600px) {
+    
+    .singin-container {
+        width: 400px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+  }
+.center-contents{
+    display: table;
+    margin: 0 auto; 
+}
+.singin-tab{
+    border: 1px solid darkgray;
+    padding:10px;
+    text-align: justify;
+    background-color: orange;
+}
+.singin-form{
+    border: 1px solid darkgray;
+    padding:10px;
+    background-color: white;
+}
+.singin-input{
+    padding: 8px;
+    display: block;
+    border: 1px solid darkgray;
+    width: 100%;
+}
+.singin-button{
+    border: none;
+    display: inline-block;
+    outline: 0;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    background-color: orange;
+}
