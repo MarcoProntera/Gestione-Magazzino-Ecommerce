@@ -1,158 +1,125 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script>
-    var slideIndex = 1;
-    showDivs(slideIndex);
 
-    function plusDivs(n) {
-        showDivs(slideIndex += n);
-    }
+<head>
+    <title>dettagli prodotto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        var slideIndex = 1;
+        showDivs(slideIndex);
 
-    function showDivs(n) {
-        var i;
-        var x = document.getElementsByClassName("mySlides");
-        if (n > x.length) {
-            slideIndex = 1
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
         }
-        if (n < 1) {
-            slideIndex = x.length
+
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = x.length
+            }
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex - 1].style.display = "block";
         }
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
+
+        function currentDiv(n) {
+            showDivs(slideIndex = n);
         }
-        x[slideIndex - 1].style.display = "block";
-    }
+    </script>
+    <link rel="stylesheet" href="/stylesheets/dettagliprodotto.css">
+</head>
 
-    function currentDiv(n) {
-        showDivs(slideIndex = n);
-    }
-</script>
+<body class="body">
 
-<body>
+    <div class="contenitore-immagini">
+        <img class="mySlides" src="/images/ha.jpg" style="min-width: 100px; max-width: 100%; max-height: 300px;">
+        <img class="mySlides" src="/images/help.jpg" style="min-width: 100px;  max-height: 300px; max-width: 100%; display:none; ">
+        <img class="mySlides" src="/images/img1.jpg" style="min-width: 100px;  max-height: 300px; max-width: 100%; display:none; ">
 
-    <div class="container" style="width:40%; float:left; min-width: 250px;">
-        <h2>Nome del prodotto</h2>
-
-        <div id="divImagesProduct" style="height: 300px;">
-            <img class="mySlides" src="/images/immagini_prodotto1/1.jpg" style="min-width: 200px; max-width: 100%; max-height: 300px;">
-            <img class="mySlides" src="/images/immagini_prodotto1/2.jpg" style="min-width: 200px;  max-height: 300px; max-width: 100%;display:none; ">
-            <img class="mySlides" src="/images/immagini_prodotto1/3.jpg" style="min-width: 200px;  max-height: 300px; max-width: 100%;display:none; ">
-
-        </div>
-        <div style="display: table;
-  margin: 0 auto;">
+        <div class="divbutton">
             <button onclick="currentDiv(1)">1</button>
             <button onclick="currentDiv(2)">2</button>
             <button onclick="currentDiv(3)">3</button>
         </div>
-
-
     </div>
 
-
-    <div class="container" style="float:left; width:60%; min-width: 250px; padding: 0; ">
-        <div style="float:left; width:100%">
-            <div style="float:left;">
-                <h4><b>Nome Prodotto</b></h4>
-                <p>Prezzo : 2000 euro</p>
-            </div>
-            <input class="button red" style="float:right; margin-top: 10px" name="Acquista!" type="submit" value="Acquista">
+    <div class="contenitore-descrizione">
+        <div class="contenitore-nomeprodotto">
+            nome
         </div>
+        <div class="button-operations">
+            <input name="Inserisci nel carrello" type="submit" value="Inserisci nel carrello">
+        </div>
+        <div class="div-prezzo">
+            prezzo
+        </div>
+        <div class="div-descrizione">
 
-        <div style="  width:80%; min-width: 250px; height: 300px;overflow: auto; ">
-            <b>Nome Prodotto Nome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome Prodotto
-          Nome Prodotto Nome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome Prodotto
-          Nome Prodotto Nome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome Prodotto
-          Nome Prodotto Nome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome Prodotto
-          Nome Prodotto Nome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome Prodotto
-          Nome Prodotto Nome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome Prodotto
-          Nome Prodotto Nome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome Prodotto
-          Nome Prodotto Nome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome Prodotto
-          Nome Prodotto Nome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome Prodotto  
-          Nome Prodotto Nome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome Prodotto
-          Nome Prodotto Nome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome Prodotto
-          Nome Prodotto Nome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome Prodotto
-          Nome Prodotto Nome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome Prodotto
-          Nome Prodotto Nome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome Prodotto
-          Nome Prodotto Nome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome ProdottoNome Prodotto
-
-      </b></h4>
-
+            DESCRIZIONE
         </div>
 
     </div>
 
-    Marco Prontera, [29.08.17 12:04]
-    <div style="width:100%;  min-width: 200px; float:left;">
-        <hr>
-        <h2>Specifiche del prodtto</h2>
+    <div class="contenitore-specifiche">
+        <h1 style=" text-align: left">
+            SPECIFICHE
+        </h1>
 
-        <table class="specifiche">
-
+        <table class="tabella">
             <tr>
-                <td class="label">Codice articolo</td>
-                <td> </td>
-                <td class="value">Stan-1-96-178</td>
-            </tr>
-            <tr class="size-weight">
-                <td class="label">Peso articolo</td>
-                <td> </td>
-                <td class="value">327 g</td>
-            </tr>
-            <tr class="size-weight">
-                <td class="label">Dimensioni prodotto</td>
-                <td> </td>
-                <td class="value">60 x 0,8 x 25,5 cm</td>
-            </tr>
-            <tr class="item-model-number">
-                <td class="label">Numero modello articolo</td>
-                <td> </td>
-                <td class="value">STA196178</td>
-            </tr>
-
-            <tr>
-                <td class="label">Colore</td>
-                <td> </td>
-                <td class="value">Nero</td>
+                <td>Codice articolo</td>
+                <td>Stan-1-96-178</td>
             </tr>
             <tr>
-                <td class="label">Materiale</td>
-                <td> </td>
-                <td class="value">Nylon</td>
+                <td>Peso articolo</td>
+                <td>327 g</td>
             </tr>
             <tr>
-                <td class="label">Numero di articoli
+                <td>Dimensioni prodotto</td>
+                <td>60 x 0,8 x 25,5 cm</td>
+            </tr>
+            <tr>
+                <td>Numero modello articolo</td>
+                <td>STA196178</td>
+            </tr>
+            <tr>
+                <td>Colore</td>
+                <td>Nero</td>
+            </tr>
+            <tr>
+                <td>Materiale</td>
+                <td>Nylon</td>
+            </tr>
+            <tr>
+                <td>Numero di articoli
                 </td>
-                <td> </td>
-                <td class="value">1</td>
+                <td>1</td>
             </tr>
             <tr>
-                <td class="label">Batterie/Pile incluse?</td>
-                <td> </td>
-                <td class="value">No</td>
+                <td>Batterie/Pile incluse?</td>
+                <td>No</td>
             </tr>
             <tr>
-                <td class="label">Batterie/Pile necessarie?</td>
-                <td> </td>
-                <td class="value">No</td>
+                <td>Batterie/Pile necessarie?</td>
+                <td>No</td>
             </tr>
             <tr>
-                <td class="label">Peso
+                <td>Peso
                 </td>
-                <td> </td>
-                <td class="value">325 grammi</td>
+                <td>325 grammi</td>
             </tr>
             <tr>
-                <td class="lAttr">&nbsp;</td>
-                <td> </td>
-                <td class="lAttr">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
             </tr>
-
         </table>
-
     </div>
+
 </body>
 
 </html>
