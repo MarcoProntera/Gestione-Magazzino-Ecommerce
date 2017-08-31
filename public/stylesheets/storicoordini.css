@@ -1,4 +1,3 @@
-
 .conteiner-orders{
     width: 1000px;
 }
@@ -11,7 +10,7 @@
     }
   }
 
-  @media (max-width:780px) {
+@media (max-width:780px) {
     
     .conteiner-orders{
         width: 500px;
@@ -25,15 +24,24 @@
     border: 1px solid black;
 }
 .order-details-button{
-    background-color: cornflowerblue;
+    background-color: #ccc;
     height: 100%;
     width: auto;
     text-align: right;
     float: right;
     padding: 5px;
 }
+.button-details-download{
+    background-color: #ccc;
+    border: none;
+    padding: 2px;
+}
+.button-details-download:hover{
+    color: #f63;
+
+}
 .order-date{
-    background-color: cornflowerblue;
+    background-color: #ccc;
     height: 100%;
     width: 250px;
     text-align: left;
@@ -41,7 +49,7 @@
     padding: 5px;
 }
 .total-order-price{
-    background-color: lime;
+    background-color: #ddd;
     width:100%;
     height: 100%;
     text-align: center;

@@ -108,7 +108,7 @@
                 </p>
 
                 <p>
-                    <input class="button border-light red" name="login" type="submit" value="login">
+                    <input class="button border-light color-login" name="login" type="submit" value="login">
                 </p>
             </form>
         </div>
@@ -123,7 +123,7 @@
             <button class="button right" onclick="changeContents('/singin')">Registrati</button>
             <button class="button right" onclick="openRightMenu()">Accedi</button>
 
-            <div class="bar hide-small">
+            <div class="bar">
                 <button class="inner-bar-item button" onclick="openLeftMenu()">Informatica</button>
                 <button class="inner-bar-item button" onclick="openLeftMenu()">Elettrodomestici</button>
                 <button class="inner-bar-item button" onclick="openLeftMenu()">Telefonia</button>
@@ -138,7 +138,7 @@
                 </button>
                 <a href="#" class="inner-bar-item button">Offerte</a>
             </div>
-            <div class="show-smallbtn" style="display:none;">
+            <div class="" style="display:none;">
                 <button onclick="if($('.bar').hasClass('hide-small')){$('.bar').removeClass('hide-small'); $(this).html('nascondi menu');}else{$('.bar').addClass('hide-small');$(this).html('mostra menu');}"> menu </button>
             </div>
         </div>
@@ -154,14 +154,14 @@
     <div zclass="main" id="main" onclick="closeAllMenu()">
         <div class="teal">
             <!-- deve essere una classe a parte per non fare equivoci con le jquery -->
-            <div id="container_contents" style="min-height: 80vh;">
+            <div id="container_contents" class="conteriner-contents">
 
                 <% include carrello%>
             </div>
 
-            <div class="container teal" style="position: relative; bottom:0; background-color: cornflowerblue;">
+            <div class="container teal div-footer">
 
-                <p style="text-align: center">Footer information goes here</p>
+                <p style="text-align: center;">Sito web fatto da : Luca Antonini, Claudio Milani e Marco Prontera</p>
             </div>
         </div>
     </div>

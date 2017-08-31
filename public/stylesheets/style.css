@@ -83,9 +83,9 @@ html {
   padding-top: 16px!important;
   padding-bottom: 16px!important;
 }
-.red{
+.color-login{
   color: #fff!important;
-  background-color: #f44336!important;
+  background-color: #f63!important;
 }
 .bar {
   width: 100%;
@@ -148,4 +148,12 @@ html {
 }
 .text-left{
   text-align: left!important;
+}
+.conteriner-contents{
+  min-height: 100vh;
+}
+.div-footer{
+  position: relative;
+  bottom:0;
+  background-color: #f63;
 }

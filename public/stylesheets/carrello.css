@@ -3,6 +3,7 @@
 }
 .cart-container{
     width: 1000px;
+    padding: 20px;
     display: table;
     margin: 0 auto;
 }
@@ -10,6 +11,7 @@
     
     .cart-container {
         width: 600px;
+        
     }
   }
 .item-container{
@@ -42,14 +44,14 @@
     overflow: hidden;
     font: 1.2em/1.2em 'Open Sans', sans-serif;
   }
-  .item-name-text p {
+.item-name-text p {
     margin: 0;
   }
-  .fade-effect {
+.fade-effect {
     position: relative;
     height: 2.4em; /* esattamente 2 linee */
   }
-  .fade-effect:after {
+.fade-effect:after {
     content: "";
     text-align: right;
     position: absolute;
@@ -75,14 +77,15 @@
 
 .item-amount-update{
     border: none;
-    padding: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
     background-color: #f63;
     height: 22px;
 }
 .item-remove{
-    padding: 0;
     border: none;
-    padding: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
     background-color: #f63;
     height: 22px;
 }
