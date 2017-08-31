@@ -6,7 +6,7 @@
         <%= title %>
     </title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
+
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -17,12 +17,12 @@
             document.getElementById("main").style.marginLeft = "25%";
             document.getElementById("mySidebar").style.width = "25%";
             document.getElementById("mySidebar").style.display = "block";
-            
+
         }
         function closeLeftMenu() {
             document.getElementById("main").style.marginLeft = "0%";
             document.getElementById("mySidebar").style.display = "none";
-            
+
         }
         function openRightMenu() {
             document.getElementById("rightMenu").style.display = "block";
@@ -70,6 +70,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="/font-icon/flaticon.css">
     <title>Document</title>
 
 </head>
@@ -82,7 +83,7 @@
 
     <!-- accesso in barra laterale destra -->
     <div class="right-cell animate-right" id="rightMenu">
-        <button onclick="closeRightMenu()" class="inner-bar-item button large">Close &times;</button>
+        <button onclick="closeRightMenu()" class="inner-bar-item button large"><span class="flaticon-close"></span></button>
         <div class=" ">
             <form class="container padding-16" method="" action="">
                 <p>
@@ -129,8 +130,8 @@
             </div>
         </div>
         <div class="sidebar  animate-left" style="display:none; min-width: 250px; " id="mySidebar">
-            <button class="inner-bar-item button large all-width text-left" onclick="closeLeftMenu()">Close &times;</button>
-            <a href="#"class="inner-bar-item button large all-width text-left" >Link 1</a>
+            <button class="inner-bar-item button large all-width text-left" onclick="closeLeftMenu()"><span class="flaticon-close"></span></button>
+            <a href="#" class="inner-bar-item button large all-width text-left">Link 1</a>
             <a href="#" class="inner-bar-item button large all-width text-left">Link 2</a>
             <a href="#" class="inner-bar-item button large all-width text-left">Link 3</a>
         </div>
