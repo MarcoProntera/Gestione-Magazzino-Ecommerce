@@ -1,0 +1,11 @@
+.order {
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 2%;
+    height: 40px;
+    border: 1px solid black;
+}
+
+* {
+    box-sizing: border-box;
+}
