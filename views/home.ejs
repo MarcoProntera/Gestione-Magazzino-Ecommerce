@@ -6,9 +6,9 @@
         <%= title %>
     </title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
+
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
 
         });
     </script>
@@ -17,35 +17,44 @@
             document.getElementById("main").style.marginLeft = "25%";
             document.getElementById("mySidebar").style.width = "25%";
             document.getElementById("mySidebar").style.display = "block";
-            
+
         }
+
         function closeLeftMenu() {
             document.getElementById("main").style.marginLeft = "0%";
             document.getElementById("mySidebar").style.display = "none";
-            
+
         }
+
         function openRightMenu() {
             document.getElementById("rightMenu").style.display = "block";
         }
+
         function closeRightMenu() {
             document.getElementById("rightMenu").style.display = "none";
         }
+
         function closeAllMenu() {
             closeRightMenu();
             closeLeftMenu();
         }
+
         function menuScrollCheck() {
-            $(window).scroll(function () {
+            $(window).scroll(function() {
                 var scroll = $('#barMenu').outerHeight(true) - $(this).scrollTop();
 
                 if (scroll < 1) {
-                    $('#mySidebar').css({ 'top': '0' });
+                    $('#mySidebar').css({
+                        'top': '0'
+                    });
                 } else {
-                    $('#mySidebar').css({ 'top': scroll });
+                    $('#mySidebar').css({
+                        'top': scroll
+                    });
                 }
             });
         }
-        $(document).ready(function () {
+        $(document).ready(function() {
             menuScrollCheck();
         });
 
@@ -58,10 +67,12 @@
                 data: {
                     ciao: 'ciao'
                 },
-                success: function (data) {
+                success: function(data) {
                     $('#container_contents').html(data);
                 },
-                error: function (jqXHR, textStatus, err) { alert('text status ' + textStatus + ', err ' + err) }
+                error: function(jqXHR, textStatus, err) {
+                    alert('text status ' + textStatus + ', err ' + err)
+                }
             });
         }
     </script>
@@ -70,6 +81,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="/font-icon/flaticon.css">
     <title>Document</title>
 
 </head>
@@ -82,11 +94,11 @@
 
     <!-- accesso in barra laterale destra -->
     <div class="right-cell animate-right" id="rightMenu">
-        <button onclick="closeRightMenu()" class="inner-bar-item button large">Close &times;</button>
-        <div class=" ">
-            <form class="container padding-16" method="" action="">
+        <button onclick="closeRightMenu()" class="inner-bar-item button large"><span class="flaticon-close"></span></button>
+        <div style="margin-top: 10px;">
+            <form class="container padding-16" method="" action="" >
                 <p>
-                    <label for="email" required>Email:</label>
+                    <label for="email" required  >Email:</label>
                     <input class="input border-light" name="indirizzo email" type="email" id="email">
                 </p>
 
@@ -121,6 +133,9 @@
                 <button class="inner-bar-item button" onclick="openLeftMenu()">Audio e TV</button>
                 <button class="inner-bar-item button" onclick="openLeftMenu()">Casa e cucina</button>
                 <button class="inner-bar-item button" onclick="openLeftMenu()">Videogiochi</button>
+                <button class="inner-bar-item button" onclick="changeContents('/profiloutente')">
+                <span class="flaticon-gear"></span>
+                </button>
                 <a href="#" class="inner-bar-item button">Offerte</a>
             </div>
             <div class="show-smallbtn" style="display:none;">
@@ -128,8 +143,8 @@
             </div>
         </div>
         <div class="sidebar  animate-left" style="display:none; min-width: 250px; " id="mySidebar">
-            <button class="inner-bar-item button large all-width text-left" onclick="closeLeftMenu()">Close &times;</button>
-            <a href="#"class="inner-bar-item button large all-width text-left" >Link 1</a>
+            <button class="inner-bar-item button large all-width text-left" onclick="closeLeftMenu()"><span class="flaticon-close"></span></button>
+            <a href="#" class="inner-bar-item button large all-width text-left">Link 1</a>
             <a href="#" class="inner-bar-item button large all-width text-left">Link 2</a>
             <a href="#" class="inner-bar-item button large all-width text-left">Link 3</a>
         </div>
@@ -139,7 +154,7 @@
     <div zclass="main" id="main" onclick="closeAllMenu()">
         <div class="teal">
             <!-- deve essere una classe a parte per non fare equivoci con le jquery -->
-            <div id="container_contents" style="min-height: 80vh; background-color: beige">
+            <div id="container_contents" style="min-height: 80vh;">
 
                 <% include carrello%>
             </div>

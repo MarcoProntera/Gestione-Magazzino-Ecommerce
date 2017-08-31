@@ -1,0 +1,32 @@
+ .user-contents{
+     border: 1px solid black;
+ }
+ div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+div.tab button:hover {
+    background-color: red;
+}
+div.tab button.active {
+    background-color: #ccc;
+}
+.tabcontent {
+    padding: 20px;
+    border: 1px solid red;
+    border-top: none;
+    width: auto;
+    min-height: 100vh;
+    display: table;
+    margin: 0 auto;
+} 
