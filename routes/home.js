@@ -32,5 +32,17 @@ router.get('/carrello', function (req, res, next) {
 
   
 });
+router.get('/profiloutente', function (req, res, next) {
+  
+  res.render('profiloutente', { title: 'profiloutente' });
+
+  
+});
+router.get('/datiutente', function (req, res, next) {
+  
+  res.render('datiutente', { title: 'datiutente' });
+
+  
+});
 
 module.exports = router;

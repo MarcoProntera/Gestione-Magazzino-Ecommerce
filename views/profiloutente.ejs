@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/profiloutente.css">
+    <script>
+     function changeUserContents(pagina) {
+            var myurl = window.location.origin + pagina;
+            $.ajax({
+                type: "GET",
+                url: myurl,
+                timeout: 2000,
+                data: {
+                    ciao: 'ciao'
+                },
+                success: function (data) {
+                    $('#container_user_contents').html(data);
+                },
+                error: function (jqXHR, textStatus, err) { alert('text status ' + textStatus + ', err ' + err) }
+            });
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div class="user-contents">
+        <div class="tab">
+            <button onclick="changeUserContents('/datiutente')">Profilo</button>
+            <button onclick="changeUserContents('/storicoordini')">Storico ordini</button>
+        </div>
+        <div id="container_user_contents" class="tabcontent">
+           <% include datiutente%>
+        </div>
+
+    </div>
+</body>
+
+</html>
