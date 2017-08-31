@@ -25,6 +25,24 @@
     var menu = <%- JSON.stringify(menu) %>;
     $(document).ready(function () {
         updateElencoMenu(menu);
+        socket.off('g_menu');
+        socket.on('g_menu', function (data) {
+            if (data.message == 'refresh') {
+                $('#overlay').fadeIn();
+                $('#contenuti').html('');
+                naviga('g_menu');
+            }
+        });
+        $('#add').on('click', function () {
+            var data = {
+                menuName: $('#newMenu').val()
+            }
+            ajaxCall("POST", window.location.origin + '/amministrazione/g_menu/add', 5000, data, function (data) {
+                if (data == 'sessionescaduta')
+                    stampaMenu(null);
+
+            });
+        });
     });
 
     function updateElencoMenu(menu) {
@@ -52,56 +70,28 @@
                 $('#add').attr({ 'disabled': 'disabled' });
         });
         $('#elenco_menu').find('.deleteMenu').on('click', function () {
-            /*
-            var data = {
-                uname: $('#uname').val(),
-                upass: $('#upass').val()
-            }
-            ajaxCall("POST", window.location.origin + '/amministrazione/login', 5000, data,
-                function (data) {
-                    if (data.logged)
-                        showMenu();
-                    else
-                        authError('nome utente o password errati');
-                }
-            );
-            */
+            ajaxCall("POST", window.location.origin + '/amministrazione/g_menu/delete', 5000, { codice: $(this).closest('li').attr('data-id') }, function (data) {
+                if (data == 'sessionescaduta')
+                    stampaMenu(null);
+
+            });
         });
         $('#save').on('click', function () {
-            /*
-            var data = {
-                uname: $('#uname').val(),
-                upass: $('#upass').val()
-            }
-            ajaxCall("POST", window.location.origin + '/amministrazione/login', 5000, data,
-                function (data) {
-                    if (data.logged)
-                        showMenu();
-                    else
-                        authError('nome utente o password errati');
+            var multipleUpdate = [];
+            var iterator = 0;
+            $('#elenco_menu').find('.menuName').each(function () {
+                if ($(this).val() != $(this).attr('data-orgvalue')) {
+                    multipleUpdate[iterator] = { codice: $(this).closest('li').attr('data-id'), nome: $(this).val() };
+                    iterator++;
                 }
-            );
-            */
-        });
-        $('#add').on('click', function () {
-            if ($(this).attr('disabled'))
-                alert('ATTENZIONE!\n·\til nome del menu non deve essere già presente nell\'elenco\n·\til nome del menu non può essere vuoto');
-            /*
-            var data = {
-                uname: $('#uname').val(),
-                upass: $('#upass').val()
-            }
-            ajaxCall("POST", window.location.origin + '/amministrazione/login', 5000, data,
-                function (data) {
-                    if (data.logged)
-                        showMenu();
-                    else
-                        authError('nome utente o password errati');
-                }
-            );
-            */
+            });
+            ajaxCall("POST", window.location.origin + '/amministrazione/g_menu/update', 5000, { data: JSON.stringify(multipleUpdate) }, function (data) {
+                if (data == 'sessionescaduta')
+                    stampaMenu(null);
+            });
         });
     }
+
     function checkMod() {
         var edited = false;
         $('#elenco_menu').find('.menuName').each(function () {
