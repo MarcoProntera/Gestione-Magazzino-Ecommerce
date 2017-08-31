@@ -2,9 +2,9 @@
 
 <head>
     <!-- GENERAL IMPORTS -->
-    <script type="text/javascript" src="/javascripts/ajaxCall.js"></script>
     <script type="text/javascript" src="/javascripts/socketio/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/ajaxCall.js"></script>
     <link rel="stylesheet" href="/stylesheets/overlay.css" />
     <!-- GENERAL IMPORTS -->
 
@@ -39,8 +39,11 @@
                 function (data) {
                     if (data == 'sessionescaduta')
                         stampaMenu(null);
-                    else
+                    else {
+                        $('#contenuti').html('');
                         $('#contenuti').html(data);
+                    }
+                    
                 }
             );
         }
@@ -64,7 +67,10 @@
             else
                 stampaMenu(ini);
             $('#logout').click(function () {
-                ajaxCall("POST", window.location.origin + '/amministrazione/logout', 5000, {}, function (data) { stampaMenu(null); $('#contenuti').html(data); });
+                ajaxCall("POST", window.location.origin + '/amministrazione/logout', 5000, {}, function (data) {
+                    stampaMenu(null); $('#contenuti').html(data);
+                    
+                });
             });
         });
     </script>
@@ -91,7 +97,7 @@
     </table>
     <!-- GENERAL IMPORTS -->
     <% include ../overlay %>
-    <!-- GENERAL IMPORTS -->
+        <!-- GENERAL IMPORTS -->
 </body>
 
 </html>
