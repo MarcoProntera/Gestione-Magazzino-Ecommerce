@@ -2,26 +2,23 @@
     display: inline;
 }
 .cart-container{
-    padding-left: 300px;
-    padding-right: 300px;
-    padding-top: 40px;
+    width: 1000px;
+    display: table;
+    margin: 0 auto;
 }
-@media (max-width:600px) {
+@media (max-width:900px) {
     
     .cart-container {
-        padding-left: 40px;
-        padding-right: 40px;
-        padding-top: 20px;
+        width: 600px;
     }
   }
 .item-container{
     height: auto;
     min-width: 250px;
-    border: 1px solid red;
     position: relative;
+    border: 1px solid #ccc;
 }
 .item-image{
-    border: 1px solid green;
     height: 100px;
     float:left;
     min-width: 50px;
@@ -32,10 +29,9 @@
     width: 100px;
 }
 .item-name{
-    border: 1px solid green;
     height: 100px;
     width: 100%;
-    padding-left: 105px;
+    padding-left: 110px;
     padding-top:10px;
     position: relative;
 }
@@ -65,34 +61,44 @@
   }
   
 .item-operations{
-    border: 1px solid green;
-    /* height: 60px; */
+    height: 40px;
     position: absolute;
     bottom:0;
+    padding-top:0;
     width: 100%;
 }
 .item-amount{
     width: 50px;
-    min-height: 20px;
+    height: 22px;
     
 }
-/* questi due per i colori dei tasti */
+
 .item-amount-update{
-    padding: 0;
+    border: none;
+    padding: 2px;
+    background-color: #f63;
+    height: 22px;
 }
 .item-remove{
     padding: 0;
+    border: none;
+    padding: 2px;
+    background-color: #f63;
+    height: 22px;
 }
 
 .item-price{
     float:right;
+    padding-right: 10px;
     margin:0;
     height: 23px;
 }
 .total-cart-cost{
-    border: 1px solid black;
     margin-top:20px;
     height: 30px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding-left: 5px;
    
 }
 .cart-buy{
@@ -108,7 +114,7 @@
     text-align: center;
     cursor: pointer;
     white-space: nowrap;
-    background-color: orange;
+    background-color: #f63;
 }
 
 
