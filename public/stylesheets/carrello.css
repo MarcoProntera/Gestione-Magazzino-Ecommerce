@@ -92,10 +92,23 @@
 .total-cart-cost{
     border: 1px solid black;
     margin-top:20px;
+    height: 30px;
    
 }
 .cart-buy{
-    float:right;
+    border: none;
+    float: right;
+    outline: 0;
+    height: 100%;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    background-color: orange;
 }
 
 
