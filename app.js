@@ -12,7 +12,7 @@ var app = express();
 // SOCKET IO SRV GLOBAL INIT
 var ioMan = require('zzCustom/socketGlobal');
 //var server = require('http').Server(app);
-ioMan.server(app.listen(process.env.PORT, () => console.log('listening!')));
+ioMan.server(app.listen(process.env.PORT || 3000, () => console.log('listening!')));
 /* socketio */
 
 app.use(session({
