@@ -1,3 +1,4 @@
+var socket = io();
 function ajaxCall(type, url, timeout, data, success) {
     $('#overlay').fadeIn();
     //AJAX CALL to say data to you
@@ -15,7 +16,3 @@ function ajaxCall(type, url, timeout, data, success) {
         }
     });
 }
-var socket;
-$(document).ready(function () {
-    socket = io.connect(window.location.origin.split(':')[0] + ':' + window.location.origin.split(':')[1] + ':3001');
-});
