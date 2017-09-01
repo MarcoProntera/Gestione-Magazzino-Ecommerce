@@ -11,8 +11,8 @@ var app = express();
 /* soketio */
 // SOCKET IO SRV GLOBAL INIT
 var ioMan = require('zzCustom/socketGlobal');
-var server = require('http').Server(app);
-ioMan.server(server);
+//var server = require('http').Server(app);
+ioMan.server(app.listen(process.env.PORT, () => console.log('listening!')));
 /* socketio */
 
 app.use(session({
@@ -50,14 +50,14 @@ app.use('/', home);
 app.use('/amministrazione', backend);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
