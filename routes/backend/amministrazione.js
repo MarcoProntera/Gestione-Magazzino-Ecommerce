@@ -228,5 +228,13 @@ router.post('/g_menu/update', function (req, res, next) {
 });
 /* GESTIONE MENU */
 
+/* GESTIONE CATEGORIE */
+
+/* GESTIONE CATEGORIE */
+
+/* GESTIONE PRODOTTI */
+
+/* GESTIONE PRODOTTI */
+
 module.exports = router;
 
