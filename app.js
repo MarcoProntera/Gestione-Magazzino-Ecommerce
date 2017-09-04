@@ -53,7 +53,6 @@ app.use('/prodotto', frontend);
 app.use('/profilo', frontend);
 app.use('/carrello', frontend);
 
-
 app.use('/amministrazione', backend);
 app.use('/amministrazione/menu', backend);
 app.use('/amministrazione/categorie', backend);

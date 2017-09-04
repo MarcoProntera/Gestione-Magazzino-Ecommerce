@@ -6,11 +6,6 @@ var ioMan = require('zzCustom/socketGlobal');
 var monGlo = require('zzCustom/mongoGlobal');
 var ObjectID = require("mongodb").ObjectID;
 
-router.get('', function (req, res, next) {
-
-});
-
-
 router.get('/', function (req, res, next) {
   /*   var path = require('path');
     res.sendFile(path.resolve('ordini/prova.txt')); */
