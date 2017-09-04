@@ -1,19 +1,24 @@
-.body {
-    margin: 0;
-    padding: 0;
-    min-width: 550px;
+.contenitore-pagina {
+    padding: 20px;
+    display: table;
+    margin: 0 auto;
+    width: 100%;
 }
 
-.contenitore-prodotti {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-}
+
+/* style relativo al container delle immagini */
 
 .contenitore-immagini {
     width: 30%;
-    height: 300px;
-    float: left
+    border: 1px solid #000;
+    float: left;
+    max-height: 330px;
+}
+
+.immagine {
+    min-width: 100px;
+    max-width: 100%;
+    max-height: 300px;
 }
 
 .divbutton {
@@ -22,48 +27,18 @@
     margin: 0 auto;
 }
 
+
+/* fine style relativo al container delle immagini */
+
 .contenitore-descrizione {
+    float: left;
+    border: 1px solid red;
     width: 70%;
-    height: 400px;
-    float: left;
-    background-color: beige;
-    padding: 0px;
+    min-height: 330px;
 }
 
-.contenitore-nomeprodotto {
-    height: auto;
-    width: 100%;
-    text-align: center;
-}
 
-.button-operations {
-    text-align: right;
-    float: right;
-    padding: 10px;
-    width: auto;
-}
-
-.div-prezzo {
-    text-align: left;
-    padding: 10px;
-    float: left;
-    width: auto;
-}
-
-.div-descrizione {
-    text-align: justify;
-    width: 98%;
-    height: 320px;
-    float: left;
-    padding: 10px;
-    overflow-y: scroll;
-}
-
-.contenitore-specifiche {
-    width: 100%;
-    height: 300px;
-    float: left;
-}
+/* da rivedere */
 
 .tabella {
     padding: 0.01em 16px;
