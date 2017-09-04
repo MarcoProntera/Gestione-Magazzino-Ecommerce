@@ -3,15 +3,14 @@ var router = express.Router();
 
 var ioMan = require('zzCustom/socketGlobal');
 
-ioMan.io().on('connection', function (socket) {
-  ioMan.io().emit('servMSG', { message: 'connected!' });
-});
-
 var monGlo = require('zzCustom/mongoGlobal');
 var ObjectID = require("mongodb").ObjectID;
 
+router.get('', function (req, res, next) {
 
-/* HOME */
+});
+
+
 router.get('/', function (req, res, next) {
   /*   var path = require('path');
     res.sendFile(path.resolve('ordini/prova.txt')); */
@@ -99,10 +98,7 @@ router.post('/logout', function (req, res, next) {
     });
   });
 });
-/* HOME */
 
-
-/* GESTIONE MENU */
 router.get('/g_menu', function (req, res, next) {
   if (req.session.buser !== undefined) {
     var query = { _id: ObjectID(req.session.buser), stato: true };
@@ -131,11 +127,7 @@ router.post('/g_menu/add', function (req, res, next) {
         res.send('sessionescaduta');
       } else {
         monGlo.find('menu', {}, { codice: 1 }, function (data) {
-          var newCode = 0;
-          for (var i = 0; i < data.length; i++) {
-            if (data[i].codice >= newCode)
-              newCode = data[i].codice + 1;
-          }
+          var newCode = data[data.length - 1].codice + 1;
           monGlo.insert('menu', { nome: newMenuName, codice: newCode }, function (data) {
             ioMan.io().emit('g_menu', { message: 'refresh' });
             res.send('ok');
@@ -194,9 +186,7 @@ router.post('/g_menu/update', function (req, res, next) {
   else
     res.send('sessionescaduta');
 });
-/* GESTIONE MENU */
 
-/* GESTIONE CATEGORIE */
 router.get('/g_categorie', function (req, res, next) {
   if (req.session.buser !== undefined) {
     var query = { _id: ObjectID(req.session.buser), stato: true };
@@ -221,7 +211,7 @@ router.get('/g_categorie', function (req, res, next) {
 });
 
 router.post('/g_categorie/add', function (req, res, next) {
-  var newMenuName = req.body.menuName;
+  var newCategoria = req.body.newCategoria;
   if (req.session.buser !== undefined) {
     var query = { _id: ObjectID(req.session.buser), stato: true };
     monGlo.find('backend_sessione', query, {}, function (data) {
@@ -229,14 +219,10 @@ router.post('/g_categorie/add', function (req, res, next) {
         req.session.destroy();
         res.send('sessionescaduta');
       } else {
-        monGlo.find('menu', {}, { codice: 1 }, function (data) {
-          var newCode = 0;
-          for (var i = 0; i < data.length; i++) {
-            if (data[i].codice >= newCode)
-              newCode = data[i].codice + 1;
-          }
-          monGlo.insert('menu', { nome: newMenuName, codice: newCode }, function (data) {
-            ioMan.io().emit('g_menu', { message: 'refresh' });
+        monGlo.find('categorie', {}, { codice: 1 }, function (data) {
+          var newCode = data[data.length - 1].codice + 1;
+          monGlo.insert('categorie', { nome: newCategoria, codice: newCode, codice_menu: null }, function (data) {
+            ioMan.io().emit('g_categorie', { message: 'refresh' });
             res.send('ok');
           });
         });
@@ -293,9 +279,7 @@ router.post('/g_categorie/update', function (req, res, next) {
   else
     res.send('sessionescaduta');
 });
-/* GESTIONE CATEGORIE */
 
-/* GESTIONE PRODOTTI */
 router.get('/g_prodotti', function (req, res, next) {
   if (req.session.buser !== undefined) {
     var query = { _id: ObjectID(req.session.buser), stato: true };
@@ -311,7 +295,6 @@ router.get('/g_prodotti', function (req, res, next) {
   else
     res.send('sessionescaduta');
 });
-/* GESTIONE PRODOTTI */
 
 module.exports = router;
 

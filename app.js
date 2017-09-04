@@ -48,6 +48,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', home);
 app.use('/amministrazione', backend);
+app.use('/amministrazione/menu', backend);
+app.use('/amministrazione/categorie', backend);
+app.use('/amministrazione/prodotti', backend);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
