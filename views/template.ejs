@@ -101,7 +101,7 @@
     <!-- accesso in barra laterale destra -->
     <div class="right-cell animate-right" id="rightMenu">
         <div style="margin-top: 10px;">
-            <h4 style="padding: 0; margin: 0; padding-left: 10px;"> Inserisci i tuoi dati </h4>
+            <h4 class="login-message"> Inserisci i tuoi dati </h4>
             <form class="container padding-16" method="" action="">
                 <p>
                     <label for="email" required>Email:</label>
@@ -125,7 +125,7 @@
     <div id="barMenu">
 
 
-        <h1 style="display: inline; padding-left:45px; cursor: pointer;" onclick="window.location= window.location.origin;">E-Commerce</h1>
+        <h1 class="logo-sito" onclick="window.location= window.location.origin;">E-Commerce</h1>
         <button class="inner-bar-item right" onclick="window.location= window.location.origin + '/registrazione';">Registrati</button>
         <button class="inner-bar-item right" onclick="openRightMenu()">Accedi</button>
         <button class="inner-bar-item right" style="height: 32.8px" onclick="window.location= window.location.origin + '/profilo';">
@@ -143,9 +143,9 @@
             <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="7">Videogiochi</button>
         </div>
         <div class="sidebar animate-left" id="mySidebar">
-            <a href="#" class="inner-bar-item large all-width text-left">Link 1</a>
-            <a href="#" class="inner-bar-item large all-width text-left">Link 2</a>
-            <a href="#" class="inner-bar-item large all-width text-left">Link 3</a>
+            <a href="#" class="inner-bar-item large all-width text-left"><span class="sub-left-menu-name">Link 1 </span></a>
+            <a href="#" class="inner-bar-item large all-width text-left"><span class="sub-left-menu-name">Link 2 </span></a>
+            <a href="#" class="inner-bar-item large all-width text-left"><span class="sub-left-menu-name">Link 3 </span></a>
         </div>
     </div>
     <!--  FINE menu centrale + logo + menu laterale sinistro delle categorie -->
