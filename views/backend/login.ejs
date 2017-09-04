@@ -1,16 +1,20 @@
-<div style="display:table; margin: 0 auto; border:1 px solid red">
-    <form action="/amministrazione/login" method="POST">
-        username:<br>
-        <input type="text" name="uname" value="">
-        <br> password:
+<link rel="stylesheet" href="/stylesheets/backend/login.css" />
+<div style="display:table; margin: 0 auto; ">
+
+    <span><h2>LOGIN AMMINISTRAZIONE SITO</h2></span>
+    <form style="margin-top:20px; width:30%" action="/amministrazione/login" method="POST">
+        USERENAME:<br>
+        <input type="text" name="uname" value="" style="width: 300px;">
+        <br> PASSWORD:
         <br>
-        <input type="password" name="upass" value="">
+        <input type="password" name="upass" value="" style="width: 300px;">
         <br><br>
-        <input type="submit" value="accedi" onclick="$('#overlay').fadeIn();">
+        <input class="button-login" type="submit" value="Accedi" onclick="$('#overlay').fadeIn();">
     </form>
     <% if(msg != null) { %>
-        <p style="color: #f00; font-size: 25px;">
+        <p style="color: #f00; font-size: 25px; ">
             <%= msg %>
         </p>
         <% } %>
+
 </div>

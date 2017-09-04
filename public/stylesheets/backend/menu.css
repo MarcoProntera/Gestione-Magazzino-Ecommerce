@@ -1,12 +1,31 @@
+.container-menu {
+    display: table;
+    margin: 0 auto;
+}
+
 .gestione-menu {
     text-align: center;
 }
 
 .lista-elementi {
-    list-style: none;
+    list-style-type: none;
     padding: 10px;
 }
 
-.elemento {
+.elemento-della-lista {
     padding: 10px;
+}
+
+.menu-name {
+    display: block;
+    overflow: hidden;
+}
+
+.right {
+    float: right;
+}
+
+.box-text-name {
+    width: 100%;
+    box-sizing: border-box;
 }
