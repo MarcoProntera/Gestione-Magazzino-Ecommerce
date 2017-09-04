@@ -12,7 +12,11 @@ html,body {
 html {
   overflow-x: hidden;
 }
-
+.logo-sito{
+  display: inline;
+  padding-left:45px;
+  cursor: pointer;
+}
 .animate-right {
   position: relative;
   animation: animateright 0.4s;
@@ -27,6 +31,11 @@ html {
       right: 0;
       opacity: 1;
   }
+}
+.login-message{
+  padding: 0;
+  margin: 0;
+  padding-left: 10px;
 }
 .inner-bar-item {
   padding: 8px 16px;
@@ -170,6 +179,13 @@ html {
 }
 .text-left{
   text-align: left!important;
+}
+.sub-left-menu-name{
+  color: #000;
+  font-size: 16px;
+}
+.sub-left-menu-name:hover{
+  color: #f63;
 }
 .conteriner-contents{
   min-height: 100vh;

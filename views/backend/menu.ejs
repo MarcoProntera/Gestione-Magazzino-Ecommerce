@@ -1,41 +1,47 @@
 <script type="text/javascript" src="/javascripts/backend/menu.js"></script>
-<table>
-    <tr>
-        <td class="gestione-menu">GESTIONE MENU</td>
-    </tr>
-    <tr>
-        <td>
-            <ul class="lista-elementi">
-                <li class="elemento">
-                    <span class="" style="float:right;">
+<link rel="stylesheet" href="\stylesheets\backend\menu.css">
+
+<div class="container-menu">
+    <table>
+        <tr>
+            <td class="gestione-menu">
+                <h2>GESTIONE MENU</h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <ul class="lista-elementi">
+                    <li class="elemento-della-lista">
+                        <span class="right">
                         <input id="add" type="button" value="ADD" disabled="disabled" />
                     </span>
-                    <span style="display:block; overflow:hidden;">
-                        <input type="text" id="newMenu" style="width:100%; box-sizing:border-box;" />
+                        <span class="menu-name">
+                        <input type="text" id="newMenu" class="box-text-name"/>
                     </span>
-                </li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <ul id="elenco_menu" style="list-style: none; padding: 10px;">
-                <% for(var i = 0; i< menu.length; i++){%>
-                    <li style="padding: 10px;" data-id="<%=menu[i].codice%>">
-                        <span style="float:right;">
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <ul id="elenco_menu" class="lista-elementi">
+                    <% for(var i = 0; i< menu.length; i++){%>
+                        <li class="elemento-della-lista" data-id="<%=menu[i].codice%>">
+                            <span class="right">
                             <input class="deleteMenu" type="button" value="X" />
                         </span>
-                        <span style="display:block; overflow:hidden;">
-                            <input type="text" style="width:100%; box-sizing:border-box;" class="menuName" value="<%=menu[i].nome%>" data-orgvalue="<%=menu[i].nome%>"/>
+                            <span class="menu-name">
+                            <input type="text" class="box-text-name menuName" value="<%=menu[i].nome%>" data-orgvalue="<%=menu[i].nome%>"/>
                         </span>
-                    </li>
-                    <%}%>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <input type="button" disabled="disabled" value="salva modifiche" id="save" style="float: right;" />
-        </td>
-    </tr>
-</table>
+                        </li>
+                        <%}%>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" disabled="disabled" value="Salva modifiche" id="save" class="right" />
+            </td>
+        </tr>
+    </table>
+</div>
