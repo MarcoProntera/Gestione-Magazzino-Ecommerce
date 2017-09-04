@@ -1,7 +1,4 @@
- .user-contents{
-
- }
- div.tab {
+div.tab {
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
@@ -29,3 +26,10 @@ div.tab button.active {
     display: table;
     margin: 0 auto;
 } 
+@media (max-width:780px) {
+    
+    .tabcontent {
+        padding-left: 40px;
+        padding-right: 40px;
+    } 
+  }

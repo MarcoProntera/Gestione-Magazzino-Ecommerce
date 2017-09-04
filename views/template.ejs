@@ -64,8 +64,22 @@
                 if (!$(this).hasClass('button-active'))
                     $(this).removeClass('button-clicked');
             });
-            if (!$(this).hasClass('button-active'))
-                $(sender).addClass('button-clicked');
+            var codice = $(sender).attr('data-codicemenu');
+            if ($('#mySidebar').hasClass('menu_' + codice)) {
+                $('#mySidebar').removeClass('menu_' + codice);
+                if (!$(this).hasClass('button-active'))
+                    $(sender).removeClass('button-clicked');
+                closeLeftMenu();
+            } else {
+                $('#menu_principale').find('button').each(function () {
+                    $('#mySidebar').removeClass('menu_' + $(this).attr('data-codicemenu'));
+                });
+                $('#mySidebar').addClass('menu_' + codice);
+                if (!$(this).hasClass('button-active'))
+                    $(sender).addClass('button-clicked');
+                openLeftMenu();
+            }
+
         }
     </script>
 
@@ -86,8 +100,8 @@
 
     <!-- accesso in barra laterale destra -->
     <div class="right-cell animate-right" id="rightMenu">
-        <button onclick="closeRightMenu()" class="inner-bar-item large"><span class="flaticon-close"></span></button>
         <div style="margin-top: 10px;">
+            <h4 style="padding: 0; margin: 0; padding-left: 10px;"> Inserisci i tuoi dati </h4>
             <form class="container padding-16" method="" action="">
                 <p>
                     <label for="email" required>Email:</label>
@@ -114,23 +128,21 @@
         <h1 style="display: inline; padding-left:45px; cursor: pointer;" onclick="window.location= window.location.origin;">E-Commerce</h1>
         <button class="inner-bar-item right" onclick="window.location= window.location.origin + '/registrazione';">Registrati</button>
         <button class="inner-bar-item right" onclick="openRightMenu()">Accedi</button>
-        <button class="inner-bar-item right" onclick="window.location= window.location.origin + '/profilo';">
-                <span class="flaticon-gear" style="color:cornflowerblue"></span>
+        <button class="inner-bar-item right" style="height: 32.8px" onclick="window.location= window.location.origin + '/profilo';">
+                <span class="flaticon-gear icon-color" ></span>
                 </button>
 
-        <div class="bar" style="border-bottom: 1px solid #ddd; padding-left:45px; background-color: #f63">
-            <button class="inner-bar-item menu-element button-active" onclick="openLeftMenu(); clickMenu(this);">Informatica</button>
-            <button class="inner-bar-item menu-element" onclick="openLeftMenu(); clickMenu(this);">Elettrodomestici</button>
-            <button class="inner-bar-item menu-element" onclick="openLeftMenu(); clickMenu(this);">Telefonia</button>
-            <button class="inner-bar-item menu-element" onclick="openLeftMenu(); clickMenu(this);">Clima e brico</button>
-            <button class="inner-bar-item menu-element" onclick="openLeftMenu(); clickMenu(this);">Sport</button>
-            <button class="inner-bar-item menu-element" onclick="openLeftMenu(); clickMenu(this);">Giocattoli</button>
-            <button class="inner-bar-item menu-element" onclick="openLeftMenu(); clickMenu(this);">Audio e TV</button>
-            <button class="inner-bar-item menu-element" onclick="openLeftMenu(); clickMenu(this);">Casa e cucina</button>
-            <button class="inner-bar-item menu-element" onclick="openLeftMenu(); clickMenu(this);">Videogiochi</button>
+        <div id="menu_principale" class="bar" style="border-bottom: 1px solid #ddd; padding-left:45px; background-color: #f63">
+            <button class="inner-bar-item menu-element button-active" onclick="clickMenu(this);" data-codicemenu="0">Informatica</button>
+            <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="1">Elettrodomestici</button>
+            <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="2">Telefonia</button>
+            <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="3">Clima e brico</button>
+            <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="4">Sport</button>
+            <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="5">Giocattoli</button>
+            <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="6">Audio e TV</button>
+            <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="7">Videogiochi</button>
         </div>
         <div class="sidebar animate-left" id="mySidebar">
-            <button class="inner-bar-item large all-width text-left" onclick="closeLeftMenu()"><span class="flaticon-close"></span></button>
             <a href="#" class="inner-bar-item large all-width text-left">Link 1</a>
             <a href="#" class="inner-bar-item large all-width text-left">Link 2</a>
             <a href="#" class="inner-bar-item large all-width text-left">Link 3</a>
@@ -147,7 +159,6 @@
             </div>
 
             <div class="container teal div-footer">
-
                 <p style="text-align: center;">Sito web fatto da : Luca Antonini, Claudio Milani e Marco Prontera</p>
             </div>
         </div>

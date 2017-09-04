@@ -3,14 +3,25 @@
     padding-top: 40px;
     padding-bottom: 40px;
 }
-@media (max-width:600px) {
+@media (max-width:1300px) {
     
     .singin-container {
-        width: 400px;
+        width: 600px;
+        padding: 20px;
         padding-top: 20px;
         padding-bottom: 20px;
     }
   }
+@media (max-width:800px) {
+    
+    .singin-container {
+        width: 500px;
+        padding: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+  }
+
 .center-contents{
     display: table;
     margin: 0 auto; 

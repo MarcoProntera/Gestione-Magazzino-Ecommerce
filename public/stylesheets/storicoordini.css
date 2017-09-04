@@ -1,19 +1,20 @@
 .conteiner-orders{
     width: 1000px;
 }
-@media (max-width:1220px) {
+@media (max-width:1300px) {
     
     .conteiner-orders{
-        width: 950px;
+        width: 800px;
+        padding: 20px;
         padding-top: 20px;
         padding-bottom: 20px;
     }
   }
 
-@media (max-width:780px) {
+@media (max-width:850px) {
     
     .conteiner-orders{
-        width: 500px;
+        width: 600px;
         padding-top: 20px;
         padding-bottom: 20px;
     }
@@ -35,9 +36,10 @@
     background-color: #ccc;
     border: none;
     padding: 2px;
+    cursor: pointer;
 }
 .button-details-download:hover{
-    color: #f63;
+    color: #f63; 
 }
 .order-date{
     background-color: #ccc;

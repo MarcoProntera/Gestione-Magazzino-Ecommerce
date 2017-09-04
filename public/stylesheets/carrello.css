@@ -8,6 +8,13 @@
     margin: 0 auto;
     
 }
+@media (max-width:1350px) {
+    
+    .cart-container {
+        width: 800px;
+        
+    }
+  }
 @media (max-width:900px) {
     
     .cart-container {
@@ -20,6 +27,7 @@
     min-width: 250px;
     position: relative;
     border: 1px solid #ccc;
+    margin-bottom: 10px;
 }
 .item-image{
     height: 100px;
@@ -82,6 +90,7 @@
     padding-right: 4px;
     background-color: #f63;
     height: 22px;
+    cursor: pointer;
 }
 .item-remove{
     border: none;
@@ -89,6 +98,7 @@
     padding-right: 4px;
     background-color: #f63;
     height: 22px;
+    cursor: pointer;
 }
 
 .item-price{

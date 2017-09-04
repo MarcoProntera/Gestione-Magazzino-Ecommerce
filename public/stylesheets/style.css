@@ -45,8 +45,20 @@ html {
 }
 .menu-element{
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
   font-variant: small-caps;
+}
+@media (max-width:1400px) {
+  
+  .menu-element {
+    font-size: 14px;
+  }
+}
+@media (max-width:780px) {
+  
+  .menu-element {
+    font-size: 12px;
+  }
 }
 .button-active{
   color: #000;
@@ -88,7 +100,6 @@ html {
   border-left: 1px solid #ccc;
 }
 .padding-16{
-  padding-top: 16px!important;
   padding-bottom: 16px!important;
 }
 .color-login{
@@ -167,4 +178,7 @@ html {
   position: relative;
   bottom:0;
   background-color: #f63;
+}
+.icon-color{
+  color: #f63;
 }
