@@ -10,9 +10,11 @@
 
 .contenitore-immagini {
     width: 30%;
-    border: 1px solid #000;
     float: left;
     max-height: 330px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #ccc;
 }
 
 .immagine {
@@ -31,14 +33,65 @@
 /* fine style relativo al container delle immagini */
 
 .contenitore-descrizione {
+    padding: 10px;
     float: left;
-    border: 1px solid red;
     width: 70%;
-    min-height: 330px;
+    min-height: 325px;
+    border: 1px solid #ccc;
+    height: auto;
+    text-align: justify;
+    font-size: 14px;
+}
+
+@media (max-width: 1000px) {
+    .contenitore-descrizione {
+        font-size: 12px;
+    }
+}
+
+.nome {
+    padding: 10px;
+    height: auto;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.prezzo-acquista {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+}
+
+.align {
+    float: right;
+}
+
+.button {
+    background-color: orange;
+    cursor: pointer;
+    padding: 5px;
+    bottom: 0px;
 }
 
 
 /* da rivedere */
+
+.contenitore-specifiche {
+    width: 100%;
+    float: left;
+    margin-top: 20px;
+}
+
+.h1 {
+    font-style: oblique;
+    text-align: center;
+    color: orange;
+    font-family: Courier, Courier, monospace;
+    padding: 10px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
 
 .tabella {
     padding: 0.01em 16px;
@@ -46,7 +99,8 @@
     border-spacing: 0;
     width: 100%;
     display: table;
-    border: 1px solid #dddddd;
+    border: 1px solid orange;
+    margin-bottom: 20px;
 }
 
 .tabella td {
@@ -59,5 +113,5 @@
 }
 
 .tabella tr:nth-child(odd) {
-    background-color: #ffffff;
+    background-color: #ddd;
 }

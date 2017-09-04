@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
 
         });
     </script>
@@ -41,7 +41,7 @@
         }
 
         function menuScrollCheck() {
-            $(window).scroll(function () {
+            $(window).scroll(function() {
                 var scroll = $('#barMenu').outerHeight(true) - $(this).scrollTop();
 
                 if (scroll < 1) {
@@ -55,12 +55,12 @@
                 }
             });
         }
-        $(document).ready(function () {
+        $(document).ready(function() {
             menuScrollCheck();
         });
 
         function clickMenu(sender) {
-            $(sender).closest('div').find('button').each(function () {
+            $(sender).closest('div').find('button').each(function() {
                 if (!$(this).hasClass('button-active'))
                     $(this).removeClass('button-clicked');
             });
@@ -142,7 +142,6 @@
         <div class="teal">
             <!-- deve essere una classe a parte per non fare equivoci con le jquery -->
             <div class="conteriner-contents">
-
                 <%- include(contenuto) %>
             </div>
 
