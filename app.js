@@ -32,7 +32,7 @@ app.use(session({
 }));
 
 var frontend = require('./routes/frontend');
-var backend = require('./routes/backend/amministrazione');
+var backend = require('./routes/backend');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
