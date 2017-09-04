@@ -8,7 +8,6 @@ function ajaxCall(type, url, timeout, data, successo) {
         timeout: 50000,//timeout,
         data: data,
         success: function (data) {
-            console.log(data);
             successo(data);
         },
         error: function (jqXHR, textStatus, err) {

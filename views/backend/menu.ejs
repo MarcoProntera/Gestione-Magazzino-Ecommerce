@@ -44,6 +44,8 @@
         socket.off('backend_menu');
         socket.on('backend_menu', function (data) {
             if (data.message == 'refresh') {
+                $('#newMenu').val('');
+                $('#overlay').fadeIn();
                 location.reload();
             }
         });
@@ -51,17 +53,11 @@
             var data = {
                 menuName: $('#newMenu').val()
             }
-            ajaxCall("POST", window.location.origin + '/amministrazione/menu/add', 5000, data, function (data) { console.log('fatto'); $('#newMenu').val(''); $('#overlay').fadeOut(); });
+            ajaxCall("POST", window.location.origin + '/amministrazione/menu/add', 5000, data, function (data) { console.log('fatto'); });
         });
     });
 
-    function updateElencoMenu(data) {
-        if (data != null) {
-            $('#elenco_menu').html('');
-            for (var i = 0; i < menu.length; i++) {
-                $('#elenco_menu').append('<li style="padding: 10px;" data-id="' + menu[i].codice + '"><span style="float:right;"><input class="deleteMenu" type="button" value="X" /></span><span style="display:block; overflow:hidden;"><input type="text" style="width:100%; box-sizing:border-box;" class="menuName" value="' + menu[i].nome + '" data-orgvalue="' + menu[i].nome + '"/></span></li>');
-            }
-        }
+    function updateElencoMenu() {
         $('#elenco_menu').find('input').off();
         $('#elenco_menu').find('.menuName').on('keyup change', function () {
             checkMod();
@@ -82,7 +78,7 @@
                 $('#add').attr({ 'disabled': 'disabled' });
         });
         $('#elenco_menu').find('.deleteMenu').on('click', function () {
-            ajaxCall("POST", window.location.origin + '/amministrazione/menu/delete', 5000, { codice: $(this).closest('li').attr('data-id') }, function (data) { console.log('fatto'); $('#overlay').fadeOut(); });
+            ajaxCall("POST", window.location.origin + '/amministrazione/menu/delete', 5000, { codice: $(this).closest('li').attr('data-id') }, function (data) { console.log('fatto'); });
         });
         $('#save').on('click', function () {
             var multipleUpdate = [];
@@ -93,7 +89,7 @@
                     iterator++;
                 }
             });
-            ajaxCall("POST", window.location.origin + '/amministrazione/menu/update', 5000, { data: JSON.stringify(multipleUpdate) }, function (data) { console.log('fatto'); $('#overlay').fadeOut(); });
+            ajaxCall("POST", window.location.origin + '/amministrazione/menu/update', 5000, { data: JSON.stringify(multipleUpdate) }, function (data) { console.log('fatto'); });
         });
     }
 

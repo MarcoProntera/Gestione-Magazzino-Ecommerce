@@ -47,12 +47,12 @@
                         <td style="width:100%; background-color: #ddd" id="menu_bar">
                             <% if (menuBackend !== null) { %>
                                 <% for(var i=0; i<menuBackend.length; i++) { %>
-                                    <span style="margin:10px; padding: 4px 10px; border: 1px solid; background-color: #f63; cursor: pointer;" onclick="<%= menuBackend[i].naviga%>"><%=menuBackend[i].nome%></span>
+                                    <span style="margin:10px; padding: 4px 10px; border: 1px solid; background-color: #f63; cursor: pointer;" onclick="$('#overlay').fadeIn();<%= menuBackend[i].naviga%>"><%=menuBackend[i].nome%></span>
                                     <% } %>
                                         <% } %>
                         </td>
                         <td style=" text-align: right; padding: 5px; padding-right: 20px;">
-                            <button id="logout" onclick="window.location = window.location.origin + '/amministrazione/logout';" style="<%if(menuBackend === null){%>display: none;<% }%>">logout</button>
+                            <button id="logout" onclick="$('#overlay').fadeIn(); window.location = window.location.origin + '/amministrazione/logout';" style="<%if(menuBackend === null){%>display: none;<% }%>">logout</button>
                         </td>
                     </tr>
                 </table>

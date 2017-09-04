@@ -113,8 +113,8 @@ router.post('/menu/add', function (req, res, next) {
         monGlo.find('menu', {}, { codice: 1 }, function (data) {
           var newCode = data[data.length - 1].codice + 1;
           monGlo.insert('menu', { nome: newMenuName, codice: newCode }, function (data) {
+            res.send('OK');
             ioMan.io().emit('backend_menu', { message: 'refresh' });
-            res.send({ result: 'ok' });
           });
         });
       }
@@ -131,8 +131,8 @@ router.post('/menu/delete', function (req, res, next) {
         res.redirect('/amministrazione/login');
       } else {
         monGlo.remove('menu', { codice: Number(req.body.codice) }, function (data) {
+          res.send('OK');
           ioMan.io().emit('backend_menu', { message: 'refresh' });
-          res.send({ result: 'ok' });
         });
       }
     });
@@ -153,8 +153,8 @@ router.post('/menu/update', function (req, res, next) {
           monGlo.update('menu', { codice: Number(newData[i].codice) }, { nome: newData[i].nome }, function () {
             k++;
             if (k == newData.length - 1) {
+              res.send('OK');
               ioMan.io().emit('backend_menu', { message: 'refresh' });
-              res.send({ result: 'ok' });
             }
           });
         }
