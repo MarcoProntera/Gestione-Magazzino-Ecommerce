@@ -122,21 +122,20 @@
             <h1 style="display: inline; padding-left:45px;" onclick="changeContents('/prodotticategoria')">E-Commerce</h1>
             <button class="button right" onclick="changeContents('/singin')">Registrati</button>
             <button class="button right" onclick="openRightMenu()">Accedi</button>
-
-            <div class="bar" style="border-bottom: 1px solid #ddd; padding-left:45px;">
-                <button class="inner-bar-item button" onclick="openLeftMenu()">Informatica</button>
-                <button class="inner-bar-item button" onclick="openLeftMenu()">Elettrodomestici</button>
-                <button class="inner-bar-item button" onclick="openLeftMenu()">Telefonia</button>
-                <button class="inner-bar-item button" onclick="openLeftMenu()">Clima e brico</button>
-                <button class="inner-bar-item button" onclick="openLeftMenu()">Sport</button>
-                <button class="inner-bar-item button" onclick="openLeftMenu()">Giocattoli</button>
-                <button class="inner-bar-item button" onclick="openLeftMenu()">Audio e TV</button>
-                <button class="inner-bar-item button" onclick="openLeftMenu()">Casa e cucina</button>
-                <button class="inner-bar-item button" onclick="openLeftMenu()">Videogiochi</button>
-                <button class="inner-bar-item button" onclick="changeContents('/profiloutente')">
+            <button class="button right" onclick="changeContents('/profiloutente')">
                 <span class="flaticon-gear"></span>
                 </button>
-                <a href="#" class="inner-bar-item button">Offerte</a>
+
+            <div class="bar" style="border-bottom: 1px solid #ddd; padding-left:45px; background-color: #f63">
+                <button class="inner-bar-item button menu-element" onclick="openLeftMenu()">Informatica</button>
+                <button class="inner-bar-item button menu-element" onclick="openLeftMenu()">Elettrodomestici</button>
+                <button class="inner-bar-item button menu-element" onclick="openLeftMenu()">Telefonia</button>
+                <button class="inner-bar-item button menu-element" onclick="openLeftMenu()">Clima e brico</button>
+                <button class="inner-bar-item button menu-element" onclick="openLeftMenu()">Sport</button>
+                <button class="inner-bar-item button menu-element" onclick="openLeftMenu()">Giocattoli</button>
+                <button class="inner-bar-item button menu-element" onclick="openLeftMenu()">Audio e TV</button>
+                <button class="inner-bar-item button menu-element" onclick="openLeftMenu()">Casa e cucina</button>
+                <button class="inner-bar-item button menu-element" onclick="openLeftMenu()">Videogiochi</button>
             </div>
             <div class="" style="display:none;">
                 <button onclick="if($('.bar').hasClass('hide-small')){$('.bar').removeClass('hide-small'); $(this).html('nascondi menu');}else{$('.bar').addClass('hide-small');$(this).html('mostra menu');}"> menu </button>

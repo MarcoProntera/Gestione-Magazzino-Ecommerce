@@ -35,6 +35,9 @@ html {
   border: none;
   outline: none;
   display: block;
+  font-weight: bold;
+ 
+  
  
 }
 .button {
@@ -45,11 +48,25 @@ html {
   vertical-align: middle;
   overflow: hidden;
   text-decoration: none;
-  color: inherit;
   background-color: inherit;
   text-align: center;
   cursor: pointer;
   white-space: nowrap;
+}
+.menu-element{
+  color: #fff;
+  font-size: 18px;
+  font-variant: small-caps;
+}
+.menu-element:hover {
+  color: #000;
+  background-color: #fff;
+}
+.menu-element:active{
+  color: #000;
+  background-color: #fff;
+  text-decoration: underline;
+  
 }
 .large {
   font-size: 18px!important;
@@ -74,11 +91,11 @@ html {
   width: 20%;
   height: 100%;
   width: 200px;
-  background-color: #fff;
+  background-color: #ddd;
   position: fixed!important;
   z-index: 1;
   overflow: auto;
-  border-left: 1px solid #ddd;
+  border-left: 1px solid #ccc;
 }
 .padding-16{
   padding-top: 16px!important;
@@ -107,10 +124,10 @@ html {
   float: right!important;
 }
 .sidebar {
-  border-right: 1px solid #ddd;
+  border-right: 1px solid #ccc;
   height: 100%;
   width: 200px;
-  background-color: #fff;
+  background-color: #ddd;
   position: fixed!important;
   z-index: 1;
   overflow: auto;
@@ -145,7 +162,7 @@ html {
   transition: margin-left .4s;
 }
 .border-light{
-     border: 1px solid darkgray;
+  border: 1px solid darkgray;
  }
 .all-width{
   width: 100%;
