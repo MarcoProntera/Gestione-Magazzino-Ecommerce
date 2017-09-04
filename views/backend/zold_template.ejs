@@ -33,45 +33,20 @@
         }
     </style>
     <script type="text/javascript">
-        var ini = <%- JSON.stringify(data) %>;
-        function naviga(pagina) {
-            ajaxCall("GET", window.location.origin + '/amministrazione/' + pagina, 2000, {},
-                function (data) {
-                    if (data == 'sessionescaduta')
-                        stampaMenu(null);
-                    else {
-                        $('#contenuti').html('');
-                        $('#contenuti').html(data);
-                    }
-                    
-                }
-            );
-        }
-
         function stampaMenu(data) {
-            if (data === null) {
-                $('#logout').hide();
-                $('#menu_bar').html('');
-                naviga('login');
-            } else {
-                $('#logout').show();
-                for (var i = 0; i < data.length; i++) {
-                    $('#menu_bar').append("<span style=\"margin:10px; padding: 4px 10px; border: 1px solid; background-color: orange; cursor: pointer;\" onclick=\"" + data[i].naviga + "\">" + data[i].nome + "</span>");
-                }
+            $('#logout').show();
+            for (var i = 0; i < data.length; i++) {
+                $('#menu_bar').append("<span style=\"margin:10px; padding: 4px 10px; border: 1px solid; background-color: orange; cursor: pointer;\" onclick=\"" + data[i].naviga + "\">" + data[i].nome + "</span>");
             }
         }
 
         $(document).ready(function () {
-            if (ini === null)
-                naviga('login');
-            else
-                stampaMenu(ini);
-            $('#logout').click(function () {
-                ajaxCall("POST", window.location.origin + '/amministrazione/logout', 5000, {}, function (data) {
-                    stampaMenu(null); $('#contenuti').html(data);
-                    
+            <% if (data !== null) { %>
+                stampaMenu(<%- JSON.stringify(data) %>);
+                $('#logout').click(function () {
+                    window.location = window.location.origin + '/login'
                 });
-            });
+            <% } %>
         });
     </script>
 </head>
@@ -92,6 +67,7 @@
         </tr>
         <tr>
             <td id="contenuti" style="width:100%; background-color: cornflowerblue;">
+                <%- include(contenuto) %>
             </td>
         </tr>
     </table>

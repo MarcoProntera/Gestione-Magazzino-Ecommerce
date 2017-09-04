@@ -1,33 +1,14 @@
-<input id="uname" type="text" />
-<input id="upass" type="password" />
-<button id="accedi">accedi</button>
-<br/>
-<p id="messages" style="color: red; font-weight: bold; padding: 20px; background-color:#ddd;"></p>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#accedi').click(function () {
-            var data = {
-                uname: $('#uname').val(),
-                upass: $('#upass').val()
-            }
-            ajaxCall("POST", window.location.origin + '/amministrazione/login', 5000, data,
-                function (data) {
-                    if (data.logged)
-                        showMenu();
-                    else
-                        authError('nome utente o password errati');
-                }
-            );
-        });
-
-        function showMenu() {
-            ajaxCall("GET", window.location.origin + '/amministrazione/menu', 2000, {}, function (data) { stampaMenu(data); });
-            $('#contenuti').html('');
-        }
-
-        function authError(msg) {
-            $('#messages').text(msg);
-        }
-    });
-
-</script>
+<form action="/amministrazione/login" method="POST">
+    username:<br>
+    <input type="text" name="uname" value="">
+    <br> password:
+    <br>
+    <input type="password" name="upass" value="">
+    <br><br>
+    <input type="submit" value="accedi">
+</form>
+<% if(msg != null) { %>
+    <p style="color: #f00; font-size: 25px;">
+        <%= msg %>
+    </p>
+    <% } %>

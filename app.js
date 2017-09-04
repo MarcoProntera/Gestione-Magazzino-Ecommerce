@@ -54,6 +54,7 @@ app.use('/profilo', frontend);
 app.use('/carrello', frontend);
 
 app.use('/amministrazione', backend);
+app.use('/amministrazione/login', backend);
 app.use('/amministrazione/menu', backend);
 app.use('/amministrazione/categorie', backend);
 app.use('/amministrazione/prodotti', backend);
