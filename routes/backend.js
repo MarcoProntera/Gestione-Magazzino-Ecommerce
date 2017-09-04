@@ -112,7 +112,7 @@ router.post('/menu/add', function (req, res, next) {
       } else {
         monGlo.find('menu', {}, { codice: 1 }, function (data) {
           var newCode = data[data.length - 1].codice + 1;
-          monGlo.insert('menu', { nome: newMenuName, codice: newCode }, function (data) {
+          monGlo.insert('menu', { nome: newMenuName, codice: Number(newCode) }, function (data) {
             res.send('OK');
             ioMan.io().emit('backend_menu', { message: 'refresh' });
           });
@@ -151,11 +151,11 @@ router.post('/menu/update', function (req, res, next) {
         var k = 0;
         for (var i = 0; i < newData.length; i++) {
           monGlo.update('menu', { codice: Number(newData[i].codice) }, { nome: newData[i].nome }, function () {
-            k++;
             if (k == newData.length - 1) {
               res.send('OK');
               ioMan.io().emit('backend_menu', { message: 'refresh' });
             }
+            k++;
           });
         }
       }
@@ -168,143 +168,95 @@ router.post('/menu/update', function (req, res, next) {
 
 
 /* GESTIONE CATEGORIE */
-
-/* GESTIONE CATEGORIE */
-
-
-/* GESTIONE PRODOTTI */
-
-/* GESTIONE PRODOTTI */
-
-/* 
-router.get('/g_menu', function (req, res, next) {
+router.get('/categorie', function (req, res, next) {
   if (req.session.buser !== undefined) {
     var query = { _id: ObjectID(req.session.buser), stato: true };
     monGlo.find('backend_sessione', query, {}, function (data) {
       if (data.length == 0) {
-        req.session.destroy();
-        res.send('sessionescaduta');
-      } else {
-        monGlo.find('menu', {}, { codice: 1 }, function (data) {
-          res.render('backend/g_menu', { title: 'amministrazione', menu: data });
-        });
-      }
-    });
-  }
-  else
-    res.send('sessionescaduta');
-});
-
-
-
-router.get('/g_categorie', function (req, res, next) {
-  if (req.session.buser !== undefined) {
-    var query = { _id: ObjectID(req.session.buser), stato: true };
-    monGlo.find('backend_sessione', query, {}, function (data) {
-      if (data.length == 0) {
-        req.session.destroy();
-        res.send('sessionescaduta');
+        res.redirect('/amministrazione/login');
       } else {
         var tmp = {};
         monGlo.find('categorie', {}, { codice_menu: 1 }, function (data) {
           tmp.cat = data;
           monGlo.find('menu', {}, { codice: 1 }, function (data) {
             tmp.men = data;
-            res.render('backend/g_categorie', { title: 'amministrazione', outData: tmp });
+            res.render('backend/template', { title: 'gestione categorie', contenuto: 'categorie', menuBackend: menuBackend, categorie: tmp });
           });
         });
       }
     });
   }
   else
-    res.send('sessionescaduta');
+    res.redirect('/amministrazione/login');
 });
-
-router.post('/g_categorie/add', function (req, res, next) {
-  var newCategoria = req.body.newCategoria;
+router.post('/categorie/add', function (req, res, next) {
+  var newCategoriaName = req.body.categoriaName;
+  var newCategoriaMenuCode = req.body.codiceMenu;
   if (req.session.buser !== undefined) {
     var query = { _id: ObjectID(req.session.buser), stato: true };
     monGlo.find('backend_sessione', query, {}, function (data) {
       if (data.length == 0) {
-        req.session.destroy();
-        res.send('sessionescaduta');
+        res.redirect('/amministrazione/login');
       } else {
         monGlo.find('categorie', {}, { codice: 1 }, function (data) {
           var newCode = data[data.length - 1].codice + 1;
-          monGlo.insert('categorie', { nome: newCategoria, codice: newCode, codice_menu: null }, function (data) {
-            ioMan.io().emit('g_categorie', { message: 'refresh' });
-            res.send('ok');
+          monGlo.insert('categorie', { nome: newCategoriaName, codice: Number(newCode), codice_menu: Number(newCategoriaMenuCode) }, function (data) {
+            res.send('OK');
+            ioMan.io().emit('backend_categorie', { message: 'refresh' });
           });
         });
       }
     });
   }
   else
-    res.send('sessionescaduta');
+    res.redirect('/amministrazione/login');
 });
-
-router.post('/g_categorie/delete', function (req, res, next) {
+router.post('/categorie/delete', function (req, res, next) {
   if (req.session.buser !== undefined) {
     var query = { _id: ObjectID(req.session.buser), stato: true };
     monGlo.find('backend_sessione', query, {}, function (data) {
       if (data.length == 0) {
-        req.session.destroy();
-        res.send('sessionescaduta');
+        res.redirect('/amministrazione/login');
       } else {
-        monGlo.remove('menu', { codice: Number(req.body.codice) }, function (data) {
-          ioMan.io().emit('g_menu', { message: 'refresh' });
-          res.send('ok');
+        monGlo.remove('categorie', { codice: Number(req.body.codice) }, function (data) {
+          res.send('OK');
+          ioMan.io().emit('backend_categorie', { message: 'refresh' });
         });
       }
     });
   }
   else
-    res.send('sessionescaduta');
+    res.redirect('/amministrazione/login');
 });
-
-router.post('/g_categorie/update', function (req, res, next) {
-  console.log(req.body);
+router.post('/categorie/update', function (req, res, next) {
   var newData = JSON.parse(req.body.data);
-  console.log(newData);
   if (req.session.buser !== undefined) {
     var query = { _id: ObjectID(req.session.buser), stato: true };
     monGlo.find('backend_sessione', query, {}, function (data) {
       if (data.length == 0) {
-        req.session.destroy();
-        res.send('sessionescaduta');
+        res.redirect('/amministrazione/login');
       } else {
         var k = 0;
         for (var i = 0; i < newData.length; i++) {
-          monGlo.update('menu', { codice: Number(newData[i].codice) }, { nome: newData[i].nome }, function () {
-            k++;
+          monGlo.update('categorie', { codice: Number(newData[i].codice) }, { nome: newData[i].nome, codice_menu: Number(newData[i].codice_menu) }, function () {
             if (k == newData.length - 1) {
-              ioMan.io().emit('g_menu', { message: 'refresh' });
-              res.send('ok');
+              res.send('OK');
+              ioMan.io().emit('backend_categorie', { message: 'refresh' });
             }
+            k++;
           });
         }
       }
     });
   }
   else
-    res.send('sessionescaduta');
+    res.redirect('/amministrazione/login');
 });
+/* GESTIONE CATEGORIE */
 
-router.get('/g_prodotti', function (req, res, next) {
-  if (req.session.buser !== undefined) {
-    var query = { _id: ObjectID(req.session.buser), stato: true };
-    monGlo.find('backend_sessione', query, {}, function (data) {
-      if (data.length == 0) {
-        req.session.destroy();
-        res.send('sessionescaduta');
-      } else {
-        res.render('backend/g_prodotti', { title: 'amministrazione' });
-      }
-    });
-  }
-  else
-    res.send('sessionescaduta');
-}); */
 
+/* GESTIONE PRODOTTI */
+
+/* GESTIONE PRODOTTI */
 module.exports = router;
 
