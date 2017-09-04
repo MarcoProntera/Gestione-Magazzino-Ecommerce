@@ -1,14 +1,16 @@
-<form action="/amministrazione/login" method="POST">
-    username:<br>
-    <input type="text" name="uname" value="">
-    <br> password:
-    <br>
-    <input type="password" name="upass" value="">
-    <br><br>
-    <input type="submit" value="accedi" onclick="$('#overlay').fadeIn();">
-</form>
-<% if(msg != null) { %>
-    <p style="color: #f00; font-size: 25px;">
-        <%= msg %>
-    </p>
-    <% } %>
+<div style="display:table; margin: 0 auto; border:1 px solid red">
+    <form action="/amministrazione/login" method="POST">
+        username:<br>
+        <input type="text" name="uname" value="">
+        <br> password:
+        <br>
+        <input type="password" name="upass" value="">
+        <br><br>
+        <input type="submit" value="accedi" onclick="$('#overlay').fadeIn();">
+    </form>
+    <% if(msg != null) { %>
+        <p style="color: #f00; font-size: 25px;">
+            <%= msg %>
+        </p>
+        <% } %>
+</div>

@@ -23,18 +23,17 @@
             height: 100%;
             width: 100%;
         }
-
+        
         * {
             box-sizing: border-box;
         }
-
+        
         table {
             border-collapse: collapse;
         }
     </style>
     <script type="text/javascript">
-        $(document).ready(function () {
-        });
+        $(document).ready(function() {});
     </script>
 </head>
 
@@ -44,7 +43,7 @@
             <td style="height: 75px; width:100%; background-color:aquamarine;">
                 <table style="width: 100%;">
                     <tr>
-                        <td style="width:100%; background-color: #ddd" id="menu_bar">
+                        <td style="width:100%; background-color: red" id="menu_bar">
                             <% if (menuBackend !== null) { %>
                                 <% for(var i=0; i<menuBackend.length; i++) { %>
                                     <span style="margin:10px; padding: 4px 10px; border: 1px solid; background-color: #f63; cursor: pointer;" onclick="$('#overlay').fadeIn();<%= menuBackend[i].naviga%>"><%=menuBackend[i].nome%></span>

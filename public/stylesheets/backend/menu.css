@@ -1,0 +1,12 @@
+.gestione-menu {
+    text-align: center;
+}
+
+.lista-elementi {
+    list-style: none;
+    padding: 10px;
+}
+
+.elemento {
+    padding: 10px;
+}
