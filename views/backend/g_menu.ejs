@@ -28,8 +28,6 @@
         socket.off('g_menu');
         socket.on('g_menu', function (data) {
             if (data.message == 'refresh') {
-                $('#overlay').fadeIn();
-                $('#contenuti').html('');
                 naviga('g_menu');
             }
         });
