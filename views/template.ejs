@@ -4,6 +4,7 @@
 <head>
     <title>
         <%= title %>
+        
     </title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -155,7 +156,7 @@
             <!-- deve essere una classe a parte per non fare equivoci con le jquery -->
             <div id="container_contents" class="conteriner-contents">
 
-                <% include carrello%>
+                <%- include(contenuto) %>
             </div>
 
             <div class="container teal div-footer">

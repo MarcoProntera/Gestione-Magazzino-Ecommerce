@@ -31,7 +31,7 @@ app.use(session({
   }
 }));
 
-var home = require('./routes/home');
+var frontend = require('./routes/frontend');
 var backend = require('./routes/backend/amministrazione');
 
 // view engine setup
@@ -46,7 +46,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', home);
+app.use('/', frontend);
+app.use('/categoria', frontend);
+app.use('/registrazione', frontend);
+app.use('/prodotto', frontend);
+app.use('/profilo', frontend);
+app.use('/carrello', frontend);
+
+
 app.use('/amministrazione', backend);
 app.use('/amministrazione/menu', backend);
 app.use('/amministrazione/categorie', backend);
