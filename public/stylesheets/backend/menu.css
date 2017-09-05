@@ -3,17 +3,37 @@
     margin: 0 auto;
 }
 
-.gestione-menu {
+.menu-management {
     text-align: center;
 }
 
-.lista-elementi {
+.button-menu:hover,
+.button-menu-save:hover {
+    background-color: #f63;
+}
+
+.button-menu {
+    height: 30px;
+    width: 70px;
+}
+
+.button-menu-save {
+    height: 30px;
+    width: 150px;
+}
+
+.box-text-menu {
+    height: 30px;
+    width: 200px;
+}
+
+.list-element {
     list-style-type: none;
     padding: 10px;
 }
 
-.elemento-della-lista {
-    padding: 10px;
+.element-list {
+    padding: 5px;
 }
 
 .menu-name {

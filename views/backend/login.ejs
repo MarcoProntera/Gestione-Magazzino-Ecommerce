@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/stylesheets/backend/login.css" />
 <div style="display:table; margin: 0 auto; ">
 
-    <span><h2>LOGIN AMMINISTRAZIONE SITO</h2></span>
+    <span><h2>LOGIN AMMINISTRAZIONE</h2></span>
     <form style="margin-top:20px; width:30%" action="/amministrazione/login" method="POST">
         USERENAME:<br>
         <input autocomplete="off" type="text" name="uname" value="" style="width: 300px;">
@@ -9,7 +9,7 @@
         <br>
         <input autocomplete="off" type="password" name="upass" value="" style="width: 300px;">
         <br><br>
-        <input class="button-login" type="submit" value="Accedi" onclick="$('#overlay').fadeIn();">
+        <button class="button-login" type="submit" onclick="$('#overlay').fadeIn();">Accedi</button>
     </form>
     <% if(msg != null) { %>
         <p style="color: #f00; font-size: 25px; ">

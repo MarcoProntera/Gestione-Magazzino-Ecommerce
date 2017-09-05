@@ -1,0 +1,35 @@
+.conteiner-categoria {
+    display: table;
+    margin: 0 auto;
+}
+
+.categorie-management {
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #f63;
+}
+
+.ul-style {
+    list-style: none;
+    padding: 10px;
+}
+
+.li-style {
+    padding: 10px;
+}
+
+.right {
+    float: right;
+}
+
+.span-newCategoria {
+    display: block;
+    overflow: hidden;
+}
+
+.text-newCategoria {
+    width: 100%;
+    box-sizing: border-box;
+}
