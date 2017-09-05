@@ -50,3 +50,7 @@ table {
     height: 30px;
     cursor: pointer;
 }
+
+.logout-button:hover {
+    background-color: #f63;
+}

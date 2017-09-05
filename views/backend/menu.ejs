@@ -4,19 +4,19 @@
 <div class="container-menu">
     <table>
         <tr>
-            <td class="gestione-menu">
+            <td class="menu-management">
                 <h2>GESTIONE MENU</h2>
             </td>
         </tr>
         <tr>
             <td>
-                <ul class="lista-elementi">
-                    <li class="elemento-della-lista">
+                <ul class="list-element">
+                    <li class="element-list">
                         <span class="right">
-                        <input autocomplete="off" id="add" type="button" value="ADD" disabled="disabled" />
+                        <button class="button-menu" autocomplete="off" id="add" type="button" disabled="disabled">ADD</button>
                     </span>
                         <span class="menu-name">
-                        <input autocomplete="off" type="text" id="newMenu" class="box-text-name"/>
+                        <input class="box-text-menu" autocomplete="off" type="text" id="newMenu" class="box-text-name"/>
                     </span>
                     </li>
                 </ul>
@@ -24,14 +24,14 @@
         </tr>
         <tr>
             <td>
-                <ul id="elenco_menu" class="lista-elementi">
+                <ul id="elenco_menu" class="list-element">
                     <% for(var i = 0; i< menu.length; i++){%>
-                        <li class="elemento-della-lista" data-id="<%=menu[i].codice%>">
+                        <li class="element-list" data-id="<%=menu[i].codice%>">
                             <span class="right">
-                            <input class="deleteMenu" type="button" value="X" />
+                            <button class="deleteMenu button-menu" type="button">X</button>
                         </span>
                             <span class="menu-name">
-                            <input autocomplete="off" type="text" class="box-text-name menuName" value="<%=menu[i].nome%>" data-orgvalue="<%=menu[i].nome%>"/>
+                            <input autocomplete="off" type="text" class="box-text-name menuName box-text-menu" value="<%=menu[i].nome%>" data-orgvalue="<%=menu[i].nome%>"/>
                         </span>
                         </li>
                         <%}%>
@@ -40,7 +40,7 @@
         </tr>
         <tr>
             <td>
-                <input type="button" disabled="disabled" value="Salva modifiche" id="save" class="right" />
+                <button type="button" disabled="disabled" id="save" class="right button-menu-save">Salva modifiche</button>
             </td>
         </tr>
     </table>

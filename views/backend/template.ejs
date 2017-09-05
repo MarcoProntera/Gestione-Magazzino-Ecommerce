@@ -26,7 +26,7 @@
                         <td style="width:100%;" id="menu_bar">
                             <% if (menuBackend !== null) { %>
                                 <% for(var i=0; i<menuBackend.length; i++) { %>
-                                    <span class="elementi-barra" onclick="$('#overlay').fadeIn();<%= menuBackend[i].naviga%>"><%=menuBackend[i].nome%></span>
+                                    <button class="elementi-barra" onclick="$('#overlay').fadeIn();<%= menuBackend[i].naviga%>"><%=menuBackend[i].nome%></button>
                                     <% } %>
                                         <% } %>
                         </td>
