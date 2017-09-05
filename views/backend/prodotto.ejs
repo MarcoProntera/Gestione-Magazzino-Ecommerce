@@ -1,35 +1,102 @@
-<table>
-    <tr>
-        <td>NOME
-            <br />
-            <input type="text" />
-        </td>
-    </tr>
-    <tr>
-        <td>DESCRIZIONE
-            <br />
-            <input type="text" /></td>
-    </tr>
-    <tr>
-        <td>QUANTITA
-            <br />
-            <input type="text" /></td>
-    </tr>
-    <tr>
-        <td>PREZZO
-            <br />
-            <input type="text" /></td>
-    </tr>
-    <tr>
-        <td>CATEGORIA
-            <br />
-            <input type="text" /></td>
-    </tr>
-    <tr>
-        SPECIFICHE<br />
-        <button onclick="aggiungiRighaSpec()">aggiungi</button><br />
-        <table id="specifiche_prodotto">
-        </table>
-    </tr>
-</table>
-<script type="text/javascript"></script>
+<% var categoriaSelect = '';
+for (var i = 0; i < categorie.length; i++) {
+    categoriaSelect += '<option value="' + categorie[i].codice + '">' + categorie[i].nome + '</option>';
+}%>
+
+    <table>
+        <tr>
+            <td>NOME
+                <br />
+                <input autocomplete="off" id="prodotto_nome" type="text" />
+            </td>
+        </tr>
+        <tr>
+            <td>DESCRIZIONE
+                <br />
+                <input autocomplete="off" id="prodotto_desc" type="text" /></td>
+        </tr>
+        <tr>
+            <td>QUANTITA
+                <br />
+                <input autocomplete="off" id="prodotto_qt" type="text" /></td>
+        </tr>
+        <tr>
+            <td>PREZZO
+                <br />
+                <input autocomplete="off" id="prodotto_prez" type="text" /></td>
+        </tr>
+        <tr>
+            <td>CATEGORIA
+                <br />
+                <select autocomplete="off" id="prodotto_cat">
+                    <option value="-1"></option>
+                <%-categoriaSelect%>
+                </select></td>
+        </tr>
+        <tr>
+            <td>
+                SPECIFICHE<br />
+                <button onclick="aggiungiRighaSpec()">aggiungi</button><br />
+                <table id="specifiche_prodotto" style="border: 1px solid #000;">
+
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td><button id="salva">SALVA</button></td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        var datiProdotto = <%- JSON.stringify(datiProdotto) %>;
+        $(document).ready(function () {
+            $('#salva').click(function () {
+                var parseMe = '{';
+                $('#specifiche_prodotto').find('tr').each(function () {
+                    if ($(this).find('.chiave_spec').val() != '' && $(this).find('.value_spec').val() != '') {
+                        if (parseMe != '{')
+                            parseMe += ',';
+                        parseMe += '"' + $(this).find('.chiave_spec').val() + '":"' + $(this).find('.value_spec').val() + '"';
+                    }
+                });
+                parseMe += '}';
+                var salva_prodotto = {
+                    codice: (datiProdotto != null) ? datiProdotto.codice : null,
+                    nome: $('#prodotto_nome').val(),
+                    descrizione: $('#prodotto_desc').val(),
+                    prezzo: $('#prodotto_prez').val(),
+                    quantita: $('#prodotto_qt').val(),
+                    specifiche: parseMe,
+                    codice_categoria: $('#prodotto_cat').val(),
+                };
+                if (datiProdotto == null)
+                    ajaxCall("POST", window.location.origin + '/amministrazione/prodotto/add', 5000, salva_prodotto, function (data) { console.log('fatto'); $('#overlay').fadeIn(); window.location = window.location.origin + '/amministrazione/prodotto?c=' + data.codice; });
+                else
+                    ajaxCall("POST", window.location.origin + '/amministrazione/prodotto/update', 5000, salva_prodotto, function (data) { console.log('fatto'); $('#overlay').fadeIn(); window.location = window.location.origin + '/amministrazione/prodotto?c=' + data.codice; });
+            });
+            if (datiProdotto != null) {
+                stampaDati(datiProdotto);
+            }
+        });
+        function stampaDati(dati) {
+            $('#prodotto_nome').val(dati.nome);
+            $('#prodotto_desc').val(dati.descrizione);
+            $('#prodotto_qt').val(dati.quantita);
+            $('#prodotto_prez').val(dati.prezzo);
+            $('#prodotto_cat').val(dati.codice_categoria);
+            var specs = JSON.parse(dati.specifiche);
+            $.each(specs, function (key, val) {
+                $('#specifiche_prodotto').append('<tr><td style="width:200px;"><input class="chiave_spec" type="text" value="' + key + '" style="width: 100%;" /></td><td style="width:200px;"><input class="value_spec" type="text" value="' + val + '" style="width: 100%;" /></td></tr>')
+            });
+            coloraTable();
+        }
+
+        function aggiungiRighaSpec() {
+            $('#specifiche_prodotto').append('<tr><td style="width:200px;"><input class="chiave_spec" type="text" style="width: 100%;" /></td><td style="width:200px;"><input class="value_spec" type="text" style="width: 100%;" /></td></tr>')
+
+            coloraTable();
+        }
+        function coloraTable() {
+            $("#specifiche_prodotto tr:even").css("background-color", "#f63");
+            $("#specifiche_prodotto tr:odd").css("background-color", "cornflowerblue");
+        }
+    </script>

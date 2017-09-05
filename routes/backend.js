@@ -297,12 +297,12 @@ router.post('/prodotti/search', function (req, res, next) {
           });
         }
         if (search.codiceMenu == '-1' && search.codiceCategoria != '-1' && search.nomeProdotto == '' || search.codiceMenu != '-1' && search.codiceCategoria != '-1' && search.nomeProdotto == '') {
-          monGlo.find('prodotti', { codice_categoria: search.codice_categoria }, { nome: 1 }, function (search_result) {
+          monGlo.find('prodotti', { codice_categoria: Number(search.codiceCategoria) }, { nome: 1 }, function (search_result) {
             res.send(search_result);
           });
         }
         if (search.codiceMenu == '-1' && search.codiceCategoria != '-1' && search.nomeProdotto != '' || search.codiceMenu != '-1' && search.codiceCategoria != '-1' && search.nomeProdotto != '') {
-          monGlo.find('prodotti', { codice_categoria: search.codice_categoria, nome: { "$regex": search.nomeProdotto } }, { nome: 1 }, function (search_result) {
+          monGlo.find('prodotti', { codice_categoria: Number(search.codiceCategoria), nome: { "$regex": search.nomeProdotto } }, { nome: 1 }, function (search_result) {
             res.send(search_result);
           });
         }
@@ -311,7 +311,7 @@ router.post('/prodotti/search', function (req, res, next) {
             var out = null;
             var k = 0;
             for (var i = 0; i < cat_search_result.length; i++) {
-              monGlo.find('prodotti', { codice_categoria: cat_search_result[i].codice }, { codice_categoria: 1 }, function (search_result) {
+              monGlo.find('prodotti', { codice_categoria: Number(cat_search_result[i].codice) }, { codice_categoria: 1 }, function (search_result) {
                 if (out === null)
                   out = search_result;
                 else
@@ -329,7 +329,7 @@ router.post('/prodotti/search', function (req, res, next) {
             var out = null;
             var k = 0;
             for (var i = 0; i < cat_search_result.length; i++) {
-              monGlo.find('prodotti', { codice_categoria: cat_search_result[i].codice, nome: { "$regex": search.nomeProdotto } }, { codice_categoria: 1 }, function (search_result) {
+              monGlo.find('prodotti', { codice_categoria: Number(cat_search_result[i].codice), nome: { "$regex": search.nomeProdotto } }, { codice_categoria: 1 }, function (search_result) {
                 if (out === null)
                   out = search_result;
                 else
@@ -365,5 +365,79 @@ router.post('/prodotti/delete', function (req, res, next) {
     res.redirect('/amministrazione/login');
 });
 /* GESTIONE PRODOTTI */
+
+/* GESTIONE PRODOTTO */
+router.get('/prodotto', function (req, res, next) {
+  if (req.session.buser !== undefined) {
+    var query = { _id: ObjectID(req.session.buser), stato: true };
+    monGlo.find('backend_sessione', query, {}, function (data) {
+      if (data.length == 0) {
+        res.redirect('/amministrazione/login');
+      } else {
+        monGlo.find('categorie', {}, { codice_menu: 1 }, function (categorie) {
+          if (req.query.c == undefined) {
+            //NUOVO PRODOTTO
+            res.render('backend/template', { title: 'aggiungi prodotto', contenuto: 'prodotto', menuBackend: menuBackend, categorie: categorie, datiProdotto: null });
+          }
+          else {
+            //MODIFICA PRODOTTO
+            var codice_prodotto = Number(req.query.c);
+            monGlo.find('prodotti', { codice: codice_prodotto }, {}, function (dati_prodotto) {
+              res.render('backend/template', { title: 'aggiungi prodotto', contenuto: 'prodotto', menuBackend: menuBackend, categorie: categorie, datiProdotto: (dati_prodotto.length == 0) ? null : dati_prodotto[0] });
+            });
+          }
+        });
+      }
+    });
+  }
+  else
+    res.redirect('/amministrazione/login');
+});
+router.post('/prodotto/add', function (req, res, next) {
+  var salva_prodotto = req.body
+  if (req.session.buser !== undefined) {
+    var query = { _id: ObjectID(req.session.buser), stato: true };
+    monGlo.find('backend_sessione', query, {}, function (data) {
+      if (data.length == 0) {
+        res.redirect('/amministrazione/login');
+      } else {
+        monGlo.find('prodotti', {}, { codice: 1 }, function (data) {
+          var newCode = data[data.length - 1].codice + 1;
+          monGlo.insert('prodotti', {
+            codice: Number(newCode), nome: salva_prodotto.nome, descrizione: salva_prodotto.descrizione,
+            prezzo: salva_prodotto.prezzo, quantita: salva_prodotto.quantita,
+            specifiche: salva_prodotto.specifiche, codice_categoria: Number(salva_prodotto.codice_categoria)
+          }, function (data) {
+            res.send({ codice: newCode });
+          });
+        });
+      }
+    });
+  }
+  else
+    res.redirect('/amministrazione/login');
+});
+router.post('/prodotto/update', function (req, res, next) {
+  var newData = JSON.parse(req.body);
+  if (req.session.buser !== undefined) {
+    var query = { _id: ObjectID(req.session.buser), stato: true };
+    monGlo.find('backend_sessione', query, {}, function (data) {
+      if (data.length == 0) {
+        res.redirect('/amministrazione/login');
+      } else {
+        monGlo.update('prodotti', { codice: Number(newData.codice) }, {
+          nome: salva_prodotto.nome, descrizione: salva_prodotto.descrizione,
+          prezzo: salva_prodotto.prezzo, quantita: salva_prodotto.quantita,
+          specifiche: salva_prodotto.specifiche, codice_categoria: Number(salva_prodotto.codice_categoria)
+        }, function () {
+          res.send({ codice: newData.codice });
+        });
+      }
+    });
+  }
+  else
+    res.redirect('/amministrazione/login');
+});
+/* GESTIONE PRODOTTO */
 module.exports = router;
 
