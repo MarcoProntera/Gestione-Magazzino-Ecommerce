@@ -34,7 +34,7 @@ for (var i = 0; i < categorie.cat.length; i++) {
                 </p>
                 <p><button id="search">cerca</button></p>
             </td>
-            <td><button>+ nuovo prodotto</button></td>
+            <td><button id="addProduct">+ nuovo prodotto</button></td>
         </tr>
         <tr>
             <td colspan="2">
@@ -62,22 +62,28 @@ for (var i = 0; i < categorie.cat.length; i++) {
                 }
             });
             $('#search').click(function () {
-                searchMe = {
+                var searchMe = {
                     codiceMenu: $('#search_menu').val(),
                     codiceCategoria: $('#search_categoria').val(),
                     nomeProdotto: $('#search_prodotto').val()
                 }
                 ajaxCall("POST", window.location.origin + '/amministrazione/prodotti/search', 5000, searchMe, function (data) { console.log('fatto'); stampaListaProdotti(data); });
             });
+            $('#addProduct').on('click', function () {
+                $('#overlay').fadeIn();
+                window.location = window.location.origin + '/amministrazione/prodotto';
+            });
         });
+
         function stampaListaProdotti(lista) {
             $('#search_result').html('');
             for (var i = 0; i < lista.length; i++) {
                 $('#search_result').append('<li data-codiceprodotto="' + lista[i].codice + '"><span>' + lista[i].nome + '</span><button class="modifica_prodotto">modifica</button><button class="elimina_prodotto">elimina</button></li>');
             }
             $('.modifica_prodotto').off();
-            $('.elimina_prodotto').off()
+            $('.elimina_prodotto').off();
             $('.modifica_prodotto').on('click', function () {
+                $('#overlay').fadeIn();
                 window.location = window.location.origin + '/amministrazione/prodotto?c=' + $(this).closest('li').attr('data-codiceprodotto');
             });
             $('.elimina_prodotto').on('click', function () {
