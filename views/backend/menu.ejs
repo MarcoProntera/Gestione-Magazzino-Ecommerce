@@ -13,10 +13,10 @@
                 <ul class="lista-elementi">
                     <li class="elemento-della-lista">
                         <span class="right">
-                        <input id="add" type="button" value="ADD" disabled="disabled" />
+                        <input autocomplete="off" id="add" type="button" value="ADD" disabled="disabled" />
                     </span>
                         <span class="menu-name">
-                        <input type="text" id="newMenu" class="box-text-name"/>
+                        <input autocomplete="off" type="text" id="newMenu" class="box-text-name"/>
                     </span>
                     </li>
                 </ul>
@@ -31,7 +31,7 @@
                             <input class="deleteMenu" type="button" value="X" />
                         </span>
                             <span class="menu-name">
-                            <input type="text" class="box-text-name menuName" value="<%=menu[i].nome%>" data-orgvalue="<%=menu[i].nome%>"/>
+                            <input autocomplete="off" type="text" class="box-text-name menuName" value="<%=menu[i].nome%>" data-orgvalue="<%=menu[i].nome%>"/>
                         </span>
                         </li>
                         <%}%>
