@@ -21,21 +21,29 @@ for (var i = 0; i < categorie.men.length; i++) {
                         <button autocomplete="off" id="add" type="button" disabled="disabled" class="button" >ADD</button>
                     </span>
                             <span class="span-newCategoria">
-                        <input autocomplete="off" type="text" id="newCategoria" class="text-newCategoria" />
+                        <input autocomplete="off" type="text" id="newCategoria" placeholder="Inserisci Categoria" class="text-newCategoria" />
                     </span>
-                            <span>
-                        <select autocomplete="off" id="newMenuCode">
+                            <span><span style="margin-right:3px;"> Seleziona Menu </span>
+                            <select autocomplete="off" id="newMenuCode">
                             <option value="-1"></option>
                             <%- menuSelect %>
                         </select>
-                    </span>
+                            </span>
                         </li>
                     </ul>
                 </td>
             </tr>
+
             <tr>
                 <td>
                     <ul id="elenco_categorie" class="ul-style">
+                        <li style="margin-bottom:2px">
+                            <span style="margin-left:55px;"> Categoria
+                                </span>
+                            <span style="float: right;margin-right:90px; ">
+                                    Menu
+                            </span>
+                        </li>
                         <% for (var i = 0; i < categorie.cat.length; i++) { %>
                             <li>
                                 <input autocomplete="off" class="categoriaName" type="text" data-catcod="<%=categorie.cat[i].codice%>" data-mencod="<%=categorie.cat[i].codice_menu%>" value="<%=categorie.cat[i].nome%>" data-orgvalue="<%=categorie.cat[i].nome%>" />
