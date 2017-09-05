@@ -1,51 +1,50 @@
+<%
+var menuSelect = '';
+for (var i = 0; i < categorie.men.length; i++) {
+    menuSelect += '<option value="' + categorie.men[i].codice + '">' + categorie.men[i].nome + '</option>';
+}
+var categoriaSelect = '';
+for (var i = 0; i < categorie.cat.length; i++) {
+    categoriaSelect += '<option value="' + categorie.cat[i].codice + '">' + categorie.cat[i].nome + '</option>';
+}
+%>
     <table>
         <tr>
-            <td style="text-align: center;">GESTIONE PRODOTTI</td>
+            <td colspan="2" style="text-align: center;">GESTIONE PRODOTTI</td>
         </tr>
         <tr>
             <td>
-                <ul style="list-style: none; padding: 10px;">
-                    <li style="padding: 10px;">
-                        <span style="float:right;">
-                        <input autocomplete="off" id="add" type="button" value="ADD" disabled="disabled" />
-                    </span>
-                        <span style="display:block; overflow:hidden;">
-                        <input autocomplete="off" type="text" id="newCategoria" style="width:100%; box-sizing:border-box;" />
-                    </span>
-                        <span>
-                        <select autocomplete="off" id="newMenuCode">
-                            <option value="-1"></option>
-                            <%- menuSelect %>
-                        </select>
-                    </span>
-                    </li>
-                </ul>
+                <p>
+                    MENU<br />
+                    <select id="search_menu">
+                    <option value="-1">*</option>
+                    <%- menuSelect %>
+                </select>
+                </p>
+                <p>
+                    CATEGORIA<br />
+                    <select id="search_categoria">
+                        <option value="-1">*</option>
+                        <%- categoriaSelect %>
+                    </select>
+                </p>
+                <p>
+                    NOME PRODOTTO<br />
+                    <input id="search_prodotto" type="text" />
+                </p>
+                <p><button id="search">cerca</button></p>
             </td>
+            <td><button>+ nuovo prodotto</button></td>
         </tr>
         <tr>
-            <td>
-                <ul id="elenco_categorie" style="list-style: none; padding: 10px;">
-                    <% for (var i = 0; i < categorie.cat.length; i++) { %>
-                        <li>
-                            <input autocomplete="off" class="categoriaName" type="text" data-catcod="<%=categorie.cat[i].codice%>" data-mencod="<%=categorie.cat[i].codice_menu%>"
-                                value="<%=categorie.cat[i].nome%>" data-orgvalue="<%=categorie.cat[i].nome%>" />
-                            <select autocomplete="off" class="cat_menu">
-                                <option selected="selected" value="-1"></option>
-                                <%-menuSelect.replace('value="' + categorie.cat[i].codice_menu, 'selected="selected" value="' + categorie.cat[i].codice_menu)%>
-                            </select>
-                            <input autocomplete="off" class="deleteCategoria" type="button" value="X" />
-                        </li>
-                        <% } %>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input autocomplete="off" type="button" disabled="disabled" value="salva modifiche" id="save" style="float: right;" />
+            <td colspan="2">
+                <ul id="search_result">
+                    <ul>
             </td>
         </tr>
     </table>
     <script type="text/javascript">
+        var menuEcategorie = <%- JSON.stringify(categorie) %>;
         $(document).ready(function () {
             socket.off('backend_categorie');
             socket.on('backend_categorie', function (data) { if (data.message == 'refresh') { location.reload(); } });
@@ -54,69 +53,36 @@
             socket.off('backend_menu');
             socket.on('backend_menu', function (data) { if (data.message == 'refresh') { alert('attenzione!!\nc\'è stata una modifica nel menu, controllare prima di salvare eventuali modifiche alle categorie.'); } });
 
-            $('.cat_menu').on('change', function () {
-                checkMod();
-            });
-            $('.categoriaName').on('keyup change', function () {
-                checkMod();
-            });
-
-            $('#newCategoria').on('keyup change', function () {
-                var preventEdit = false;
-                var currVal = $(this).val();
-                $('#elenco_categorie').find('.categoriaName').each(function () {
-                    if (currVal == $(this).attr('data-orgvalue'))
-                        preventEdit = true;
-                });
-                if (preventEdit == false) {
-                    if ($(this).val() != '')
-                        $('#add').removeAttr('disabled');
-                    else
-                        $('#add').attr({ 'disabled': 'disabled' });
-                } else
-                    $('#add').attr({ 'disabled': 'disabled' });
-            });
-
-            $('#elenco_categorie').find('.deleteCategoria').on('click', function () {
-                ajaxCall("POST", window.location.origin + '/amministrazione/categorie/delete', 5000, { codice: $(this).closest('li').find('.categoriaName').attr('data-catcod') }, function (data) { console.log('fatto'); });
-            });
-
-            $('#save').on('click', function () {
-                var multipleUpdate = [];
-                var iterator = 0;
-                $('#elenco_categorie').find('.categoriaName').each(function () {
-                    if ($(this).val() != $(this).attr('data-orgvalue') || $(this).closest('li').find('.cat_menu').val() != $(this).attr('data-mencod')) {
-                        multipleUpdate[iterator] = { codice: $(this).attr('data-catcod'), nome: $(this).val(), codice_menu: $(this).closest('li').find('.cat_menu').val() };
-                        iterator++;
-                    }
-                });
-                ajaxCall("POST", window.location.origin + '/amministrazione/categorie/update', 5000, { data: JSON.stringify(multipleUpdate) }, function (data) { console.log('fatto'); });
-            });
-
-            $('#add').on('click', function () {
-                var data = {
-                    categoriaName: $('#newCategoria').val(),
-                    codiceMenu: $('#newMenuCode').val()
+            $('#search_menu').on('change', function () {
+                $('#search_categoria').html('');
+                $('#search_categoria').append('<option value="-1">*</option>');
+                for (var i = 0; i < menuEcategorie.cat.length; i++) {
+                    if (menuEcategorie.cat[i].codice_menu == $(this).val() || $(this).val() == -1)
+                        $('#search_categoria').append('<option value="' + menuEcategorie.cat[i].codice + '">' + menuEcategorie.cat[i].nome + '</option>');
                 }
-                $('#add').attr({ 'disabled': 'disabled' });
-                $('#newCategoria').val('');
-                ajaxCall("POST", window.location.origin + '/amministrazione/categorie/add', 5000, data, function (data) { console.log('fatto'); });
+            });
+            $('#search').click(function () {
+                searchMe = {
+                    codiceMenu: $('#search_menu').val(),
+                    codiceCategoria: $('#search_categoria').val(),
+                    nomeProdotto: $('#search_prodotto').val()
+                }
+                ajaxCall("POST", window.location.origin + '/amministrazione/prodotti/search', 5000, searchMe, function (data) { console.log('fatto'); stampaListaProdotti(data); });
             });
         });
-        function checkMod() {
-            var edited = false;
-            $('#elenco_categorie').find('.categoriaName').each(function () {
-                if ($(this).val() != $(this).attr('data-orgvalue'))
-                    edited = true;
+        function stampaListaProdotti(lista) {
+            $('#search_result').html('');
+            for (var i = 0; i < lista.length; i++) {
+                $('#search_result').append('<li data-codiceprodotto="' + lista[i].codice + '"><span>' + lista[i].nome + '</span><button class="modifica_prodotto">modifica</button><button class="elimina_prodotto">elimina</button></li>');
+            }
+            $('.modifica_prodotto').off();
+            $('.elimina_prodotto').off()
+            $('.modifica_prodotto').on('click', function () {
+                window.location = window.location.origin + '/amministrazione/prodotto?c=' + $(this).closest('li').attr('data-codiceprodotto');
             });
-
-            $('#elenco_categorie').find('.cat_menu').each(function () {
-                if ($(this).val() != $(this).closest('li').find('.categoriaName').attr('data-mencod'))
-                    edited = true;
+            $('.elimina_prodotto').on('click', function () {
+                ajaxCall("POST", window.location.origin + '/amministrazione/prodotti/delete', 5000, { codice: $(this).closest('li').attr('data-codiceprodotto') }, function (data) { console.log('fatto'); $('#search').click(); });
             });
-            if (edited == true)
-                $('#save').removeAttr('disabled');
-            else
-                $('#save').attr({ 'disabled': 'disabled' });
+            $('#overlay').fadeOut();
         }
     </script>

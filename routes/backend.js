@@ -20,7 +20,7 @@ router.get('/', function (req, res) {
         req.session.destroy();
         res.redirect('/amministrazione/login');
       } else {
-        res.render('backend/template', { title: 'amministrazione', contenuto: '', menuBackend: menuBackend, msg: null });
+        res.render('backend/template', { title: 'amministrazione', contenuto: 'help', menuBackend: menuBackend, msg: null });
       }
     });
   } else {
@@ -256,7 +256,114 @@ router.post('/categorie/update', function (req, res, next) {
 
 
 /* GESTIONE PRODOTTI */
-
+router.get('/prodotti', function (req, res, next) {
+  if (req.session.buser !== undefined) {
+    var query = { _id: ObjectID(req.session.buser), stato: true };
+    monGlo.find('backend_sessione', query, {}, function (data) {
+      if (data.length == 0) {
+        res.redirect('/amministrazione/login');
+      } else {
+        var tmp = {};
+        monGlo.find('categorie', {}, { codice_menu: 1 }, function (data) {
+          tmp.cat = data;
+          monGlo.find('menu', {}, { codice: 1 }, function (data) {
+            tmp.men = data;
+            res.render('backend/template', { title: 'gestione prodotti', contenuto: 'prodotti', menuBackend: menuBackend, categorie: tmp });
+          });
+        });
+      }
+    });
+  }
+  else
+    res.redirect('/amministrazione/login');
+});
+router.post('/prodotti/search', function (req, res, next) {
+  var search = req.body;
+  console.log(search);
+  if (req.session.buser !== undefined) {
+    var query = { _id: ObjectID(req.session.buser), stato: true };
+    monGlo.find('backend_sessione', query, {}, function (data) {
+      if (data.length == 0) {
+        res.redirect('/amministrazione/login');
+      } else {
+        if (search.codiceMenu == '-1' && search.codiceCategoria == '-1' && search.nomeProdotto == '') {
+          monGlo.find('prodotti', {}, { nome: 1 }, function (search_result) {
+            res.send(search_result);
+          });
+        }
+        if (search.codiceMenu == '-1' && search.codiceCategoria == '-1' && search.nomeProdotto != '') {
+          monGlo.find('prodotti', { nome: { "$regex": search.nomeProdotto } }, { nome: 1 }, function (search_result) {
+            res.send(search_result);
+          });
+        }
+        if (search.codiceMenu == '-1' && search.codiceCategoria != '-1' && search.nomeProdotto == '' || search.codiceMenu != '-1' && search.codiceCategoria != '-1' && search.nomeProdotto == '') {
+          monGlo.find('prodotti', { codice_categoria: search.codice_categoria }, { nome: 1 }, function (search_result) {
+            res.send(search_result);
+          });
+        }
+        if (search.codiceMenu == '-1' && search.codiceCategoria != '-1' && search.nomeProdotto != '' || search.codiceMenu != '-1' && search.codiceCategoria != '-1' && search.nomeProdotto != '') {
+          monGlo.find('prodotti', { codice_categoria: search.codice_categoria, nome: { "$regex": search.nomeProdotto } }, { nome: 1 }, function (search_result) {
+            res.send(search_result);
+          });
+        }
+        if (search.codiceMenu != '-1' && search.codiceCategoria == '-1' && search.nomeProdotto == '') {
+          monGlo.find('categorie', { codice_menu: Number(search.codiceMenu) }, { codice: 1 }, function (cat_search_result) {
+            var out = null;
+            var k = 0;
+            for (var i = 0; i < cat_search_result.length; i++) {
+              monGlo.find('prodotti', { codice_categoria: cat_search_result[i].codice }, { codice_categoria: 1 }, function (search_result) {
+                if (out === null)
+                  out = search_result;
+                else
+                  out = out.concat(search_result);
+                if (k == cat_search_result.length - 1) {
+                  res.send(out);
+                }
+                k++;
+              });
+            }
+          });
+        }
+        if (search.codiceMenu != '-1' && search.codiceCategoria == '-1' && search.nomeProdotto != '') {
+          monGlo.find('categorie', { codice_menu: Number(search.codiceMenu) }, { codice: 1 }, function (cat_search_result) {
+            var out = null;
+            var k = 0;
+            for (var i = 0; i < cat_search_result.length; i++) {
+              monGlo.find('prodotti', { codice_categoria: cat_search_result[i].codice, nome: { "$regex": search.nomeProdotto } }, { codice_categoria: 1 }, function (search_result) {
+                if (out === null)
+                  out = search_result;
+                else
+                  out = out.concat(search_result);
+                if (k == cat_search_result.length - 1) {
+                  res.send(out);
+                }
+                k++;
+              });
+            }
+          });
+        }
+      }
+    });
+  }
+  else
+    res.redirect('/amministrazione/login');
+});
+router.post('/prodotti/delete', function (req, res, next) {
+  if (req.session.buser !== undefined) {
+    var query = { _id: ObjectID(req.session.buser), stato: true };
+    monGlo.find('backend_sessione', query, {}, function (data) {
+      if (data.length == 0) {
+        res.redirect('/amministrazione/login');
+      } else {
+        monGlo.remove('prodotti', { codice: Number(req.body.codice) }, function (data) {
+          res.send('OK');
+        });
+      }
+    });
+  }
+  else
+    res.redirect('/amministrazione/login');
+});
 /* GESTIONE PRODOTTI */
 module.exports = router;
 
