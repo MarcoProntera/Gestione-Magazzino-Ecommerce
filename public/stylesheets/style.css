@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
 }
-html,body {
+html,body{
   font-family: Verdana, sans-serif;
   font-size: 15px;
   line-height: 1.5;
@@ -17,7 +17,7 @@ html {
   padding-left:45px;
   cursor: pointer;
 }
-.animate-right {
+.animate-right{
   position: relative;
   animation: animateright 0.4s;
 }
@@ -37,7 +37,11 @@ html {
   margin: 0;
   padding-left: 10px;
 }
-.inner-bar-item {
+.login-button{
+  cursor: pointer;
+  padding: 7px 5px 7px 5px;
+}
+.inner-bar-item{
   padding: 8px 16px;
   width: auto;
   border: none;
