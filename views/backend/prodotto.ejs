@@ -7,7 +7,7 @@ for (var i = 0; i < categorie.length; i++) {
         <table>
             <tr>
                 <td style="border:1px solid black; padding:20px;">NOME:
-                    <input style="display:block" autocomplete="off" id="prodotto_nome" type="text" /> DESCRIZIONE:
+
                     <input style="display:block" autocomplete="off" id="prodotto_desc" type="text" /> QUANTITA:
                     <input style="display:block" autocomplete="off" id="prodotto_qt" type="text" /> PREZZO:
                     <input style="display:block" autocomplete="off" id="prodotto_prez" type="text" /> CATEGORIA:
@@ -16,7 +16,7 @@ for (var i = 0; i < categorie.length; i++) {
                 <%-categoriaSelect%>
                 </select>
                 </td>
-                <td style="border:1px solid red; padding:20px;">
+                <td style="border:1px solid red;padding:20px; ">
                     <form id="uploadForm" action="/amministrazione/upload" method="POST" encType="multipart/form-data">
                         <input type="file" name="file_1" id="file_1" /><br />
                         <input type="file" name="file_2" id="file_2" /><br />
@@ -27,7 +27,7 @@ for (var i = 0; i < categorie.length; i++) {
                 </td>
             </tr>
             <tr>
-                <td></td>
+                <td> <input style="display:block" autocomplete="off" id="prodotto_nome" type="text" /> DESCRIZIONE:</td>
             </tr>
             <tr>
                 <td></td>
