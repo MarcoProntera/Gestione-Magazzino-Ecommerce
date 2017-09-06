@@ -1,0 +1,18 @@
+.container_prodotti {
+    display: table;
+    margin: 0 auto;
+    width: 1000px;
+}
+
+.list {
+    list-style: none;
+}
+
+.list li {
+    margin-bottom: 5px;
+}
+
+button:hover {
+    background-color: #f63;
+    cursor: pointer;
+}
