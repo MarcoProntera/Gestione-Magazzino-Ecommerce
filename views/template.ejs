@@ -1,176 +1,72 @@
-<!DOCTYPE html>
-<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+<script type="text/javascript" src="/javascripts/frontend/template.js"></script>
 
-<head>
-    <title>
-        <%= title %>
+<link rel="stylesheet" href="/stylesheets/style.css">
+<link rel="stylesheet" type="text/css" href="/font-icon/flaticon.css">
 
-    </title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- accesso in barra laterale destra -->
+<div class="right-cell animate-right" id="rightMenu">
+    <div style="margin-top: 10px;">
+        <h4 class="login-message"> Inserisci i tuoi dati </h4>
+        <form class="container padding-16" method="" action="">
+            <p>
+                <label for="email" required>Email:</label>
+                <input class="input border-light" name="indirizzo email" type="email" id="email">
+            </p>
 
-    <script type="text/javascript">
-        $(document).ready(function() {
+            <p>
+                <label for="password">Password:</label>
+                <input class="input border-light" name="password" type="password" id="password">
+            </p>
 
-        });
-    </script>
-    <script>
-        function openLeftMenu() {
-            document.getElementById("main").style.marginLeft = "25%";
-            document.getElementById("mySidebar").style.width = "25%";
-            document.getElementById("mySidebar").style.display = "block";
-
-        }
-
-        function closeLeftMenu() {
-            document.getElementById("main").style.marginLeft = "0%";
-            document.getElementById("mySidebar").style.display = "none";
-
-        }
-
-        function openRightMenu() {
-            document.getElementById("rightMenu").style.display = "block";
-        }
-
-        function closeRightMenu() {
-            document.getElementById("rightMenu").style.display = "none";
-        }
-
-        function closeAllMenu() {
-            closeRightMenu();
-            closeLeftMenu();
-        }
-
-        function menuScrollCheck() {
-            $(window).scroll(function() {
-                var scroll = $('#barMenu').outerHeight(true) - $(this).scrollTop();
-
-                if (scroll < 1) {
-                    $('#mySidebar').css({
-                        'top': '0'
-                    });
-                } else {
-                    $('#mySidebar').css({
-                        'top': scroll
-                    });
-                }
-            });
-        }
-        $(document).ready(function() {
-            menuScrollCheck();
-        });
-
-        function clickMenu(sender) {
-            $(sender).closest('div').find('button').each(function() {
-                if (!$(this).hasClass('button-active'))
-                    $(this).removeClass('button-clicked');
-            });
-            var codice = $(sender).attr('data-codicemenu');
-            if ($('#mySidebar').hasClass('menu_' + codice)) {
-                $('#mySidebar').removeClass('menu_' + codice);
-                if (!$(this).hasClass('button-active'))
-                    $(sender).removeClass('button-clicked');
-                closeLeftMenu();
-            } else {
-                $('#menu_principale').find('button').each(function () {
-                    $('#mySidebar').removeClass('menu_' + $(this).attr('data-codicemenu'));
-                });
-                $('#mySidebar').addClass('menu_' + codice);
-                if (!$(this).hasClass('button-active'))
-                    $(sender).addClass('button-clicked');
-                openLeftMenu();
-            }
-
-        }
-    </script>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <link rel="stylesheet" type="text/css" href="/font-icon/flaticon.css">
-    <title>Document</title>
-
-</head>
-
-<body>
-
-
-
-
-
-    <!-- accesso in barra laterale destra -->
-    <div class="right-cell animate-right" id="rightMenu">
-        <div style="margin-top: 10px;">
-            <h4 class="login-message"> Inserisci i tuoi dati </h4>
-            <form class="container padding-16" method="" action="">
-                <p>
-                    <label for="email" required>Email:</label>
-                    <input class="input border-light" name="indirizzo email" type="email" id="email">
-                </p>
-
-                <p>
-                    <label for="password">Password:</label>
-                    <input class="input border-light" name="password" type="password" id="password">
-                </p>
-
-                <p>
-                    <input class="button border-light color-login login-button" name="login" type="submit" value="Login">
-                </p>
-            </form>
-        </div>
+            <p>
+                <input class="button border-light color-login login-button" name="login" type="submit" value="Login">
+            </p>
+        </form>
     </div>
-    <!-- fine barra laterale destra -->
+</div>
+<!-- fine barra laterale destra -->
 
-    <!-- menu centrale + logo + menu laterale sinistro delle categorie -->
-    <div id="barMenu">
+<!-- menu centrale + logo + menu laterale sinistro delle categorie -->
+<div id="barMenu">
 
 
-        <h1 class="logo-sito" onclick="window.location= window.location.origin;">E-Commerce</h1>
-        <button class="inner-bar-item right" onclick="window.location= window.location.origin + '/registrazione';">Registrati</button>
-        <button class="inner-bar-item right" onclick="openRightMenu()">Accedi</button>
-        <button class="inner-bar-item right" style="height: 32.8px" onclick="window.location= window.location.origin + '/profilo';">
+    <h1 class="logo-sito" onclick="window.location= window.location.origin;">E-Commerce</h1>
+    <button class="inner-bar-item right" onclick="window.location= window.location.origin + '/registrazione';">Registrati</button>
+    <button class="inner-bar-item right" onclick="openRightMenu()">Accedi</button>
+    <button class="inner-bar-item right" style="height: 32.8px" onclick="window.location= window.location.origin + '/profilo';">
                 <span class="flaticon-gear icon-color" ></span>
                 </button>
 
-        <div id="menu_principale" class="bar" style="border-bottom: 1px solid #ddd; padding-left:45px; background-color: #f63">
-            <button class="inner-bar-item menu-element button-active" onclick="clickMenu(this);" data-codicemenu="0">Informatica</button>
-            <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="1">Elettrodomestici</button>
-            <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="2">Telefonia</button>
-            <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="3">Clima e brico</button>
-            <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="4">Sport</button>
-            <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="5">Giocattoli</button>
-            <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="6">Audio e TV</button>
-            <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="7">Videogiochi</button>
+    <div id="menu_principale" class="bar" style="border-bottom: 1px solid #ddd; padding-left:45px; background-color: #f63">
+        <button class="inner-bar-item menu-element button-active" onclick="clickMenu(this);" data-codicemenu="0">Informatica</button>
+        <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="1">Elettrodomestici</button>
+        <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="2">Telefonia</button>
+        <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="3">Clima e brico</button>
+        <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="4">Sport</button>
+        <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="5">Giocattoli</button>
+        <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="6">Audio e TV</button>
+        <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="7">Videogiochi</button>
+    </div>
+    <div class="sidebar animate-left" id="mySidebar">
+        <a href="#" class="inner-bar-item large all-width text-left"><span class="sub-left-menu-name">Link 1 </span></a>
+        <a href="#" class="inner-bar-item large all-width text-left"><span class="sub-left-menu-name">Link 2 </span></a>
+        <a href="#" class="inner-bar-item large all-width text-left"><span class="sub-left-menu-name">Link 3 </span></a>
+    </div>
+</div>
+<!--  FINE menu centrale + logo + menu laterale sinistro delle categorie -->
+<!-- div dei contenuti -->
+<div zclass="main" id="main" onclick="closeAllMenu()">
+    <div class="teal">
+        <!-- deve essere una classe a parte per non fare equivoci con le jquery -->
+        <div class="conteriner-contents">
+            <%- include(contenuto) %>
         </div>
-        <div class="sidebar animate-left" id="mySidebar">
-            <a href="#" class="inner-bar-item large all-width text-left"><span class="sub-left-menu-name">Link 1 </span></a>
-            <a href="#" class="inner-bar-item large all-width text-left"><span class="sub-left-menu-name">Link 2 </span></a>
-            <a href="#" class="inner-bar-item large all-width text-left"><span class="sub-left-menu-name">Link 3 </span></a>
+
+        <div class="container teal div-footer">
+            <p style="text-align: center;">Sito web fatto da : Luca Antonini, Claudio Milani e Marco Prontera</p>
         </div>
     </div>
-    <!--  FINE menu centrale + logo + menu laterale sinistro delle categorie -->
-    <!-- div dei contenuti -->
-    <div zclass="main" id="main" onclick="closeAllMenu()">
-        <div class="teal">
-            <!-- deve essere una classe a parte per non fare equivoci con le jquery -->
-            <div class="conteriner-contents">
-                <%- include(contenuto) %>
-            </div>
-
-            <div class="container teal div-footer">
-                <p style="text-align: center;">Sito web fatto da : Luca Antonini, Claudio Milani e Marco Prontera</p>
-            </div>
-        </div>
-    </div>
-    <!-- fine div dei contenuti -->
-
-
-
-</body>
-
-</html>
-
-
-</body>
-
-</html>
+</div>
+<!-- fine div dei contenuti -->
