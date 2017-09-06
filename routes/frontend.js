@@ -1,51 +1,45 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function (req, res, next) {
-    //contenuto offerte?!?!?
+/* HOME */
+router.get('/', function(req, res, next) {
     res.render('template', { title: 'home', contenuto: 'categoria' });
-
-
 });
-router.get('/registrazione', function (req, res, next) {
+/* HOME */
 
+/* REGISTRAZIONE */
+router.get('/registrazione', function(req, res, next) {
     res.render('template', { title: 'registrazione', contenuto: 'registrazione' });
-
-
 });
-router.get('/categoria', function (req, res, next) {
+/* REGISTRAZIONE */
+
+/* CATEGORIA */
+router.get('/categoria', function(req, res, next) {
     //titolo = nome della categoria
     res.render('template', { title: 'categoria', contenuto: 'categoria' });
-
-
 });
-router.get('/prodotto', function (req, res, next) {
+/* CATEGORIA */
+
+/* PRODOTTO */
+router.get('/prodotto', function(req, res, next) {
     //Titolo = nome del prodotto
     res.render('template', { title: 'prodotto', contenuto: 'prodotto' });
-
-
 });
-router.get('/carrello', function (req, res, next) {
+/* PRODOTTO */
 
+/* CARRELLO */
+router.get('/carrello', function(req, res, next) {
     res.render('template', { title: 'carrello', contenuto: 'carrello' });
-
-
 });
+/* CARRELLO */
 
-router.get('/profilo', function (req, res, next) {
-
+/* PROFILO */
+router.get('/profilo', function(req, res, next) {
     res.render('template', { title: 'il mio profilo', contenuto: 'profilo', contenuto_sub: 'datiutente' });
-
-
 });
-//Sotto chiamate della pagina profilo
-router.get('/profilo/storicoordini', function (req, res, next) {
-
+router.get('/profilo/storicoordini', function(req, res, next) {
     res.render('template', { title: 'il mio profilo', contenuto: 'profilo', contenuto_sub: 'storicoordini' });
-
-
 });
-
+/* PROFILO */
 
 module.exports = router;

@@ -1,26 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="/stylesheets/profiloutente.css">
-</head>
-
-<body>
-
-    <div class="user-contents">
-        <div class="tab">
-            <button onclick="window.location = window.location.origin + '/profilo';">Profilo</button>
-            <button onclick="window.location = window.location.origin + '/profilo/storicoordini';">Storico ordini</button>
-        </div>
-        <div id="container_user_contents" class="tabcontent">
-           <%- include(contenuto_sub) %>
-        </div>
-
+<link rel="stylesheet" href="/stylesheets/profiloutente.css">
+<div class="user-contents">
+    <div class="tab">
+        <button onclick="window.location = window.location.origin + '/profilo';">Profilo</button>
+        <button onclick="window.location = window.location.origin + '/profilo/storicoordini';">Storico ordini</button>
     </div>
-</body>
-
-</html>
+    <div id="container_user_contents" class="tabcontent">
+        <%- include(contenuto_sub) %>
+    </div>
+</div>
