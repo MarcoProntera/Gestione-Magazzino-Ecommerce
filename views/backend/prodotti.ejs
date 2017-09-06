@@ -50,7 +50,7 @@ for (var i = 0; i < categorie.cat.length; i++) {
             </tr>
             <tr>
                 <td colspan="2">
-                    <ul id="search_result" style="width:900px;">
+                    <ul class="list" id="search_result" style="width:900px;">
                     </ul>
                 </td>
             </tr>
@@ -106,7 +106,7 @@ for (var i = 0; i < categorie.cat.length; i++) {
         function stampaListaProdotti(lista) {
             $('#search_result').html('');
             for (var i = 0; i < lista.length; i++) {
-                $('#search_result').append('<li  data-codiceprodotto="' + lista[i].codice + '"><span style="width:100%;display:block; word-wrap:break-word;">' + lista[i].nome + '</span><button class="modifica_prodotto">Modifica</button><button class="elimina_prodotto">Elimina</button></li>');
+                $('#search_result').append('<li style="border-bottom:1px solid #ccc; padding:5px;" data-codiceprodotto="' + lista[i].codice + '"><span style="width:80%;display:inline-block; word-wrap:break-word;">Nome Prodotto: ' + lista[i].nome + '</span><button class="modifica_prodotto">Modifica</button><button class="elimina_prodotto">Elimina</button></li>');
             }
             $('.modifica_prodotto').off();
             $('.elimina_prodotto').off();
