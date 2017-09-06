@@ -7,7 +7,7 @@ for (var i = 0; i < categorie.length; i++) {
         <table>
             <tr>
                 <td style="border:1px solid black; padding:20px;">NOME:
-                    <input style="display:block" autocomplete="off" id="prodotto_nome" type="text" /> DESCRIZIONE:
+
                     <input style="display:block" autocomplete="off" id="prodotto_desc" type="text" /> QUANTITA:
                     <input style="display:block" autocomplete="off" id="prodotto_qt" type="text" /> PREZZO:
                     <input style="display:block" autocomplete="off" id="prodotto_prez" type="text" /> CATEGORIA:
@@ -22,48 +22,38 @@ for (var i = 0; i < categorie.length; i++) {
                         <input type="file" name="file_2" id="file_2" /><br />
                         <input type="file" name="file_3" id="file_3" /><br />
                         <input type="text" name="codice" id="codice_temp" value="<%-(newCode != null) ? newCode : datiProdotto.codice %>" readonly="readonly" style="display: none;" /><br />
-                        <input type="submit" id="upload" value="Upload!" />
+                        <input style="float:right;" type="submit" id="upload" value="Upload!" />
                     </form>
+                    <img id="foto_1" src="" alt="" style="max-height: 100px; max-width: 100px;" />
+                    <img id="foto_2" src="" alt="" style="max-height: 100px; max-width: 100px;" />
+                    <img id="foto_3" src="" alt="" style="max-height: 100px; max-width: 100px;" />
                 </td>
             </tr>
             <tr>
-                <td></td>
+                <td style="border:1px solid red;padding:20px;" colspan="2"> DESCRIZIONE: <textarea rows="20" cols="100" style="resize: none; display: block" autocomplete="off" id="prodotto_nome" type="text"> </textarea> </td>
             </tr>
             <tr>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-            </tr>
-            <tr>
-                <td>
-                    SPECIFICHE<br />
-                    <button onclick="aggiungiRighaSpec()">aggiungi</button><br />
-                    <table id="specifiche_prodotto" style="border: 1px solid #000;">
+                <td style="border:1px solid coral;padding:20px;" colspan="2"> SPECIFICHE:<br />
+
+                    <table id="specifiche_prodotto" style="border: 1px solid #000;width: 100%;">
 
                     </table>
+                    <button style="float: right" onclick="aggiungiRighaSpec()">Aggiungi</button><br />
                 </td>
             </tr>
             <tr>
-                <td>
-
-                </td>
-            </tr>
-            <tr>
-                <td><button id="salva">SALVA</button></td>
+                <td style="text-align: center;padding-top: 10px;" colspan="2"><button id="salva">SALVA</button></td>
             </tr>
         </table>
     </div>
     <script type="text/javascript">
         var datiProdotto = <%- JSON.stringify(datiProdotto) %>;
         $(document).ready(function() {
+
             /*file upload*/
-            $("form").submit(function(e) {
+            $("form").submit(false);
+            $("#upload").click(function() {
                 $('#overlay').fadeIn();
-                e.preventDefault();
                 $.ajax({
                     // Your server script to process the upload
                     url: window.location.origin + '/amministrazione/upload',
@@ -74,6 +64,15 @@ for (var i = 0; i < categorie.length; i++) {
                     processData: false,
                     success: function(data) {
                         console.log(data);
+                        $('#foto_1').attr({
+                            'src': '/images/prodotti/' + $('#codice_temp').val() + '_1'
+                        });
+                        $('#foto_2').attr({
+                            'src': '/images/prodotti/' + $('#codice_temp').val() + '_2'
+                        });
+                        $('#foto_3').attr({
+                            'src': '/images/prodotti/' + $('#codice_temp').val() + '_3'
+                        });
                         $('#overlay').fadeOut();
                     },
                     error: function(cicci) {
@@ -123,6 +122,16 @@ for (var i = 0; i < categorie.length; i++) {
         });
 
         function stampaDati(dati) {
+            $('#foto_1').attr({
+                'src': '/images/prodotti/' + dati.codice + '_1'
+            });
+            $('#foto_2').attr({
+                'src': '/images/prodotti/' + dati.codice + '_2'
+            });
+            $('#foto_3').attr({
+                'src': '/images/prodotti/' + dati.codice + '_3'
+            });
+
             $('#prodotto_nome').val(dati.nome);
             $('#prodotto_desc').val(dati.descrizione);
             $('#prodotto_qt').val(dati.quantita);
@@ -130,19 +139,33 @@ for (var i = 0; i < categorie.length; i++) {
             $('#prodotto_cat').val(dati.codice_categoria);
             var specs = JSON.parse(dati.specifiche);
             $.each(specs, function(key, val) {
-                $('#specifiche_prodotto').append('<tr><td style="width:200px;"><input class="chiave_spec" type="text" value="' + key + '" style="width: 100%;" /></td><td style="width:200px;"><input class="value_spec" type="text" value="' + val + '" style="width: 100%;" /></td></tr>')
+                $('#specifiche_prodotto').append('<tr>' +
+                    '<td style="width:50%;">' +
+                    '<input class="chiave_spec" type="text" value="' + key + '" style="width: 100%;" />' +
+                    '</td>' +
+                    '<td style="width:50%;">' +
+                    '<input class="value_spec" type="text" value="' + val + '" style="width: 100%;" />' +
+                    '</td>' +
+                    '</tr>')
             });
             coloraTable();
         }
 
         function aggiungiRighaSpec() {
-            $('#specifiche_prodotto').append('<tr><td style="width:200px;"><input class="chiave_spec" type="text" style="width: 100%;" /></td><td style="width:200px;"><input class="value_spec" type="text" style="width: 100%;" /></td></tr>')
+            $('#specifiche_prodotto').append('<tr>' +
+                '<td style="width:50%;">' +
+                '<input class="chiave_spec" type="text" style="width: 100%;" />' +
+                '</td>' +
+                '<td style="width:50%;">' +
+                '<input class="value_spec" type="text" style="width: 100%;" />' +
+                '</td>' +
+                '</tr>')
 
             coloraTable();
         }
 
         function coloraTable() {
-            $("#specifiche_prodotto tr:even").css("background-color", "#f63");
-            $("#specifiche_prodotto tr:odd").css("background-color", "cornflowerblue");
+            $("#specifiche_prodotto tr:even").css("background-color", "#fff");
+            $("#specifiche_prodotto tr:odd").css("background-color", "#ccc");
         }
     </script>
