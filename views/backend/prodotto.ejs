@@ -43,12 +43,48 @@ for (var i = 0; i < categorie.length; i++) {
             </td>
         </tr>
         <tr>
+            <td>
+                <form id="uploadForm" action="/amministrazione/upload" method="POST" encType="multipart/form-data">
+                    <input type="file" name="file_1" id="file_1" /><br />
+                    <input type="file" name="file_2" id="file_2" /><br />
+                    <input type="file" name="file_3" id="file_3" /><br />
+                    <input type="text" name="codice" id="codice_temp" value="<%-(newCode != null) ? newCode : datiProdotto.codice %>" readonly="readonly"
+                        style="display: none;" /><br />
+                    <input type="submit" id="upload" value="Upload!" />
+                </form>
+            </td>
+        </tr>
+        <tr>
             <td><button id="salva">SALVA</button></td>
         </tr>
     </table>
     <script type="text/javascript">
         var datiProdotto = <%- JSON.stringify(datiProdotto) %>;
         $(document).ready(function () {
+            /*file upload*/
+            $("form").submit(function (e) {
+                $('#overlay').fadeIn();
+                e.preventDefault();
+                $.ajax({
+                    // Your server script to process the upload
+                    url: window.location.origin + '/amministrazione/upload',
+                    type: 'POST',
+                    data: new FormData($('form')[0]),
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        console.log(data);
+                        $('#overlay').fadeOut();
+                    },
+                    error: function (cicci) {
+                        alert(cicci);
+                        $('#overlay').fadeOut();
+                    }
+                });
+            });
+            /*file upload*/
+
             $('#salva').click(function () {
                 var parseMe = '{';
                 $('#specifiche_prodotto').find('tr').each(function () {
@@ -60,7 +96,7 @@ for (var i = 0; i < categorie.length; i++) {
                 });
                 parseMe += '}';
                 var salva_prodotto = {
-                    codice: (datiProdotto != null) ? datiProdotto.codice : null,
+                    codice: (datiProdotto != null) ? datiProdotto.codice : $('#codice_temp').val(),
                     nome: $('#prodotto_nome').val(),
                     descrizione: $('#prodotto_desc').val(),
                     prezzo: $('#prodotto_prez').val(),
@@ -68,6 +104,7 @@ for (var i = 0; i < categorie.length; i++) {
                     specifiche: parseMe,
                     codice_categoria: $('#prodotto_cat').val(),
                 };
+                console.log(salva_prodotto);
                 if (datiProdotto == null)
                     ajaxCall("POST", window.location.origin + '/amministrazione/prodotto/add', 5000, salva_prodotto, function (data) { console.log('fatto'); $('#overlay').fadeIn(); window.location = window.location.origin + '/amministrazione/prodotto?c=' + data.codice; });
                 else
