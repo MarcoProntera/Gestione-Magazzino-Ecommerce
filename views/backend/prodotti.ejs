@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="/stylesheets/backend/prodotti.css" />
+<script type="text/javascript" src="/javascripts/backend/prodotti.js"></script>
+
 <%
 var menuSelect = '';
 for (var i = 0; i < categorie.men.length; i++) {
@@ -8,52 +11,74 @@ for (var i = 0; i < categorie.cat.length; i++) {
     categoriaSelect += '<option value="' + categorie.cat[i].codice + '">' + categorie.cat[i].nome + '</option>';
 }
 %>
-    <table>
-        <tr>
-            <td colspan="2" style="text-align: center;">GESTIONE PRODOTTI</td>
-        </tr>
-        <tr>
-            <td>
-                <p>
-                    MENU<br />
-                    <select id="search_menu">
-                    <option value="-1">*</option>
-                    <%- menuSelect %>
-                </select>
-                </p>
-                <p>
-                    CATEGORIA<br />
-                    <select id="search_categoria">
-                        <option value="-1">*</option>
-                        <%- categoriaSelect %>
-                    </select>
-                </p>
-                <p>
-                    NOME PRODOTTO<br />
-                    <input id="search_prodotto" type="text" />
-                </p>
-                <p><button id="search">cerca</button></p>
-            </td>
-            <td><button id="addProduct">+ nuovo prodotto</button></td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <ul id="search_result">
-                    <ul>
-            </td>
-        </tr>
-    </table>
+    <div class="container_prodotti">
+        <h2 style="text-align: center;"> GESTIONE PRODOTTI</h2>
+        <table style="width:900px;">
+            <tr>
+            </tr>
+            <tr>
+                <td>
+                    <ul class="list">
+                        <li><button id="addProduct">Aggiungi nuovo prodotto</button></li>
+                        <li><i>Oppure cerca</i></li>
+                        <li>
+                            Seleziona Menu:
+                            <select id="search_menu">
+                            <option value="-1">*</option>
+                            <%- menuSelect %>
+                        </select>
+
+                        </li>
+                        <li>
+                            Seleziona Categoria:
+                            <select id="search_categoria">
+                                <option value="-1">*</option>
+                                <%- categoriaSelect %>
+                            </select>
+
+                        </li>
+                        <li>
+                            Inserisci Nome Prodotto:
+                            <input id="search_prodotto" type="text" />
+                        </li>
+                        <li>
+                            <button id="search" style="margin-top:5px;">Cerca</button>
+                        </li>
+                    </ul>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <ul id="search_result" style="width:900px;">
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
     <script type="text/javascript">
         var menuEcategorie = <%- JSON.stringify(categorie) %>;
-        $(document).ready(function () {
+        $(document).ready(function() {
             socket.off('backend_categorie');
-            socket.on('backend_categorie', function (data) { if (data.message == 'refresh') { location.reload(); } });
+            socket.on('backend_categorie', function(data) {
+                if (data.message == 'refresh') {
+                    location.reload();
+                }
+            });
             socket.off('backend_categorie');
-            socket.on('backend_categorie', function (data) { if (data.message == 'refresh') { alert('attenzione!!\nc\'è stata una modifica nelle categorie, controllare prima di salvare eventuali modifiche ai prodotti.'); } });
+            socket.on('backend_categorie', function(data) {
+                if (data.message == 'refresh') {
+                    alert('attenzione!!\nc\'è stata una modifica nelle categorie, controllare prima di salvare eventuali modifiche ai prodotti.');
+                }
+            });
             socket.off('backend_menu');
-            socket.on('backend_menu', function (data) { if (data.message == 'refresh') { alert('attenzione!!\nc\'è stata una modifica nel menu, controllare prima di salvare eventuali modifiche alle categorie.'); } });
+            socket.on('backend_menu', function(data) {
+                if (data.message == 'refresh') {
+                    alert('attenzione!!\nc\'è stata una modifica nel menu, controllare prima di salvare eventuali modifiche alle categorie.');
+                }
+            });
 
-            $('#search_menu').on('change', function () {
+            $('#search_menu').on('change', function() {
                 $('#search_categoria').html('');
                 $('#search_categoria').append('<option value="-1">*</option>');
                 for (var i = 0; i < menuEcategorie.cat.length; i++) {
@@ -61,15 +86,18 @@ for (var i = 0; i < categorie.cat.length; i++) {
                         $('#search_categoria').append('<option value="' + menuEcategorie.cat[i].codice + '">' + menuEcategorie.cat[i].nome + '</option>');
                 }
             });
-            $('#search').click(function () {
+            $('#search').click(function() {
                 var searchMe = {
                     codiceMenu: $('#search_menu').val(),
                     codiceCategoria: $('#search_categoria').val(),
                     nomeProdotto: $('#search_prodotto').val()
                 }
-                ajaxCall("POST", window.location.origin + '/amministrazione/prodotti/search', 5000, searchMe, function (data) { console.log('fatto'); stampaListaProdotti(data); });
+                ajaxCall("POST", window.location.origin + '/amministrazione/prodotti/search', 5000, searchMe, function(data) {
+                    console.log('fatto');
+                    stampaListaProdotti(data);
+                });
             });
-            $('#addProduct').on('click', function () {
+            $('#addProduct').on('click', function() {
                 $('#overlay').fadeIn();
                 window.location = window.location.origin + '/amministrazione/prodotto';
             });
@@ -78,16 +106,21 @@ for (var i = 0; i < categorie.cat.length; i++) {
         function stampaListaProdotti(lista) {
             $('#search_result').html('');
             for (var i = 0; i < lista.length; i++) {
-                $('#search_result').append('<li data-codiceprodotto="' + lista[i].codice + '"><span>' + lista[i].nome + '</span><button class="modifica_prodotto">modifica</button><button class="elimina_prodotto">elimina</button></li>');
+                $('#search_result').append('<li  data-codiceprodotto="' + lista[i].codice + '"><span style="width:100%;display:block; word-wrap:break-word;">' + lista[i].nome + '</span><button class="modifica_prodotto">Modifica</button><button class="elimina_prodotto">Elimina</button></li>');
             }
             $('.modifica_prodotto').off();
             $('.elimina_prodotto').off();
-            $('.modifica_prodotto').on('click', function () {
+            $('.modifica_prodotto').on('click', function() {
                 $('#overlay').fadeIn();
                 window.location = window.location.origin + '/amministrazione/prodotto?c=' + $(this).closest('li').attr('data-codiceprodotto');
             });
-            $('.elimina_prodotto').on('click', function () {
-                ajaxCall("POST", window.location.origin + '/amministrazione/prodotti/delete', 5000, { codice: $(this).closest('li').attr('data-codiceprodotto') }, function (data) { console.log('fatto'); $('#search').click(); });
+            $('.elimina_prodotto').on('click', function() {
+                ajaxCall("POST", window.location.origin + '/amministrazione/prodotti/delete', 5000, {
+                    codice: $(this).closest('li').attr('data-codiceprodotto')
+                }, function(data) {
+                    console.log('fatto');
+                    $('#search').click();
+                });
             });
             $('#overlay').fadeOut();
         }
