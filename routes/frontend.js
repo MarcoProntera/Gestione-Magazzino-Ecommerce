@@ -35,20 +35,14 @@ router.get('/carrello', function (req, res, next) {
 
 router.get('/profilo', function (req, res, next) {
 
-    res.render('template', { title: 'il mio profilo', contenuto: 'profilo' });
+    res.render('template', { title: 'il mio profilo', contenuto: 'profilo', contenuto_sub: 'datiutente' });
 
 
 });
 //Sotto chiamate della pagina profilo
-router.get('/datiutente', function (req, res, next) {
+router.get('/profilo/storicoordini', function (req, res, next) {
 
-    res.render('datiutente');
-
-
-});
-router.get('/storicoordini', function (req, res, next) {
-
-    res.render('storicoordini');
+    res.render('template', { title: 'il mio profilo', contenuto: 'profilo', contenuto_sub: 'storicoordini' });
 
 
 });
