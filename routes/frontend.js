@@ -47,7 +47,7 @@ router.post('/login', function(req, res, next) {
         });
     });
 });
-router.post('/logout', function(req, res, next) {
+router.get('/logout', function(req, res, next) {
     funzione(req, function(dati) {
         var uid = req.session.buser;
         req.session.destroy();
