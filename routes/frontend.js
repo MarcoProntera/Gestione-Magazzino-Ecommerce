@@ -12,7 +12,6 @@ router.get('/', function (req, res, next) {
         });
     });
 });
-
 router.post('/login', function (req, res, next) {
     funzione(req, function (dati) {
         var query = { email: req.body.login_email, password: req.body.login_password };
@@ -68,11 +67,11 @@ router.post('/registrazione', function (req, res, next) {
                 if (data.length != 0)
                     newCode = data[data.length - 1].codice + 1;
                 monGlo.insert('utenti', { codice: Number(newCode), nome: req.body.nome, cognome: req.body.cognome, email: req.body.email, indirizzo: req.body.indirizzo, stato: req.body.stato, provincia: req.body.provincia, telefono: req.body.telefono, password: req.body.password }, function (result) {
-                    var query = { email: result.email, password: result.password };
+                    var query = { codice: Number(result[0].codice) };
                     var uid;
                     monGlo.find('utenti', query, {}, function (data) {
                         if (data.length == 0) {
-                            res.redirect('/registrazione');
+                            res.render('template', { title: 'registrazione', contenuto: 'registrazione', menu: dati.menu, categorie: dati.categorie, menuattivo: null, errore: 'dati non corretti', auth: dati.logged });
                         } else {
                             uid = data[0]._id;
                             query = { codice: uid };
@@ -144,9 +143,7 @@ router.get('/profilo', function (req, res, next) {
         if (dati.logged == false)
             res.redirect('/');
         else {
-            console.log(dati.userID);
             monGlo.find('utenti', { _id: ObjectID(dati.userID) }, {}, function (found) {
-                console.log(found);
                 res.render('template', { title: 'il mio profilo', contenuto: 'profilo', contenuto_sub: 'datiutente', menu: dati.menu, categorie: dati.categorie, menuattivo: null, auth: dati.logged, dati_utente: found[0] });
             });
         }
