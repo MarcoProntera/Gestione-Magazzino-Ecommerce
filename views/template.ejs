@@ -1,9 +1,14 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="/javascripts/frontend/template.js"></script>
+<script type="text/javascript">
+    var categorie = <%- JSON.stringify(categorie); %>;
+    prepareLeftMenu(<%- menuattivo %>);
+
+</script>
 
 <link rel="stylesheet" href="/stylesheets/style.css">
 <link rel="stylesheet" type="text/css" href="/font-icon/flaticon.css">
+<link rel="stylesheet" href="/stylesheets/overlay.css" />
 
 <!-- accesso in barra laterale destra -->
 <div class="right-cell animate-right" id="rightMenu">
@@ -40,19 +45,12 @@
                 </button>
 
     <div id="menu_principale" class="bar" style="border-bottom: 1px solid #ddd; padding-left:45px; background-color: #f63">
-        <button class="inner-bar-item menu-element button-active" onclick="clickMenu(this);" data-codicemenu="0">Informatica</button>
-        <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="1">Elettrodomestici</button>
-        <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="2">Telefonia</button>
-        <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="3">Clima e brico</button>
-        <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="4">Sport</button>
-        <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="5">Giocattoli</button>
-        <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="6">Audio e TV</button>
-        <button class="inner-bar-item menu-element" onclick="clickMenu(this);" data-codicemenu="7">Videogiochi</button>
+        <% for(var i =0; i< menu.length; i++) { %>
+            <button class="inner-bar-item menu-element <% (menu[i].codice == menuattivo) ? 'button-active' : '' %>" onclick="clickMenu(this);"
+                data-codicemenu="<%= menu[i].codice %>"><%= menu[i].nome %></button>
+            <% } %>
     </div>
     <div class="sidebar animate-left" id="mySidebar">
-        <a href="#" class="inner-bar-item large all-width text-left"><span class="sub-left-menu-name">Link 1 </span></a>
-        <a href="#" class="inner-bar-item large all-width text-left"><span class="sub-left-menu-name">Link 2 </span></a>
-        <a href="#" class="inner-bar-item large all-width text-left"><span class="sub-left-menu-name">Link 3 </span></a>
     </div>
 </div>
 <!--  FINE menu centrale + logo + menu laterale sinistro delle categorie -->
@@ -70,3 +68,4 @@
     </div>
 </div>
 <!-- fine div dei contenuti -->
+<% include overlay %>
