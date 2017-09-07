@@ -8,7 +8,7 @@ var ObjectID = require("mongodb").ObjectID;
 router.get('/', function(req, res, next) {
     funzione(req, function(dati) {
         monGlo.find('prodotti', {}, { nome: 1 }, function(search_result) {
-            res.render('template', { title: 'home', contenuto: 'categoria', menu: dati.menu, categorie: dati.categorie, prodotti: search_result, menuattivo: null, auth: dati.logged });
+            res.render('template', { title: 'home', contenuto: 'categoria', menu: dati.menu, categorie: dati.categorie, prodotti: search_result, menuattivo: null, auth: dati.logged, nomeCategoria: null });
         });
     });
 });
@@ -111,7 +111,7 @@ router.get('/categoria', function(req, res, next) {
     funzione(req, function(dati) {
         monGlo.find('categorie', { codice: Number(codice_categoria) }, {}, function(cat_search_result) {
             monGlo.find('prodotti', { codice_categoria: Number(cat_search_result[0].codice) }, { nome: 1 }, function(search_result) {
-                res.render('template', { title: cat_search_result.nome, contenuto: 'categoria', menu: dati.menu, categorie: dati.categorie, prodotti: search_result, menuattivo: cat_search_result[0].codice_menu, auth: dati.logged });
+                res.render('template', { title: cat_search_result.nome, contenuto: 'categoria', menu: dati.menu, categorie: dati.categorie, prodotti: search_result, menuattivo: cat_search_result[0].codice_menu, auth: dati.logged, nomeCategoria: cat_search_result[0].nome });
             });
         });
     });

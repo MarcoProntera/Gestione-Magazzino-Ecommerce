@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="/stylesheets/prodotticategoria.css">
-<h1 style="padding-left:10px;"> NOME CATEGORIA </h1>
+<h1 style="padding-left:10px;"> <%- nomeCategoria %> </h1>
 <div class="categoria-container center-contents">
     <!-- DIV CHE CONTIENE UN PRODOTTO -->
     <%for(var i = 0; i< prodotti.length; i++){ %>
@@ -16,7 +16,9 @@
                             <p class="item-availability"> disponibile </p>
                             <% } else if(auth == true) { %>
                                 <p class="item-availability" onclick="avvisaUser(<%- prodotti[i].codice %>);"> avvisami quando disponibile </p>
-                                <% } %>
+                                <% }else{%>
+                                    <p class="item-availability"> NON disponibile</p>
+                                    <%} %>
                     </li>
                 </ul>
             </div>
