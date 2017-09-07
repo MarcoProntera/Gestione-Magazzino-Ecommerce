@@ -8,9 +8,9 @@
         <img class="mySlides immagine" src="/images/prodotti/<%= dati_prodotto.codice + '_2' %>" onerror="$(this).attr('src','/images/prodotti/nondisp.png');" style="display:none; margin: 0 auto;">
         <img class="mySlides immagine" src="/images/prodotti/<%= dati_prodotto.codice + '_3' %>" onerror="$(this).attr('src','/images/prodotti/nondisp.png');" style="display:none; margin: 0 auto;">
         <div class="divbutton">
-            <button class="button " onclick="currentDiv(1)">1</button>
-            <button class="button" onclick="currentDiv(2)">2</button>
-            <button class="button" onclick="currentDiv(3)">3</button>
+            <button class="button preventOverlay" onclick="currentDiv(1)">1</button>
+            <button class="button preventOverlay" onclick="currentDiv(2)">2</button>
+            <button class="button preventOverlay" onclick="currentDiv(3)">3</button>
         </div>
     </div>
     <div class="contenitore-descrizione">

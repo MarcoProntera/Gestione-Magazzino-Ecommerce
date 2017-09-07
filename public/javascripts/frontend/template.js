@@ -33,7 +33,7 @@ function closeAllMenu() {
 }
 
 function menuScrollCheck() {
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         var scroll = $('#barMenu').outerHeight(true) - $(this).scrollTop();
         if (scroll < 1) {
             $('#mySidebar').css({ 'top': '0' });
@@ -44,7 +44,7 @@ function menuScrollCheck() {
 }
 
 function clickMenu(sender) {
-    $(sender).closest('div').find('button').each(function() {
+    $(sender).closest('div').find('button').each(function () {
         if (!$(this).hasClass('button-active'))
             $(this).removeClass('button-clicked');
     });
@@ -55,7 +55,7 @@ function clickMenu(sender) {
             $(sender).removeClass('button-clicked');
         closeLeftMenu();
     } else {
-        $('#menu_principale').find('button').each(function() {
+        $('#menu_principale').find('button').each(function () {
             $('#mySidebar').removeClass('menu_' + $(this).attr('data-codicemenu'));
         });
         $('#mySidebar').addClass('menu_' + codice);
@@ -65,17 +65,18 @@ function clickMenu(sender) {
     }
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     menuScrollCheck();
-    $('button').click(function() {
+    $('button').click(function () {
         $('#overlay').fadeIn();
     });
     $('#menu_principale').find('button').off();
     $('#template_accedi').off();
+    $('.preventOverlay').off();
 });
 
 function avvisaUser(codice) {
-    ajaxCall('POST', window.location.origin + '/avvertimi', 5000, { codice: codice }, function() {
+    ajaxCall('POST', window.location.origin + '/avvertimi', 5000, { codice: codice }, function () {
         alert('Grazie!\n sarai avvisato tramite mail non appena il prodotto tornerà disponibile');
         $('#overlay').fadeOut();
     });
