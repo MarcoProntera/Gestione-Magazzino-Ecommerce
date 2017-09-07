@@ -2,15 +2,19 @@
 <div class="singin-container center-contents">
     <div class="singin-tab">
         <h2>Registrazione</h2>
-        <h5>Creando un nuovo account su E-Caccia SSI SORDI sarai in grado di acquistare velocemente, essere sempre aggiornato sullo stato dei tuoi ordini e ricevere offerte e promozioni.</h5>
+        <h5>Creando un nuovo account su E-Caccia SSI SORDI sarai in grado di acquistare velocemente, essere sempre aggiornato
+            sullo stato dei tuoi ordini e ricevere offerte e promozioni.</h5>
+        <% if(errore != null) {%>
+            <%-'<h3 style="color:#fff;">'+ errore + '</h3>' %>
+                <% } %>
     </div>
-    <form class="singin-form" method="post" action="#esegui le operazioni di login.non lo so">
+    <form class="singin-form" method="POST" action="/registrazione" name="registrazione">
         <p>
-            <label for="Nome" required>Nome:</label>
+            <label for="nome" required>Nome:</label>
             <input class="singin-input" name="nome" type="text" id="nome">
         </p>
         <p>
-            <label for="Cognome" required>Cognome:</label>
+            <label for="cognome" required>Cognome:</label>
             <input class="singin-input" name="cognome" type="text" id="cognome">
         </p>
         <p>
@@ -18,28 +22,25 @@
             <input class="singin-input" name="email" type="email" id="email">
         </p>
         <p>
-            <label for="address" required>Indirizzo:</label>
+            <label for="indirizzo" required>Indirizzo:</label>
             <input class="singin-input" name="indirizzo" type="text" id="indirizzo">
         </p>
         <p>
-            <label for="province" required>Stato:
-                        <input class="singin-input" type="text" name="stati" list="states" />
-                            <datalist id="states">
-                            <option>Italia</option>
-                            <option>Germania</option>
-                            <option>Francia</option>
-                            </datalist>
-                            </label>
+            <label for="stato" required>Stato:
+                <select name="stato" id="stato" class="singin-input">
+                    <option value="italia">italia</option>
+                    <option value="germania">germania</option>
+                    <option value="francia">francia</option>
+                    <option value="portogallo">portogallo</option>
+                    <option value="spagna">spagna</option>
+                    <option value="irlanda">irlanda</option>
+                </select>
+            </label>
         </p>
         <p>
-            <label for="province" required>Provincia:
-                    <input class="singin-input" type="text" name="province" list="provinces" />
-                        <datalist id="provinces">
-                        <option value="AG">Agrigento</option>
-                        <option value="AL">Alessandria</option>
-                        <option value="AN">Ancona</option>
-                        </datalist>
-                        </label>
+            <label for="provincia" required>Provincia:
+                <input class="singin-input" type="text" name="provincia" />
+            </label>
         </p>
         <p>
             <label for="telefono" required>Tel.</label>
@@ -50,7 +51,7 @@
             <input class="singin-input" name="password" type="password" id="password">
         </p>
         <p>
-            <input class="singin-button" name="Invia" type="submit" value="Invia">
+            <input class="singin-button" type="submit" value="Invia">
         </p>
     </form>
 </div>

@@ -1,54 +1,52 @@
-<link rel="stylesheet" href="/stylesheets/datiutente.css">
-<div class="container-form-info-user">
-    <form class="singin-form" method="post" action="#esegui le operazioni di login.non lo so">
+<link rel="stylesheet" href="/stylesheets/singin.css">
+<div class="singin-container center-contents">
+    <div class="singin-tab">
+        <h2>Profilo Utente</h2>
+    </div>
+    <form class="singin-form" method="post" action="" name="datiutente" >
         <p>
-            <label for="Nome" required>Nome:</label>
-            <input class="user-info" name="nome" type="text" id="nome">
+            <label for="nome" required>Nome:</label>
+            <input class="singin-input" name="nome" type="text" id="nome" value="<%- dati_utente.nome %>">
         </p>
         <p>
-            <label for="Cognome" required>Cognome:</label>
-            <input class="user-info" name="cognome" type="text" id="cognome">
+            <label for="cognome" required>Cognome:</label>
+            <input class="singin-input" name="cognome" type="text" id="cognome" value="<%- dati_utente.cognome %>">
         </p>
         <p>
             <label for="email" required>Email:</label>
-            <input class="user-info" name="email" type="email" id="email">
+            <input class="singin-input" name="email" type="email" id="email" value="<%- dati_utente.email %>">
         </p>
         <p>
-            <label for="address" required>Indirizzo:</label>
-            <input class="user-info" name="indirizzo" type="text" id="indirizzo">
+            <label for="indirizzo" required>Indirizzo:</label>
+            <input class="singin-input" name="indirizzo" type="text" id="indirizzo" value="<%- dati_utente.indirizzo %>">
         </p>
         <p>
-
-            <label for="province" required>Stato:
-                                <input class="user-info" type="text" name="stati" list="states" />
-                                    <datalist id="states">
-                                    <option>Italia</option>
-                                    <option>Germania</option>
-                                    <option>Francia</option>
-                                    </datalist>
-                                    </label>
+            <label for="stato" required>Stato:
+                        <select name="stato" id="stato" class="singin-input">
+                            <option value="italia" <% if(dati_utente.stato == 'italia') %> <%- 'selected="selected"' %> >italia</option>
+                            <option value="germania">germania</option>
+                            <option value="francia">francia</option>
+                            <option value="portogallo">portogallo</option>
+                            <option value="spagna">spagna</option>
+                            <option value="irlanda">irlanda</option>
+                        </select>
+                    </label>
         </p>
         <p>
-
-            <label for="province" required>Provincia:
-                            <input class="user-info" type="text" name="province" list="provinces" />
-                                <datalist id="provinces">
-                                <option value="AG">Agrigento</option>
-                                <option value="AL">Alessandria</option>
-                                <option value="AN">Ancona</option>
-                                </datalist>
-                                </label>
+            <label for="provincia" required>Provincia:
+                        <input class="singin-input" type="text" name="provincia"  value="<%- dati_utente.provincia %>"/>
+                    </label>
         </p>
         <p>
             <label for="telefono" required>Tel.</label>
-            <input class="user-info" type="tel" id="telefono" name="telefono">
+            <input class="singin-input" type="tel" id="telefono" name="telefono" value="<%- dati_utente.telefono %>">
         </p>
         <p>
             <label for="password">Password:</label>
-            <input class="user-info" name="password" type="password" id="password">
+            <input class="singin-input" name="password" type="password" id="password">
         </p>
         <p>
-            <input class="changes-button" name="Modifica" type="submit" value="Modifica">
+            <input class="singin-button" type="submit" value="Invia">
         </p>
     </form>
 </div>

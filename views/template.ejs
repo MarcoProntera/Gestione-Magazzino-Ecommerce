@@ -14,19 +14,19 @@
 <div class="right-cell animate-right" id="rightMenu">
     <div style="margin-top: 10px;">
         <h4 class="login-message"> Inserisci i tuoi dati </h4>
-        <form class="container padding-16" method="" action="">
+        <form class="container padding-16" method="POST" action="/login" name="login">
             <p>
-                <label for="email" required>Email:</label>
-                <input class="input border-light" name="indirizzo email" type="email" id="email">
+                <label for="login_email" required>Email:</label>
+                <input class="input border-light" name="login_email" type="email">
             </p>
 
             <p>
-                <label for="password">Password:</label>
-                <input class="input border-light" name="password" type="password" id="password">
+                <label for="login_password">Password:</label>
+                <input class="input border-light" name="login_password" type="password">
             </p>
 
             <p>
-                <input class="button border-light color-login login-button" name="login" type="submit" value="Login">
+                <input class="button border-light color-login login-button" type="submit" value="Login">
             </p>
         </form>
     </div>
@@ -38,20 +38,21 @@
 
 
     <h1 class="logo-sito" onclick="window.location= window.location.origin;">E-Commerce</h1>
-    <button class="inner-bar-item right" onclick="window.location= window.location.origin + '/registrazione';">Registrati</button>
-    <button class="inner-bar-item right" onclick="openRightMenu()">Accedi</button>
-    <button class="inner-bar-item right" style="height: 32.8px" onclick="window.location= window.location.origin + '/profilo';">
-                <span class="flaticon-gear icon-color" ></span>
-                </button>
-
-    <div id="menu_principale" class="bar" style="border-bottom: 1px solid #ddd; padding-left:45px; background-color: #f63">
-        <% for(var i =0; i< menu.length; i++) { %>
-            <button class="inner-bar-item menu-element <% (menu[i].codice == menuattivo) ? 'button-active' : '' %>" onclick="clickMenu(this);"
-                data-codicemenu="<%= menu[i].codice %>"><%= menu[i].nome %></button>
+    <% if(auth == true) {%>
+        <button class="inner-bar-item right" style="height: 32.8px" onclick="window.location= window.location.origin + '/profilo';"><span class="flaticon-gear icon-color" ></span></button>
+        <% } else { %>
+            <button class="inner-bar-item right" onclick="window.location= window.location.origin + '/registrazione';">Registrati</button>
+            <button class="inner-bar-item right" onclick="openRightMenu()">Accedi</button>
             <% } %>
-    </div>
-    <div class="sidebar animate-left" id="mySidebar">
-    </div>
+
+                <div id="menu_principale" class="bar" style="border-bottom: 1px solid #ddd; padding-left:45px; background-color: #f63">
+                    <% for(var i =0; i< menu.length; i++) { %>
+                        <button class="inner-bar-item menu-element <% (menu[i].codice == menuattivo) ? 'button-active' : '' %>" onclick="clickMenu(this);"
+                            data-codicemenu="<%= menu[i].codice %>"><%= menu[i].nome %></button>
+                        <% } %>
+                </div>
+                <div class="sidebar animate-left" id="mySidebar">
+                </div>
 </div>
 <!--  FINE menu centrale + logo + menu laterale sinistro delle categorie -->
 <!-- div dei contenuti -->

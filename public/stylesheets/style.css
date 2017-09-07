@@ -55,6 +55,7 @@ html {
   cursor: pointer;
   background-color: inherit;
   white-space: nowrap;
+  margin-right: 20px;
 }
 .menu-element{
   color: #fff;
