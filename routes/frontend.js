@@ -47,6 +47,18 @@ router.post('/login', function(req, res, next) {
         });
     });
 });
+router.post('/logout', function(req, res, next) {
+    funzione(req, function(dati) {
+        var uid = req.session.buser;
+        req.session.destroy();
+        var query = { _id: ObjectID(uid) };
+        monGlo.update('sessione', query, { stato: false }, function (data) {
+            monGlo.remove('sessione', { stato: false }, function (data) {
+                res.redirect('/');
+            });
+        });
+    });
+});
 /* HOME */
 
 /* REGISTRAZIONE */

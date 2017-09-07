@@ -37,6 +37,7 @@
 <div id="barMenu">
     <h1 class="logo-sito" onclick="window.location= window.location.origin;">E-Commerce</h1>
     <% if(auth == true) {%>
+        <button class="inner-bar-item right" style="height: 32.8px" onclick="window.location= window.location.origin + '/logout';"><span class="flaticon-technology-3 icon-color" >logout</span></button>
         <button class="inner-bar-item right" style="height: 32.8px" onclick="window.location= window.location.origin + '/profilo';"><span class="flaticon-gear icon-color" >profilo</span></button>
         <button class="inner-bar-item right" style="height: 32.8px" onclick="window.location= window.location.origin + '/carrello';"><span class="flaticon-shop icon-color" >carrello</span></button>
         <% } else { %>
