@@ -539,16 +539,19 @@ router.post('/upload', function (req, res, next) {
                 file_1.mv('./public/images/prodotti/' + codice + '_1', function (err) {
                     if (err) {
                         console.log(err);
+                        return res.send(err);
                         //return res.status(500).send(err);
                     }
                     file_2.mv('./public/images/prodotti/' + codice + '_2', function (err) {
                         if (err) {
                             console.log(err);
+                            return res.send(err);
                             //return res.status(500).send(err);
                         }
                         file_3.mv('./public/images/prodotti/' + codice + '_3', function (err) {
                             if (err) {
                                 console.log(err);
+                                return res.send(err);
                                 //return res.status(500).send(err);
                             }
                             res.send('OK');
