@@ -497,7 +497,7 @@ router.post('/prodotto/update', function (req, res, next) {
 
                                 var mailOptions = {
                                     from: 'noreply.progettoecommerce@gmail.com',
-                                    to: avvertendi[0],
+                                    to: avvertendi[i],
                                     subject: 'Prodotto "' + salva_prodotto.nome + '" (cod. ' + salva_prodotto.codice + ') DISPONIBILE',
                                     text: 'Di ' + salva_prodotto.nome + ' sono ora disponibili ' + salva_prodotto.quantita + 'pz.\nvedi un po tu...'
                                 };
