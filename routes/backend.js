@@ -483,7 +483,39 @@ router.post('/prodotto/update', function(req, res, next) {
                     specifiche: salva_prodotto.specifiche,
                     codice_categoria: Number(salva_prodotto.codice_categoria)
                 }, function() {
-                    res.send({ codice: salva_prodotto.codice });
+                    if (Number(salva_prodotto.quantita) > 0) {
+                        monGlo.find('prodotti', { codice: Number(salva_prodotto.codice) }, { nome: 1 }, function(prodotto_da_segnalare) {
+                            var avvertendi = (prodotto_da_segnalare[0].avverti_user == '') ? [] : JSON.parse(prodotto_da_segnalare[0].avverti_user);
+                            for (var i = 0; i < avvertendi.length; i++) {
+                                var transporter = nodemailer.createTransport({
+                                    service: 'gmail',
+                                    auth: {
+                                        user: 'noreply.progettoecommerce@gmail.com',
+                                        pass: 'noreplyecommerce'
+                                    }
+                                });
+
+                                var mailOptions = {
+                                    from: 'noreply.progettoecommerce@gmail.com',
+                                    to: avvertendi[0],
+                                    subject: 'Prodotto "' + salva_prodotto.nome + '" (cod. ' + salva_prodotto.codice + ') DISPONIBILE',
+                                    text: 'Di ' + salva_prodotto.nome + ' sono ora disponibili ' + salva_prodotto.quantita + 'pz.\nvedi un po tu...'
+                                };
+
+                                transporter.sendMail(mailOptions, function(error, info) {
+                                    if (error) {
+                                        console.log(error);
+                                    } else {
+                                        console.log('Email sent: ' + info.response);
+                                    }
+                                });
+                            }
+                            monGlo.update('prodotti', { codice: Number(salva_prodotto.codice) }, { avverti_user: '' }, function() {});
+                            res.send({ codice: salva_prodotto.codice });
+                        });
+                    } else {
+                        res.send({ codice: salva_prodotto.codice });
+                    }
                 });
             }
         });

@@ -1,101 +1,48 @@
-
-    <script type="text/javascript" src="/javascripts/frontend/prodotto.js"></script>
-    <link rel="stylesheet" href="/stylesheets/dettagliprodotto.css">
-
-
-
+<script type="text/javascript" src="/javascripts/frontend/prodotto.js">
+</script>
+<link rel="stylesheet" href="/stylesheets/dettagliprodotto.css">
 <div class="contenitore-pagina">
     <!-- Contenitore delle immagini con i relativi tasti-->
     <div class="contenitore-immagini">
-        <img class="mySlides immagine" src="/images/ha.jpg" style="display:block;">
-        <img class="mySlides immagine" src="/images/help.jpg" style="display:none;">
-        <img class="mySlides immagine" src="/images/img1.jpg" style="display:none;">
-
+        <img class="mySlides immagine" src="/images/prodotti/<%= dati_prodotto.codice + '_1' %>" onerror="$(this).attr('src','/images/prodotti/nondisp.png');" style="display:table; margin: 0 auto;">
+        <img class="mySlides immagine" src="/images/prodotti/<%= dati_prodotto.codice + '_2' %>" onerror="$(this).attr('src','/images/prodotti/nondisp.png');" style="display:none; margin: 0 auto;">
+        <img class="mySlides immagine" src="/images/prodotti/<%= dati_prodotto.codice + '_3' %>" onerror="$(this).attr('src','/images/prodotti/nondisp.png');" style="display:none; margin: 0 auto;">
         <div class="divbutton">
             <button class="button " onclick="currentDiv(1)">1</button>
             <button class="button" onclick="currentDiv(2)">2</button>
             <button class="button" onclick="currentDiv(3)">3</button>
         </div>
     </div>
-
     <div class="contenitore-descrizione">
         <div class="nome">
-            NOME
+            <%- dati_prodotto.nome %>
         </div>
-
         <div class="prezzo-acquista">
-            <span style="height: 30px"> Prezzo: 100000€
-                  </span>
-            <span><button class=" button align" type="button">Acquista!</button> </span>
+            <span style="height: 30px"> Prezzo: <%- dati_prodotto.prezzo %>€</span>
+            <span><button class="button align" type="button" onclick="window.location = window.location.origin + '/carrello?add='+<%- dati_prodotto.codice %>;">Aggiungi al carrello!</button> </span>
         </div>
-        Per iniziare, dovrai avere una licenza per installare Windows 10. A quel punto potrai scaricare ed eseguire lo strumento per la creazione di supporti. Per maggiori informazioni su come utilizzare lo strumento, visualizza le istruzioni qui sotto.Per iniziare,
-        dovrai avere una licenza per installare Windows 10. A quel punto potrai scaricare ed eseguire lo strumento per la creazione di supporti. Per maggiori informazioni su come utilizzare lo strumento, visualizza le istruzioni qui sotto.Per iniziare,
-        dovrai avere una licenza per installare Windows 10. A quel punto potrai scaricare ed eseguire lo strumento per la creazione di supporti. Per maggiori informazioni su come utilizzare lo strumento, visualizza le istruzioni qui sotto.Per iniziare,
-        dovrai avere una licenza per installare Windows 10. A quel punto potrai scaricare ed eseguire lo strumento per la creazione di supporti. Per maggiori informazioni su come utilizzare lo strumento, visualizza le istruzioni qui sotto.Per iniziare,
-        dovraicenza per installare Windows 10. A quel punto potrai scaricare ed eseguire lo strumento per la creazione di supporti. Per maggiori informazioni su come utilizzare lo strumento, visualizza le istruzioni qui sotto.Per iniziare, dovrai avere
-        una licenza per installare Windows 10. A quel punto potrai scaricare ed eseguire lo strumento per la creazione di supporti. Per maggiori informazioni su come utilizzare lo strumento, visualizza le istruzioni qui sotto.Per iniziare, dovruna licenza
-        per installare Windows 10. A quel punto potrai scaricare ed eseguire lo strumento per la creazione di supporti. Per maggiori informazioni su come utilizzare lo strumento, visualizza le istruzioni qui sotto.Per iniziare, dovrai avere una licenza
-        per installare Windows 10. A quel punto potrai scaricare ed eseguire lo strumento per la creazione di supporti. Per maggiori informazioni su come utilizzare lo strumento,nto potrai scaricare ed eseguire lo strumento per la creazione di supporti.
-        Per maggiori informazioni su come utilizzare lo strumento, visualizza le istruzioni qui sotto.Per iniziare, dovrai avere una licenza per installare Windows 10. A quel punto potrai scaricare ed eseguire lo strumento per la creazione di supporti.
-        Per maggiori informazioni su come utilizzare lo strumento, visualizza le istruzioni qui sotto.Per iniziare, dovrai avere una licenza per installare Windows 10. A quel punto potrai scaricare ed eseguire lo strumento per la creazione di supporti.
-        Per maggiori informazioni su come utilizzare lo strumento, visualizza le istruzioni qui sotto.Per iniziare, dovraicenza per installare Windows 10. A quel punto potrai scaricare ed eseguire lo strumento per la creazione di supporti. Per maggiori
-        informazioni su come utilizzare lo strumento, visualizza le istruzioni qui sotto.Per iniziare, dovrai avere una licenza per installare Windows 10. A quel punto potrai scaricare ed eseguire lo strumento per la creazione di supporti. Per maggiori
-        informazioni su come utilizzare lo strumento, visualizza le istruzioni qui sotto.Per iniziare, dovruna licenza per installare Windows 10. A quel punto potrai scaricare ed eseguire lo strumento per la creazione di supporti. Per maggiori informazioni
-        su come utilizzare lo strumento, visualizza le istruzioni qui sotto.Per iniziare, dovrai avere una licenza per installare Windows 10. A quel punto potrai scaricare ed eseguire lo strumento per la creazione di supporti. Per maggiori informazioni
-        su come utilizzare lo strumento,
+        <%- dati_prodotto.descrizione %>
     </div>
-
-    <div class="contenitore-specifiche">
-        <h1 class="h1">
-            SPECIFICHE PRODOTTO
-        </h1>
-
-        <table class="tabella">
-            <tr>
-                <td>Codice articolo</td>
-                <td>Stan-1-96-178</td>
-            </tr>
-            <tr>
-                <td>Peso articolo</td>
-                <td>327 g</td>
-            </tr>
-            <tr>
-                <td>Dimensioni prodotto</td>
-                <td>60 x 0,8 x 25,5 cm</td>
-            </tr>
-            <tr>
-                <td>Numero modello articolo</td>
-                <td>STA196178</td>
-            </tr>
-            <tr>
-                <td>Colore</td>
-                <td>Nero</td>
-            </tr>
-            <tr>
-                <td>Materiale</td>
-                <td>Nylon</td>
-            </tr>
-            <tr>
-                <td>Numero di articoli
-                </td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>Batterie/Pile incluse?</td>
-                <td>No</td>
-            </tr>
-            <tr>
-                <td>Batterie/Pile necessarie?</td>
-                <td>No</td>
-            </tr>
-            <tr>
-                <td>Peso
-                </td>
-                <td>325 grammi</td>
-            </tr>
-
-        </table>
-    </div>
+    <%
+    var specifiche = JSON.parse(dati_prodotto.specifiche);
+    if(Object.keys(specifiche).length > 0){
+    %>
+        <div class="contenitore-specifiche">
+            <h1 class="h1">
+                SPECIFICHE PRODOTTO
+            </h1>
+            <table class="tabella">
+                <% Object.keys(specifiche).forEach(function(k) { %>
+                    <tr>
+                        <td>
+                            <%- k %>
+                        </td>
+                        <td>
+                            <%- specifiche[k] %>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </table>
+        </div>
+        <% } %>
 </div>
-
-

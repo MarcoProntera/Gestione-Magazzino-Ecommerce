@@ -1,29 +1,47 @@
 <link rel="stylesheet" href="/stylesheets/carrello.css">
 <div class="cart-container">
     <h1> Carrello </h1>
-    <!-- Contenitore di un prodotto -->
-    <div class="item-container">
-        <div class="item-image"> <img src="\images\immagini_prodotto1\2.jpg" alt="" class="item-image-inner"> </div>
-        <div class="item-name">
-            <div class="item-name-text fade-effect" style="width: 100%">
-                <p>Nome del prodotto con effetto fade out se supera le due linee</p>
-            </div>
-            <div class="item-operations" style="position: relative;width: 100%"> Qt.
-                <input class="item-amount" name="quantità" type="text" id="quantità">
-                <input class="item-amount-update" name="Aggiorna" type="submit" value="Aggiorna">
-                <input class="item-remove" name="Rimuovi" type="submit" value="Rimuovi">
-                <div class="item-price">
-                    <p class="inline"> Costo: 50000000 euro</p>
+    <% for(var i = 0; i<carrello.length; i++){ %>
+        <!-- Contenitore di un prodotto -->
+        <div class="item-container">
+            <div class="item-image" onclick="window.location = window.location.origin + '/prodotto?pro=<%- JSON.parse(carrello[i]).codice %>';"> <img src="/images/prodotti/<%- JSON.parse(carrello[i]).codice %>_1" onerror="$(this).attr('src','/images/prodotti/nondisp.png');" class="item-image-inner"> </div>
+            <div class="item-name">
+                <div class="item-name-text fade-effect" style="width: 100%" onclick="window.location = window.location.origin + '/prodotto?pro=<%- JSON.parse(carrello[i]).codice %>';">
+                    <p>
+                        <%- JSON.parse(carrello[i]).nome %>
+                    </p>
+                </div>
+                <div class="item-operations" style="position: relative; width: 100%"> Qt.
+                    <input class="item-amount" name="quantità" type="text" id="quantità" value="<%- JSON.parse(carrello[i]).quantita %>">
+                    <input class="item-amount-update" name="Aggiorna" type="submit" value="Aggiorna">
+                    <input class="item-remove" name="Rimuovi" type="submit" value="Rimuovi">
+                    <div class="item-price">
+                        <p class="inline"> Costo:
+                            <%- JSON.parse(carrello[i]).prezzo %> €</p>
+                    </div>
                 </div>
             </div>
+
         </div>
-
-    </div>
-    <!-- fine Contenitore di un prodotto -->
-    <!-- Contenitore del totale del carrello -->
-    <div class="total-cart-cost">
-        <p class="inline">Totale:</p>
-        <input class="cart-buy" name="Compra" type="submit" value="Compra">
-    </div>
-
+        <% } %>
+            <!-- fine Contenitore di un prodotto -->
+            <!-- Contenitore del totale del carrello -->
+            <% if(carrello.length > 0){ %>
+                <div class="total-cart-cost">
+                    <%
+         var totale = Number(0);
+         for(var i = 0; i<carrello.length; i++){
+             totale = Number(totale) + Number(JSON.parse(carrello[i]).prezzo);
+         }
+        %>
+                        <p class="inline">Totale:
+                            <%- totale %> €
+                        </p>
+                        <input class="cart-buy" name="Compra" type="submit" value="Compra" onclick="window.location = '/acquista';">
+                </div>
+                <% } else {%>
+                    <div class="total-cart-cost">
+                        Ritorna dopo aver aggiunto qualche prodotto...
+                    </div>
+                    <% }%>
 </div>

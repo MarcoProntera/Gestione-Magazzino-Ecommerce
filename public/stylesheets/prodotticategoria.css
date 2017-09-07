@@ -1,89 +1,100 @@
-.categoria-container{
+.categoria-container {
     width: 1260px;
     padding: 10px;
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
 @media (max-width:1250px) {
-    
     .categoria-container {
         width: 950px;
         padding-top: 20px;
         padding-bottom: 20px;
     }
-  }
+}
+
 @media (max-width:1000px) {
-    
     .categoria-container {
         width: 700px;
         padding-top: 20px;
         padding-bottom: 20px;
     }
-  }
+}
+
 @media (max-width:700px) {
-    
     .categoria-container {
         width: 350px;
         padding-top: 20px;
         padding-bottom: 20px;
     }
-  }
-.center-contents{
-    display: table;
-    margin: 0 auto; 
 }
-.item-c{
+
+.center-contents {
+    display: table;
+    margin: 0 auto;
+}
+
+.item-c {
     width: 300px;
     height: 300px;
     border: 1px solid #ccc;
     float: left;
-    margin-right:10px;
-    margin-bottom:10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
     background-color: white;
+    cursor: pointer;
 }
-.item-c-image{
+
+.item-c-image {
     display: table;
     margin: 0 auto;
     width: 150px;
     height: 150px;
     padding: 0;
 }
-.item-c-inner-image{
+
+.item-c-inner-image {
     max-width: 150px;
     max-height: 150px;
 }
-.item-c-name{
+
+.item-c-name {
     width: 100%;
     height: 32%;
     padding: 5px;
     overflow: hidden;
     text-align: justify;
 }
-.item-c-name:hover{
+
+.item-c-name:hover {
     text-decoration: underline;
     text-decoration-color: #f63;
 }
-.item-c-operations{
+
+.item-c-operations {
     width: 100%;
     height: 20%;
     border-top: 1px solid #ccc;
     padding: 5px;
     position: relative;
 }
-.item-availability{
+
+.item-availability {
     position: absolute;
-    right:0;
+    right: 0;
     display: inline;
-    padding:0;
-    margin:0;
-    margin-right:10px;
+    padding: 0;
+    margin: 0;
+    margin-right: 10px;
 }
-.item-price-add-cart{
+
+.item-price-add-cart {
     list-style-type: none;
-    padding:0;
+    padding: 0;
     display: inline;
 }
-.add-in-cart{
+
+.add-in-cart {
     border: 0;
     background: none;
 }

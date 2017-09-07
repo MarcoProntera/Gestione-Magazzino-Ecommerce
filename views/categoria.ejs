@@ -4,16 +4,19 @@
     <!-- DIV CHE CONTIENE UN PRODOTTO -->
     <%for(var i = 0; i< prodotti.length; i++){ %>
         <div class="item-c">
-            <div class="item-c-image"> <img class="item-c-inner-image" src="/images/prodotti/<%- prodotti[i].codice %>_1" onerror="$(this).attr('src','/images/prodotti/nondisp.png');"> </div>
-            <div class="item-c-name">
+            <div class="item-c-image" onclick="window.location = window.location.origin + '/prodotto?pro=<%- prodotti[i].codice %>';"> <img class="item-c-inner-image" src="/images/prodotti/<%- prodotti[i].codice %>_1" onerror="$(this).attr('src','/images/prodotti/nondisp.png');"> </div>
+            <div class="item-c-name" onclick="window.location = window.location.origin + '/prodotto?pro=<%- prodotti[i].codice %>';">
                 <%- prodotti[i].nome %>
             </div>
             <div class="item-c-operations">
                 <ul class="item-price-add-cart">
                     <li> <span>Costo : <%- prodotti[i].prezzo %> €</span> </li>
-                    <li> <button class="add-in-cart" type="submit"> <span class="flaticon-shop icon-color"></span> </button>
-                        <p class="item-availability">
-                            <%= (prodotti[i].quantita > 0) ? '' : 'NON' %> disponibile </p>
+                    <li>
+                        <% if(prodotti[i].quantita > 0){ %>
+                            <p class="item-availability"> disponibile </p>
+                            <% } else if(auth == true) { %>
+                                <p class="item-availability" onclick="avvisaUser(<%- prodotti[i].codice %>);"> avvisami quando disponibile </p>
+                                <% } %>
                     </li>
                 </ul>
             </div>
@@ -21,8 +24,3 @@
         <%}%>
             <!-- FINE DIV CHE CONTIENE UN PRODOTTO -->
 </div>
-<script type="text/javascript">
-    $(document).ready(function() {
-
-    });
-</script>
