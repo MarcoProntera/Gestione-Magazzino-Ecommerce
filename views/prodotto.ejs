@@ -19,7 +19,7 @@
         </div>
         <div class="prezzo-acquista">
             <span style="height: 30px"> Prezzo: <%- dati_prodotto.prezzo %>€</span>
-            <span><button class="button align" type="button" onclick="window.location = window.location.origin + '/carrello?add='+<%- dati_prodotto.codice %>;">Aggiungi al carrello!</button> </span>
+            <span><button id="add-on-cart-button" class="button align" type="button" onclick="window.location = window.location.origin + '/carrello?add='+<%- dati_prodotto.codice %>;">Aggiungi al carrello!</button> </span>
         </div>
         <%- dati_prodotto.descrizione %>
     </div>

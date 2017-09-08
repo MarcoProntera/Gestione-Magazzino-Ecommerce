@@ -45,6 +45,7 @@
     padding-left: 110px;
     padding-top:10px;
     position: relative;
+    
 }
 /* prova css per il nome del prodotto in fade out sistemare la grandezza del font */
 
@@ -52,6 +53,7 @@
     margin: 0 0 1em 0;
     overflow: hidden;
     font: 1.2em/1.2em 'Open Sans', sans-serif;
+    font-weight: bold;
   }
 .item-name-text p {
     margin: 0;
@@ -81,24 +83,19 @@
 .item-amount{
     width: 50px;
     height: 22px;
-    
 }
 
-.item-amount-update{
+.item-button-update{
     border: none;
     padding-left: 4px;
-    padding-right: 4px;
-    background-color: #f63;
+    padding-right: 4px;  
     height: 22px;
     cursor: pointer;
+    font-weight: bold;
+    background-color: white;
 }
-.item-remove{
-    border: none;
-    padding-left: 4px;
-    padding-right: 4px;
-    background-color: #f63;
-    height: 22px;
-    cursor: pointer;
+.item-button-update:hover{
+    color: #f63;
 }
 
 .item-price{
@@ -113,9 +110,10 @@
     background-color: #ffffff;
     border: 1px solid #ccc;
     padding-left: 5px;
-   
+    font-weight: bold;
 }
 .cart-buy{
+    font-weight: bold;
     border: none;
     float: right;
     outline: 0;
