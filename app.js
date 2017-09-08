@@ -9,7 +9,7 @@ var fileUpload = require('express-fileupload');
 
 var app = express();
 
-/* soketio */
+/* SOCKET.IO */
 // SOCKET IO SRV GLOBAL INIT
 var ioMan = require('zzCustom/socketGlobal');
 //var server = require('http').Server(app);
@@ -49,20 +49,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(fileUpload());
 
-
+/* PARTE FRONTEND */
 app.use('/', frontend);
 app.use('/categoria', frontend);
 app.use('/registrazione', frontend);
 app.use('/prodotto', frontend);
 app.use('/profilo', frontend);
 app.use('/carrello', frontend);
-
+/* PARTE FRONTEND */
+/* PARTE BACKEND */
 app.use('/amministrazione', backend);
 app.use('/amministrazione/login', backend);
 app.use('/amministrazione/menu', backend);
 app.use('/amministrazione/categorie', backend);
 app.use('/amministrazione/prodotti', backend);
 app.use('/amministrazione/prodotto', backend);
+/* PARTE BACKEND */
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
