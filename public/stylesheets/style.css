@@ -83,7 +83,27 @@ html {
   color: #000;
   background-color: #fff;
 }
-
+.text-button-user-connected{
+  color: #f63;
+  margin-left: 6px;
+  font-size:18px;
+}
+@media (max-width:1400px) {
+  
+  .text-button-user-connected {
+    font-size: 14px;
+  }
+}
+@media (max-width:780px) {
+  
+  .text-button-user-connected {
+    display: none;
+  }
+}
+.text-button-user-not-connected{
+  color: #f63;
+  font-size:18px;
+}
 .large {
   font-size: 18px!important;
 }
@@ -107,7 +127,7 @@ html {
   width: 20%;
   height: 100%;
   width: 200px;
-  background-color: #ddd;
+  background-color: #E8E8E8;
   position: fixed!important;
   z-index: 1;
   overflow: auto;
@@ -142,7 +162,7 @@ html {
   border-right: 1px solid #ccc;
   height: 100%;
   width: 200px;
-  background-color: #ddd;
+  background-color: #E8E8E8;
   position: fixed!important;
   z-index: 1;
   overflow: auto;

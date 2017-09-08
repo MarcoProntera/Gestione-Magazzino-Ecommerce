@@ -77,7 +77,7 @@ $(document).ready(function () {
 
 function avvisaUser(codice) {
     ajaxCall('POST', window.location.origin + '/avvertimi', 5000, { codice: codice }, function () {
-        alert('Grazie!\n sarai avvisato tramite mail non appena il prodotto tornerà disponibile');
+        alert('Grazie!\n Sarai avvisato tramite mail non appena il prodotto tornerà disponibile.');
         $('#overlay').fadeOut();
     });
 }

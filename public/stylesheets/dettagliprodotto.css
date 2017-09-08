@@ -11,6 +11,7 @@
 .contenitore-immagini {
     width: 30%;
     float: left;
+    min-height: 325px;
     max-height: 330px;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
@@ -18,7 +19,6 @@
 }
 
 .immagine {
-    min-width: 100px;
     max-width: 100%;
     max-height: 300px;
 }
@@ -55,6 +55,9 @@
     width: 100%;
     text-align: center;
     border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    font-weight: bold;
+    
 }
 
 .prezzo-acquista {

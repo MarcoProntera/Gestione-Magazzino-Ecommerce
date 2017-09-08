@@ -1,25 +1,33 @@
 <link rel="stylesheet" href="/stylesheets/prodotticategoria.css">
-<h1 style="padding-left:10px;"> <%- nomeCategoria %> </h1>
+<h1 style="padding-left:10px;">
+    <%- nomeCategoria %>
+</h1>
 <div class="categoria-container center-contents">
     <!-- DIV CHE CONTIENE UN PRODOTTO -->
     <%for(var i = 0; i< prodotti.length; i++){ %>
         <div class="item-c">
-            <div class="item-c-image" onclick="window.location = window.location.origin + '/prodotto?pro=<%- prodotti[i].codice %>';"> <img class="item-c-inner-image" src="/images/prodotti/<%- prodotti[i].codice %>_1" onerror="$(this).attr('src','/images/prodotti/nondisp.png');"> </div>
-            <div class="item-c-name" onclick="window.location = window.location.origin + '/prodotto?pro=<%- prodotti[i].codice %>';">
-                <%- prodotti[i].nome %>
+            <div onclick="window.location = window.location.origin + '/prodotto?pro=<%- prodotti[i].codice %>';">
+                <div class="item-c-image">
+                    <img class="item-c-inner-image" src="/images/prodotti/<%- prodotti[i].codice %>_1" onerror="$(this).attr('src','/images/prodotti/nondisp.png');">                    </div>
+                <div class="item-c-name">
+                    <p>
+                        <%- prodotti[i].nome %>
+                    </p>
+                </div>
             </div>
             <div class="item-c-operations">
                 <ul class="item-price-add-cart">
                     <li> <span>Costo : <%- prodotti[i].prezzo %> €</span> </li>
                     <li>
                         <% if(prodotti[i].quantita > 0){ %>
-                            <p class="item-availability"> disponibile </p>
+                            <span class="item-availability"> Disponibile </span>
                             <% } else if(auth == true) { %>
-                                <p class="item-availability" onclick="avvisaUser(<%- prodotti[i].codice %>);"> avvisami quando disponibile </p>
+                                <span id="Alert-button" class="item-availability" onclick="avvisaUser(<%- prodotti[i].codice %>);"> Avvisami quando disponibile </span>
                                 <% }else{%>
-                                    <p class="item-availability"> NON disponibile</p>
+                                    <span id="item-not-available" class="item-availability"> Non disponibile</span>
                                     <%} %>
                     </li>
+
                 </ul>
             </div>
         </div>
