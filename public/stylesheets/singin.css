@@ -26,23 +26,27 @@
     display: table;
     margin: 0 auto; 
 }
+
 .singin-tab{
     border: 1px solid darkgray;
     padding:10px;
     text-align: justify;
     background-color: #f63;
 }
+
 .singin-form{
     border: 1px solid darkgray;
     padding:10px;
     background-color: white;
 }
+
 .singin-input{
     padding: 8px;
     display: block;
     border: 1px solid darkgray;
     width: 100%;
 }
+
 .singin-button{
     border: none;
     display: inline-block;

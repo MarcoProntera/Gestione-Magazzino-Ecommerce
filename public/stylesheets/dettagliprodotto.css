@@ -81,6 +81,7 @@
 .button:hover{
     background-color: #f63;
 }
+
 #add-on-cart-button{
     border-radius: 6px;
     background-color: #ccc; 
@@ -88,8 +89,6 @@
 #add-on-cart-button:hover{
     background-color: #f63;
 }
-
-/* da rivedere */
 
 .contenitore-specifiche {
     width: 100%;

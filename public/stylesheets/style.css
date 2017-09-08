@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
 }
+
 html,body{
   font-family: Verdana, sans-serif;
   font-size: 15px;
@@ -12,11 +13,13 @@ html,body{
 html {
   overflow-x: hidden;
 }
+
 .logo-sito{
   display: inline;
   padding-left:45px;
   cursor: pointer;
 }
+
 .animate-right{
   position: relative;
   animation: animateright 0.4s;
@@ -32,15 +35,18 @@ html {
       opacity: 1;
   }
 }
+
 .login-message{
   padding: 0;
   margin: 0;
   padding-left: 10px;
 }
+
 .login-button{
   cursor: pointer;
   padding: 7px 5px 7px 5px;
 }
+
 .inner-bar-item{
   padding: 8px 16px;
   width: auto;
@@ -57,6 +63,7 @@ html {
   white-space: nowrap;
   margin-right: 20px;
 }
+
 .menu-element{
   color: #fff;
   font-size: 16px;
@@ -74,15 +81,18 @@ html {
     font-size: 12px;
   }
 }
+
 .button-active{
   color: #000;
   background-color: #fff;
   text-decoration: underline;
 }
+
 .menu-element:hover, .button-clicked{
   color: #000;
   background-color: #fff;
 }
+
 .text-button-user-connected{
   color: #f63;
   margin-left: 6px;
@@ -100,16 +110,20 @@ html {
     display: none;
   }
 }
+
 .text-button-user-not-connected{
   color: #f63;
   font-size:18px;
 }
+
 .large {
   font-size: 18px!important;
 }
+
 .container {
   padding: 0.01em 16px;
 }
+
 .input {
   padding: 8px;
   display: block;
@@ -117,9 +131,11 @@ html {
   border-bottom: 1px solid #ccc;
   width: 100%;
 }
+
 .border {
   border: 1px solid #ccc!important;
 }
+
 .right-cell {
   display:none;
   right:0;
@@ -133,17 +149,22 @@ html {
   overflow: auto;
   border-left: 1px solid #ccc;
 }
+
 .padding-16{
   padding-bottom: 16px!important;
 }
+
 .color-login{
   color: #fff!important;
   background-color: #f63!important;
 }
+
 .bar {
   width: 100%;
   overflow: hidden;
 }
+/* 
+NON UTILIZZATO
 @media (max-width:600px) {
   
   .hide-small {
@@ -153,11 +174,12 @@ html {
   .show-smallbtn {
           display: inline-block!important;
       }
-}
+} */
 
 .right {
   float: right!important;
 }
+
 .sidebar {
   border-right: 1px solid #ccc;
   height: 100%;
@@ -196,15 +218,19 @@ html {
 #main {
   transition: margin-left .4s;
 }
+
 .border-light{
   border: 1px solid darkgray;
  }
+
 .all-width{
   width: 100%;
 }
+
 .text-left{
   text-align: left!important;
 }
+
 .sub-left-menu-name{
   color: #000;
   font-size: 16px;
@@ -212,14 +238,17 @@ html {
 .sub-left-menu-name:hover{
   color: #f63;
 }
+
 .conteriner-contents{
   min-height: 100vh;
 }
+
 .div-footer{
   position: relative;
   bottom:0;
   background-color: #f63;
 }
+
 .icon-color{
   color: #f63;
 }

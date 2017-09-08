@@ -94,6 +94,7 @@
     font-weight: bold;
     background-color: white;
 }
+
 .item-button-update:hover{
     color: #f63;
 }
@@ -104,6 +105,7 @@
     margin:0;
     height: 23px;
 }
+
 .total-cart-cost{
     margin-top:20px;
     height: 30px;
@@ -112,6 +114,7 @@
     padding-left: 5px;
     font-weight: bold;
 }
+
 .cart-buy{
     font-weight: bold;
     border: none;
