@@ -1,58 +1,64 @@
+<link rel="stylesheet" href="/stylesheets/backend/prodotto.css" />
 <% var categoriaSelect = '';
 for (var i = 0; i < categorie.length; i++) {
     categoriaSelect += '<option value="' + categorie[i].codice + '">' + categorie[i].nome + '</option>';
 }%>
-    <div style="display: table; margin: 0 auto;">
+    <div class="insert-product-container">
         <h2>INSERIMENTO PRODOTTO</h2>
         <table>
             <tr>
-                <td style="border:1px solid black; padding:20px;">NOME:
 
-                    <input style="display:block" autocomplete="off" id="prodotto_nome" type="text" /> QUANTITA:
-                    <input style="display:block" autocomplete="off" id="prodotto_qt" type="text" /> PREZZO:
-                    <input style="display:block" autocomplete="off" id="prodotto_prez" type="text" /> CATEGORIA:
-                    <select style="display:block" autocomplete="off" id="prodotto_cat">
+                <td class="container-date-product">
+                    <h3>INSERISCI DATI PRODOTTO</h3>
+                    NOME:<input style="display:block" autocomplete="off" id="prodotto_nome" type="text" /> QUANTITA:
+                    <input style="display:block" autocomplete="off" id="prodotto_qt" type="text" /> PREZZO: <input style="display:block"
+                        autocomplete="off" id="prodotto_prez" type="text" /> CATEGORIA: <select style="display:block" autocomplete="off"
+                        id="prodotto_cat">
                     <option value="-1"></option>
                 <%-categoriaSelect%>
                 </select>
                 </td>
-                <td style="border:1px solid red;padding:20px; ">
+                <td class="container-date-product" style=" position: relative; ">
+                    <h3 style="position: absolute; top: 10px;   ">INSERISCI IMMAGINI PRODOTTO</h3>
                     <form id="uploadForm" action="/amministrazione/upload" method="POST" encType="multipart/form-data">
                         <input type="file" name="file_1" id="file_1" /><br />
                         <input type="file" name="file_2" id="file_2" /><br />
                         <input type="file" name="file_3" id="file_3" /><br />
-                        <input type="text" name="codice" id="codice_temp" value="<%-(newCode != null) ? newCode : datiProdotto.codice %>" readonly="readonly" style="display: none;" /><br />
+                        <input type="text" name="codice" id="codice_temp" value="<%-(newCode != null) ? newCode : datiProdotto.codice %>" readonly="readonly"
+                            style="display: none;" /><br />
                         <input style="float:right;" type="submit" id="upload" value="Upload!" />
                     </form>
-                    <img id="foto_1" src="" alt="" style="max-height: 100px; max-width: 100px;" />
-                    <img id="foto_2" src="" alt="" style="max-height: 100px; max-width: 100px;" />
-                    <img id="foto_3" src="" alt="" style="max-height: 100px; max-width: 100px;" />
+                    <img id="foto_1" src="" alt="" class="image-product-added" />
+                    <img id="foto_2" src="" alt="" class="image-product-added" />
+                    <img id="foto_3" src="" alt="" class="image-product-added" />
                 </td>
             </tr>
             <tr>
-                <td style="border:1px solid red;padding:20px;" colspan="2"> DESCRIZIONE: <textarea rows="20" cols="100" style="resize: none; display: block" autocomplete="off" id="prodotto_desc" type="text"> </textarea> </td>
+                <td class="container-date-product" colspan="2">
+                    <h3>INSERISCI DESCRIZIONE PRODOTTO</h3> <textarea rows="20" cols="100" style="resize: none; display: block"
+                        autocomplete="off" id="prodotto_desc" type="text"> </textarea> </td>
             </tr>
             <tr>
-                <td style="border:1px solid coral;padding:20px;" colspan="2"> SPECIFICHE:<br />
-
-                    <table id="specifiche_prodotto" style="border: 1px solid #000;width: 100%;">
+                <td class="container-date-product" colspan="2">
+                    <h3>AGGIUNGI SPECIFICHE PRODOTTO</h3>
+                    <table id="specifiche_prodotto" style="border:1px solid #ccc; width: 100%;">
 
                     </table>
                     <button style="float: right" onclick="aggiungiRighaSpec()">Aggiungi</button><br />
                 </td>
             </tr>
             <tr>
-                <td style="text-align: center;padding-top: 10px;" colspan="2"><button id="salva">SALVA</button></td>
+                <td class="save-product" colspan="2"><button id="salva">SALVA</button></td>
             </tr>
         </table>
     </div>
     <script type="text/javascript">
         var datiProdotto = <%- JSON.stringify(datiProdotto) %>;
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             /*file upload*/
             $("form").submit(false);
-            $("#upload").click(function() {
+            $("#upload").click(function () {
                 $('#overlay').fadeIn();
                 $.ajax({
                     // Your server script to process the upload
@@ -62,7 +68,7 @@ for (var i = 0; i < categorie.length; i++) {
                     cache: false,
                     contentType: false,
                     processData: false,
-                    success: function(data) {
+                    success: function (data) {
                         console.log(data);
                         $('#foto_1').attr({
                             'src': '/images/prodotti/' + $('#codice_temp').val() + '_1'
@@ -75,7 +81,7 @@ for (var i = 0; i < categorie.length; i++) {
                         });
                         $('#overlay').fadeOut();
                     },
-                    error: function(cicci) {
+                    error: function (cicci) {
                         alert(cicci);
                         $('#overlay').fadeOut();
                     }
@@ -83,9 +89,9 @@ for (var i = 0; i < categorie.length; i++) {
             });
             /*file upload*/
 
-            $('#salva').click(function() {
+            $('#salva').click(function () {
                 var parseMe = '{';
-                $('#specifiche_prodotto').find('tr').each(function() {
+                $('#specifiche_prodotto').find('tr').each(function () {
                     if ($(this).find('.chiave_spec').val() != '' && $(this).find('.value_spec').val() != '') {
                         if (parseMe != '{')
                             parseMe += ',';
@@ -104,13 +110,13 @@ for (var i = 0; i < categorie.length; i++) {
                 };
                 console.log(salva_prodotto);
                 if (datiProdotto == null)
-                    ajaxCall("POST", window.location.origin + '/amministrazione/prodotto/add', 5000, salva_prodotto, function(data) {
+                    ajaxCall("POST", window.location.origin + '/amministrazione/prodotto/add', 5000, salva_prodotto, function (data) {
                         console.log('fatto');
                         $('#overlay').fadeIn();
                         window.location = window.location.origin + '/amministrazione/prodotto?c=' + data.codice;
                     });
                 else
-                    ajaxCall("POST", window.location.origin + '/amministrazione/prodotto/update', 5000, salva_prodotto, function(data) {
+                    ajaxCall("POST", window.location.origin + '/amministrazione/prodotto/update', 5000, salva_prodotto, function (data) {
                         console.log('fatto');
                         $('#overlay').fadeIn();
                         window.location = window.location.origin + '/amministrazione/prodotto?c=' + data.codice;
@@ -138,7 +144,7 @@ for (var i = 0; i < categorie.length; i++) {
             $('#prodotto_prez').val(dati.prezzo);
             $('#prodotto_cat').val(dati.codice_categoria);
             var specs = JSON.parse(dati.specifiche);
-            $.each(specs, function(key, val) {
+            $.each(specs, function (key, val) {
                 $('#specifiche_prodotto').append('<tr>' +
                     '<td style="width:50%;">' +
                     '<input class="chiave_spec" type="text" value="' + key + '" style="width: 100%;" />' +

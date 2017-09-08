@@ -1,0 +1,16 @@
+.insert-product-container{
+    display: table;
+    margin: 0 auto;
+}
+.container-date-product{
+    border:1px solid #ccc;
+    padding: 10px;
+}
+.image-product-added{
+    max-height: 100px;
+    max-width: 100px;
+}
+.save-product{
+    text-align: center;
+    padding-top: 10px;
+}
