@@ -38,9 +38,10 @@
     <h1 class="logo-sito" onclick="window.location= window.location.origin;">E-Commerce</h1>
     <% if(auth == true) {%>
         <button class="inner-bar-item right" style="height: 32.8px" onclick="window.location= window.location.origin + '/logout';"><span class="flaticon-technology-3 icon-color" ></span> <span class="text-button-user-connected">Logout</span></button>
-        <button class="inner-bar-item right" style="height: 32.8px" onclick="window.location= window.location.origin + '/profilo';"><span class="flaticon-gear icon-color" ></span><span class="text-button-user-connected">Profilo</span></button>
         <button class="inner-bar-item right" style="height: 32.8px" onclick="window.location= window.location.origin + '/carrello';"><span class="flaticon-shop icon-color" ></span><span class="text-button-user-connected">Carrello</span></button>
+        <button class="inner-bar-item right" style="height: 32.8px" onclick="window.location= window.location.origin + '/profilo';"><span class="flaticon-gear icon-color" ></span><span class="text-button-user-connected">Profilo</span></button>
         <% } else { %>
+            <button class="inner-bar-item right" style="height: 32.8px" onclick="window.location= window.location.origin + '/carrello';"><span class="flaticon-shop icon-color" ></span><span class="text-button-user-connected">Carrello</span></button>
             <button class="inner-bar-item right text-button-user-not-connected" onclick="window.location= window.location.origin + '/registrazione';">Registrati</button>
             <button class="inner-bar-item right text-button-user-not-connected" id="template_accedi" onclick="openRightMenu()">Accedi</button>
             <% } %>
