@@ -33,7 +33,7 @@
                 <%
      var totale = Number(0);
      for(var i = 0; i<carrello.length; i++){
-         totale = (Number(totale) + Number(JSON.parse(carrello[i]).prezzo))*Number(JSON.parse(carrello[i]).quantita);
+         totale += (Number(JSON.parse(carrello[i]).prezzo))*Number(JSON.parse(carrello[i]).quantita);
      }
     %>
                     <p class="inline">Totale:
