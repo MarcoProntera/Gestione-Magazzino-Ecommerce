@@ -11,9 +11,7 @@ for (var i = 0; i < categorie.length; i++) {
                 <td class="container-date-product">
                     <h3>INSERISCI DATI PRODOTTO</h3>
                     NOME:<input style="display:block" autocomplete="off" id="prodotto_nome" type="text" /> QUANTITA:
-                    <input style="display:block" autocomplete="off" id="prodotto_qt" type="text" /> PREZZO: <input style="display:block"
-                        autocomplete="off" id="prodotto_prez" type="text" /> CATEGORIA: <select style="display:block" autocomplete="off"
-                        id="prodotto_cat">
+                    <input style="display:block" autocomplete="off" id="prodotto_qt" type="text" /> PREZZO: <input style="display:block" autocomplete="off" id="prodotto_prez" type="text" /> CATEGORIA: <select style="display:block" autocomplete="off" id="prodotto_cat">
                     <option value="-1"></option>
                 <%-categoriaSelect%>
                 </select>
@@ -24,8 +22,7 @@ for (var i = 0; i < categorie.length; i++) {
                         <input type="file" name="file_1" id="file_1" /><br />
                         <input type="file" name="file_2" id="file_2" /><br />
                         <input type="file" name="file_3" id="file_3" /><br />
-                        <input type="text" name="codice" id="codice_temp" value="<%-(newCode != null) ? newCode : datiProdotto.codice %>" readonly="readonly"
-                            style="display: none;" /><br />
+                        <input type="text" name="codice" id="codice_temp" value="<%-(newCode != null) ? newCode : datiProdotto.codice %>" readonly="readonly" style="display: none;" /><br />
                         <input style="float:right;" type="submit" id="upload" value="Upload!" />
                     </form>
                     <img id="foto_1" src="" alt="" class="image-product-added" />
@@ -35,8 +32,7 @@ for (var i = 0; i < categorie.length; i++) {
             </tr>
             <tr>
                 <td class="container-date-product" colspan="2">
-                    <h3>INSERISCI DESCRIZIONE PRODOTTO</h3> <textarea rows="20" cols="100" style="resize: none; display: block"
-                        autocomplete="off" id="prodotto_desc" type="text"> </textarea> </td>
+                    <h3>INSERISCI DESCRIZIONE PRODOTTO</h3> <textarea rows="20" cols="100" style="resize: none; display: block" autocomplete="off" id="prodotto_desc" type="text"> </textarea> </td>
             </tr>
             <tr>
                 <td class="container-date-product" colspan="2">
@@ -54,11 +50,15 @@ for (var i = 0; i < categorie.length; i++) {
     </div>
     <script type="text/javascript">
         var datiProdotto = <%- JSON.stringify(datiProdotto) %>;
-        $(document).ready(function () {
+        $(document).ready(function() {
 
             /*file upload*/
             $("form").submit(false);
-            $("#upload").click(function () {
+            $("#upload").click(function() {
+                if ($('#file_1').val() == '' || $('#file_2').val() == '' || $('#file_3').val() == '') {
+                    alert('selezionare 3 immagini prima di eseguire l\'upload');
+                    return;
+                }
                 $('#overlay').fadeIn();
                 $.ajax({
                     // Your server script to process the upload
@@ -68,7 +68,7 @@ for (var i = 0; i < categorie.length; i++) {
                     cache: false,
                     contentType: false,
                     processData: false,
-                    success: function (data) {
+                    success: function(data) {
                         console.log(data);
                         $('#foto_1').attr({
                             'src': '/images/prodotti/' + $('#codice_temp').val() + '_1'
@@ -81,17 +81,17 @@ for (var i = 0; i < categorie.length; i++) {
                         });
                         $('#overlay').fadeOut();
                     },
-                    error: function (cicci) {
-                        alert(cicci);
+                    error: function(cicci) {
+                        //alert(cicci);
                         $('#overlay').fadeOut();
                     }
                 });
             });
             /*file upload*/
 
-            $('#salva').click(function () {
+            $('#salva').click(function() {
                 var parseMe = '{';
-                $('#specifiche_prodotto').find('tr').each(function () {
+                $('#specifiche_prodotto').find('tr').each(function() {
                     if ($(this).find('.chiave_spec').val() != '' && $(this).find('.value_spec').val() != '') {
                         if (parseMe != '{')
                             parseMe += ',';
@@ -110,13 +110,13 @@ for (var i = 0; i < categorie.length; i++) {
                 };
                 console.log(salva_prodotto);
                 if (datiProdotto == null)
-                    ajaxCall("POST", window.location.origin + '/amministrazione/prodotto/add', 5000, salva_prodotto, function (data) {
+                    ajaxCall("POST", window.location.origin + '/amministrazione/prodotto/add', 5000, salva_prodotto, function(data) {
                         console.log('fatto');
                         $('#overlay').fadeIn();
                         window.location = window.location.origin + '/amministrazione/prodotto?c=' + data.codice;
                     });
                 else
-                    ajaxCall("POST", window.location.origin + '/amministrazione/prodotto/update', 5000, salva_prodotto, function (data) {
+                    ajaxCall("POST", window.location.origin + '/amministrazione/prodotto/update', 5000, salva_prodotto, function(data) {
                         console.log('fatto');
                         $('#overlay').fadeIn();
                         window.location = window.location.origin + '/amministrazione/prodotto?c=' + data.codice;
@@ -144,7 +144,7 @@ for (var i = 0; i < categorie.length; i++) {
             $('#prodotto_prez').val(dati.prezzo);
             $('#prodotto_cat').val(dati.codice_categoria);
             var specs = JSON.parse(dati.specifiche);
-            $.each(specs, function (key, val) {
+            $.each(specs, function(key, val) {
                 $('#specifiche_prodotto').append('<tr>' +
                     '<td style="width:50%;">' +
                     '<input class="chiave_spec" type="text" value="' + key + '" style="width: 100%;" />' +
