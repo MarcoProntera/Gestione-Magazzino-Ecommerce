@@ -26,24 +26,24 @@
 
         </div>
         <% } %>
-            <!-- fine Contenitore di un prodotto -->
-            <!-- Contenitore del totale del carrello -->
-            <% if(carrello.length > 0){ %>
+        <!-- fine Contenitore di un prodotto -->
+        <!-- Contenitore del totale del carrello -->
+        <% if(carrello.length > 0){ %>
+            <div class="total-cart-cost">
+                <%
+     var totale = Number(0);
+     for(var i = 0; i<carrello.length; i++){
+         totale = (Number(totale) + Number(JSON.parse(carrello[i]).prezzo))*Number(JSON.parse(carrello[i]).quantita);
+     }
+    %>
+                    <p class="inline">Totale:
+                        <%- totale %> €
+                    </p>
+                    <input class="cart-buy" name="Compra" type="submit" value="Compra" onclick="alert('Nel momento in cui si preme compra se il prodotto ha quantità richiesta superiore a quella disponibile che si ha in magazzino allora viene lanciato un alert.')">
+            </div>
+            <% } else {%>
                 <div class="total-cart-cost">
-                    <%
-         var totale = Number(0);
-         for(var i = 0; i<carrello.length; i++){
-             totale = Number(totale) + Number(JSON.parse(carrello[i]).prezzo);
-         }
-        %>
-                        <p class="inline">Totale:
-                            <%- totale %> €
-                        </p>
-                        <input class="cart-buy" name="Compra" type="submit" value="Compra" onclick="alert('funzionalità in arrivo...')">
+                    Ritorna dopo aver aggiunto qualche prodotto.
                 </div>
-                <% } else {%>
-                    <div class="total-cart-cost">
-                        Ritorna dopo aver aggiunto qualche prodotto...
-                    </div>
-                    <% }%>
+                <% }%>
 </div>
